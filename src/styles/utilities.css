@@ -1,0 +1,196 @@
+/* Generated from src/tokens/site-spec.json. Run npm run tokens:generate. */
+@utility gap-xxs {
+  gap: var(--site-gap-xxs);
+}
+@utility gap-x-xxs {
+  column-gap: var(--site-gap-xxs);
+}
+@utility gap-y-xxs {
+  row-gap: var(--site-gap-xxs);
+}
+@utility gap-xs {
+  gap: var(--site-gap-xs);
+}
+@utility gap-x-xs {
+  column-gap: var(--site-gap-xs);
+}
+@utility gap-y-xs {
+  row-gap: var(--site-gap-xs);
+}
+@utility gap-sm {
+  gap: var(--site-gap-sm);
+}
+@utility gap-x-sm {
+  column-gap: var(--site-gap-sm);
+}
+@utility gap-y-sm {
+  row-gap: var(--site-gap-sm);
+}
+@utility gap-md {
+  gap: var(--site-gap-md);
+}
+@utility gap-x-md {
+  column-gap: var(--site-gap-md);
+}
+@utility gap-y-md {
+  row-gap: var(--site-gap-md);
+}
+@utility gap-lg {
+  gap: var(--site-gap-lg);
+}
+@utility gap-x-lg {
+  column-gap: var(--site-gap-lg);
+}
+@utility gap-y-lg {
+  row-gap: var(--site-gap-lg);
+}
+@utility gap-xl {
+  gap: var(--site-gap-xl);
+}
+@utility gap-x-xl {
+  column-gap: var(--site-gap-xl);
+}
+@utility gap-y-xl {
+  row-gap: var(--site-gap-xl);
+}
+@utility gap-xxl {
+  gap: var(--site-gap-xxl);
+}
+@utility gap-x-xxl {
+  column-gap: var(--site-gap-xxl);
+}
+@utility gap-y-xxl {
+  row-gap: var(--site-gap-xxl);
+}
+@utility gap-3xl {
+  gap: var(--site-gap-3xl);
+}
+@utility gap-x-3xl {
+  column-gap: var(--site-gap-3xl);
+}
+@utility gap-y-3xl {
+  row-gap: var(--site-gap-3xl);
+}
+@utility gap-4xl {
+  gap: var(--site-gap-4xl);
+}
+@utility gap-x-4xl {
+  column-gap: var(--site-gap-4xl);
+}
+@utility gap-y-4xl {
+  row-gap: var(--site-gap-4xl);
+}
+@utility gap-5xl {
+  gap: var(--site-gap-5xl);
+}
+@utility gap-x-5xl {
+  column-gap: var(--site-gap-5xl);
+}
+@utility gap-y-5xl {
+  row-gap: var(--site-gap-5xl);
+}
+@utility text-primary {
+  color: var(--site-text-primary);
+}
+@utility text-body {
+  color: var(--site-text-body);
+}
+@utility text-secondary {
+  color: var(--site-text-secondary);
+}
+@utility text-tertiary {
+  color: var(--site-text-tertiary);
+}
+@utility text-muted {
+  color: var(--site-text-muted);
+}
+@utility text-disabled {
+  color: var(--site-text-disabled);
+}
+@utility text-point {
+  color: var(--site-text-point);
+}
+@utility text-link {
+  color: var(--site-text-link);
+}
+@utility text-on-image {
+  color: var(--site-text-on-image);
+}
+@utility text-on-image-sub {
+  color: var(--site-text-on-image-sub);
+}
+@utility text-on-solid {
+  color: var(--site-text-on-solid);
+}
+@utility text-on-disabled {
+  color: var(--site-text-on-disabled);
+}
+@utility text-success {
+  color: var(--site-text-success);
+}
+@utility text-warning {
+  color: var(--site-text-warning);
+}
+@utility text-error {
+  color: var(--site-text-error);
+}
+@utility bg-base {
+  background-color: var(--site-bg-base);
+}
+@utility bg-surface-light {
+  background-color: var(--site-bg-surface-light);
+}
+@utility bg-main {
+  background-color: var(--site-bg-main);
+}
+@utility bg-promo {
+  background-color: var(--site-bg-promo);
+}
+@utility bg-disabled {
+  background-color: var(--site-bg-disabled);
+}
+@utility bg-success-tint {
+  background-color: var(--site-bg-success-tint);
+}
+@utility bg-warning-tint {
+  background-color: var(--site-bg-warning-tint);
+}
+@utility bg-error-tint {
+  background-color: var(--site-bg-error-tint);
+}
+@utility bg-info-tint {
+  background-color: var(--site-bg-info-tint);
+}
+@utility border-light {
+  border-color: var(--site-line-light);
+}
+@utility border-strong {
+  border-color: var(--site-line-strong);
+}
+@utility border-heading {
+  border-color: var(--site-line-heading);
+}
+@utility border-on-image {
+  border-color: var(--site-line-on-image);
+}
+@utility border-point {
+  border-color: var(--site-line-point);
+}
+@utility border-focus {
+  border-color: var(--site-line-focus);
+}
+@utility border-hover {
+  border-color: var(--site-line-hover);
+}
+@utility border-default {
+  border-color: var(--site-line-default);
+}
+@utility border-error {
+  border-color: var(--site-line-error);
+}
+@utility border-checked {
+  border-color: var(--site-line-checked);
+}
+@utility border-accent {
+  border-color: var(--site-line-accent);
+}
