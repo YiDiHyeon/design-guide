@@ -1,10 +1,9 @@
-import { Input } from './input';
-import { Select } from './select';
-import { FieldPlayground } from './field-playground';
+import { Input, Select } from '@/components/ui';
+import { FieldPlayground } from '@/components/playgrounds/field-playground';
 import { destinationOptions } from '@/lib/control';
-import { Section, Table, Code } from './doc-parts';
-import { TokenCatalog } from './token-catalog';
-import { TokenValue } from './token-value';
+import { Section, Table, Code } from '@/components/site/doc-parts';
+import { TokenCatalog } from '@/components/site/token-catalog';
+import { TokenValue } from '@/components/site/token-value';
 import { controlSizes } from '@/lib/control';
 import { spec } from '@/lib/tokens';
 import { Search, Check, X } from 'lucide-react';
@@ -378,8 +377,8 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
       <Section title="Code Example">
         <Code>
           {isInput
-            ? `'use client';\nimport { useState } from 'react';\nimport { Input } from '@/components/input';\n\nexport default function NameField() {\n  const [name, setName] = useState('');\n  return (\n    <div>\n      <label htmlFor="name">이름</label>\n      <Input id="name" name="name" autoComplete="name"\n        value={name} onChange={e => setName(e.target.value)}\n        aria-describedby="name-help" />\n      <p id="name-help">예약자 이름을 입력해 주세요.</p>\n    </div>\n  );\n}`
-            : `'use client';\nimport { useState } from 'react';\nimport { Select } from '@/components/select';\n\nexport default function DestinationField() {\n  const [destination, setDestination] = useState('');\n  return (\n    <div>\n      <label htmlFor="destination">여행지</label>\n      <Select id="destination" name="destination"\n        value={destination}\n        onChange={e => setDestination(e.target.value)}\n        placeholder="여행지를 선택하세요"\n        options={[\n          { value: 'seoul', label: '서울' },\n          { value: 'busan', label: '부산' },\n        ]}\n        aria-describedby="destination-help" />\n      <p id="destination-help">여행할 도시 한 곳을 선택하세요.</p>\n    </div>\n  );\n}`}
+            ? `'use client';\nimport { useState } from 'react';\nimport { Input } from '@/components/ui';\n\nexport default function NameField() {\n  const [name, setName] = useState('');\n  return (\n    <div>\n      <label htmlFor="name">이름</label>\n      <Input id="name" name="name" autoComplete="name"\n        value={name} onChange={e => setName(e.target.value)}\n        aria-describedby="name-help" />\n      <p id="name-help">예약자 이름을 입력해 주세요.</p>\n    </div>\n  );\n}`
+            : `'use client';\nimport { useState } from 'react';\nimport { Select } from '@/components/ui';\n\nexport default function DestinationField() {\n  const [destination, setDestination] = useState('');\n  return (\n    <div>\n      <label htmlFor="destination">여행지</label>\n      <Select id="destination" name="destination"\n        value={destination}\n        onChange={e => setDestination(e.target.value)}\n        placeholder="여행지를 선택하세요"\n        options={[\n          { value: 'seoul', label: '서울' },\n          { value: 'busan', label: '부산' },\n        ]}\n        aria-describedby="destination-help" />\n      <p id="destination-help">여행할 도시 한 곳을 선택하세요.</p>\n    </div>\n  );\n}`}
         </Code>
       </Section>
     </>

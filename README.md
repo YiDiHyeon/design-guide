@@ -1,6 +1,6 @@
 # Design Guide
 
-`tourmin-monorepo-web`의 site Primitive·Semantic 토큰 명세를 사용하는 독립적인 개인 디자인 시스템 문서 사이트입니다. Next.js App Router + TypeScript + Tailwind CSS로 구현했습니다.
+site Primitive·Semantic 토큰 명세를 사용하는 독립적인 개인 디자인 시스템 문서 사이트입니다. Next.js App Router + TypeScript + Tailwind CSS로 구현했습니다.
 
 ## 실행
 
@@ -72,17 +72,20 @@ src/styles/tokens/semantic.css    생성된 Semantic + 반응형
 src/styles/tokens/component.css   생성된 Button·크기 토큰
 src/styles/typography.css         생성된 Text Style
 src/styles/utilities.css          역할 기반 Tailwind utility
-src/styles/button.css            독립적으로 구현한 Button 스타일
-src/components/button.tsx        HTML button과 타입 API
-src/components/button-doc.tsx    후속 문서의 8개 섹션 템플릿
-src/components/token-catalog.tsx 토큰 정의·매핑·화면별 값 표
-src/components/token-value.tsx   실제 CSS 값 + resize 구독
-src/components/docs-shell.tsx    공통 탐색·본문·목차
+src/styles/button.css            Button 스타일
+src/styles/fields.css            Input·Select 스타일
+src/styles/checkbox.css          Checkbox 스타일
+src/styles/radio.css             Radio 스타일
+src/styles/badge.css             Badge 스타일
+src/components/ui/               순수 디자인 시스템 UI 컴포넌트 (Button, Input, Select, Checkbox, Radio, Badge)
+src/components/docs/             문서 페이지 컴포넌트 (*-doc.tsx)
+src/components/playgrounds/      인터랙티브 실시간 조작기 (*-playground.tsx)
+src/components/site/             가이드 사이트 셸, 랜딩, 공통 요소 (DocsShell, LandingPage, DocParts)
 src/lib/docs.ts                  문서 목록 및 목차
 src/lib/tokens.ts                명세 조회와 반응형 값 해석
 src/app/[category]/[slug]/page.tsx 정적 문서 경로
-src/app/globals.css              Tailwind 연결과 문서 UI
- tests/tokens.test.mjs            토큰 정합성 검증
+src/app/globals.css              Tailwind 연결과 전역 스타일
+tests/tokens.test.mjs            토큰 정합성 검증
 ```
 
 Tailwind 기본 숫자 스케일을 덮어쓰지 않습니다. `p-sp-md`, `gap-md`, `text-body`, `bg-base`, `border-default` 등 역할 기반 유틸리티와 `text-tit-main-page`, `text-txt-body-main` 등 타입 스타일을 사용합니다.

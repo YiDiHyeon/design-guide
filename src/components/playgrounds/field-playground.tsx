@@ -1,8 +1,7 @@
 'use client';
 import { useId, useState } from 'react';
-import { Input } from './input';
-import { Select } from './select';
-import { Code } from './doc-parts';
+import { Input, Select } from '@/components/ui';
+import { Code } from '@/components/site/doc-parts';
 import { controlSizes, type ControlSize } from '@/lib/control';
 import { destinationOptions } from '@/lib/control';
 const sizeOptions = controlSizes.map((s) => ({ value: s, label: s }));

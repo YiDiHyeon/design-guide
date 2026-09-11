@@ -6,8 +6,8 @@ import {
   buttonVariants,
   buttonSizes,
   type ButtonProps,
-} from './button';
-import { Select } from './select';
+  Select,
+} from '@/components/ui';
 
 const variantOptions = buttonVariants.map((value) => ({
   value,

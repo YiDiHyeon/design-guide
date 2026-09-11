@@ -8,6 +8,9 @@ import {
   MousePointerClick,
   TextCursorInput,
   ChevronDownSquare,
+  CheckSquare,
+  CircleDot,
+  BadgeCheck,
   Box,
   ArrowUp,
 } from 'lucide-react';
@@ -27,6 +30,12 @@ function getNavIcon(slug: string) {
       return <TextCursorInput size={16} strokeWidth={1.75} />;
     case 'select':
       return <ChevronDownSquare size={16} strokeWidth={1.75} />;
+    case 'checkbox':
+      return <CheckSquare size={16} strokeWidth={1.75} />;
+    case 'radio':
+      return <CircleDot size={16} strokeWidth={1.75} />;
+    case 'badge':
+      return <BadgeCheck size={16} strokeWidth={1.75} />;
     default:
       return <Box size={16} strokeWidth={1.75} />;
   }
