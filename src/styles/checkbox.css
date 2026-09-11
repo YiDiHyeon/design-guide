@@ -1,0 +1,157 @@
+/* Checkbox component styling using site design tokens */
+.ds-checkbox-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--site-space-8);
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  line-height: var(--site-lh-base);
+  font-family: var(--site-font-base);
+  vertical-align: middle;
+}
+
+.ds-checkbox-wrapper[data-state='disabled'] {
+  cursor: not-allowed;
+}
+
+/* Visually hidden native input for standard keyboard & screen reader interactions */
+.ds-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Checkbox visual box container */
+.ds-checkbox-box {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--site-bg-base);
+  border: var(--site-border-default) solid var(--site-line-default);
+  border-radius: var(--site-radius-input);
+  color: var(--site-text-on-solid);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Size Variants */
+.ds-checkbox-wrapper[data-size='sm'] {
+  font-size: var(--site-size-13);
+}
+.ds-checkbox-wrapper[data-size='sm'] .ds-checkbox-box {
+  width: var(--site-size-16);
+  height: var(--site-size-16);
+  border-radius: var(--site-radius-2);
+  margin-top: 2px;
+}
+.ds-checkbox-wrapper[data-size='sm'] .ds-checkbox-icon {
+  width: var(--site-size-12);
+  height: var(--site-size-12);
+}
+
+.ds-checkbox-wrapper[data-size='md'] {
+  font-size: var(--site-size-14);
+}
+.ds-checkbox-wrapper[data-size='md'] .ds-checkbox-box {
+  width: var(--site-control-box);
+  height: var(--site-control-box);
+  border-radius: var(--site-radius-input);
+  margin-top: 1px;
+}
+.ds-checkbox-wrapper[data-size='md'] .ds-checkbox-icon {
+  width: var(--site-control-mark);
+  height: var(--site-control-mark);
+}
+
+.ds-checkbox-wrapper[data-size='lg'] {
+  font-size: var(--site-size-16);
+}
+.ds-checkbox-wrapper[data-size='lg'] .ds-checkbox-box {
+  width: var(--site-size-24);
+  height: var(--site-size-24);
+  border-radius: var(--site-radius-input);
+  margin-top: 0;
+}
+.ds-checkbox-wrapper[data-size='lg'] .ds-checkbox-icon {
+  width: var(--site-size-16);
+  height: var(--site-size-16);
+}
+
+/* Checked & Indeterminate states */
+.ds-checkbox-box[data-checked='true'],
+.ds-checkbox-box[data-indeterminate='true'] {
+  background: var(--site-line-checked);
+  border-color: var(--site-line-checked);
+  color: var(--site-text-on-solid);
+}
+
+/* Focus Visible */
+.ds-checkbox-input:focus-visible + .ds-checkbox-box {
+  outline: var(--site-border-focus) solid var(--site-line-focus);
+  outline-offset: 2px;
+}
+
+/* Error state */
+.ds-checkbox-wrapper[data-state='error'] .ds-checkbox-box {
+  border-color: var(--site-line-error);
+}
+.ds-checkbox-wrapper[data-state='error'] .ds-checkbox-box[data-checked='true'],
+.ds-checkbox-wrapper[data-state='error']
+  .ds-checkbox-box[data-indeterminate='true'] {
+  background: var(--site-line-error);
+  border-color: var(--site-line-error);
+}
+.ds-checkbox-wrapper[data-state='error'] .ds-checkbox-label {
+  color: var(--site-text-error);
+}
+
+/* Disabled state */
+.ds-checkbox-wrapper[data-state='disabled'] .ds-checkbox-box {
+  background: var(--site-bg-disabled);
+  border-color: var(--site-line-default);
+  color: var(--site-icon-muted-color);
+}
+.ds-checkbox-wrapper[data-state='disabled'] .ds-checkbox-label {
+  color: var(--site-text-disabled);
+}
+.ds-checkbox-wrapper[data-state='disabled'] .ds-checkbox-desc {
+  color: var(--site-text-disabled);
+}
+
+/* Content (Label + Description) */
+.ds-checkbox-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--site-space-2);
+  min-width: 0;
+}
+
+.ds-checkbox-label {
+  color: var(--site-text-primary);
+  font-weight: var(--site-fw-body);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.ds-checkbox-desc {
+  color: var(--site-text-muted);
+  font-size: var(--site-size-12);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.ds-checkbox-icon {
+  display: block;
+  flex-shrink: 0;
+  stroke-width: 2.5;
+}

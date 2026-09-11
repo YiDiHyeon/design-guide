@@ -1,4 +1,4 @@
-import { LandingPage } from '@/components/landing-page';
+import { LandingPage } from '@/components/site/landing-page';
 
 export const metadata = {
   title: 'Design Guide · 작은 원칙으로 만드는 일관된 경험',

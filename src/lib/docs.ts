@@ -75,6 +75,57 @@ export const documents = [
       'Code Example',
     ],
   },
+  {
+    category: 'components',
+    slug: 'checkbox',
+    title: 'Checkbox',
+    description:
+      '여러 항목 중 하나 이상을 선택하거나 동의/설정 여부를 전환할 때 사용하는 컴포넌트입니다.',
+    sections: [
+      'Overview',
+      'Anatomy',
+      'Sizes',
+      'States',
+      'Variants',
+      'Guidelines',
+      'API',
+      'Code Example',
+    ],
+  },
+  {
+    category: 'components',
+    slug: 'radio',
+    title: 'Radio',
+    description:
+      '여러 개의 선택지 중 오직 하나의 항목만 상호 배타적으로 선택할 때 사용하는 컴포넌트입니다.',
+    sections: [
+      'Overview',
+      'Anatomy',
+      'Sizes',
+      'States',
+      'Variants',
+      'Guidelines',
+      'API',
+      'Code Example',
+    ],
+  },
+  {
+    category: 'components',
+    slug: 'badge',
+    title: 'Badge',
+    description:
+      '상태, 새로운 기능, 프로모션 또는 카테고리 태그를 한눈에 강조할 때 사용하는 컴포넌트입니다.',
+    sections: [
+      'Overview',
+      'Anatomy',
+      'Variants',
+      'Appearances',
+      'With Icons',
+      'Guidelines',
+      'API',
+      'Code Example',
+    ],
+  },
 ] as const;
 export type Doc = (typeof documents)[number];
 export const sectionId = (title: string) =>

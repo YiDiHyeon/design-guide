@@ -88,6 +88,9 @@ test('document and component CSS contain no undefined variables', () => {
     '../src/app/globals.css',
     '../src/styles/button.css',
     '../src/styles/fields.css',
+    '../src/styles/checkbox.css',
+    '../src/styles/radio.css',
+    '../src/styles/badge.css',
     '../src/styles/typography.css',
   ]
     .map(read)

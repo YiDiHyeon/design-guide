@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation';
 import { documents } from '@/lib/docs';
-import { DocsShell } from '@/components/docs-shell';
-import { FieldDoc } from '@/components/field-doc';
-import { ButtonDoc } from '@/components/button-doc';
-import { FoundationDoc } from '@/components/foundation-doc';
+import { DocsShell } from '@/components/site/docs-shell';
+import { FieldDoc } from '@/components/docs/field-doc';
+import { ButtonDoc } from '@/components/docs/button-doc';
+import { CheckboxDoc } from '@/components/docs/checkbox-doc';
+import { RadioDoc } from '@/components/docs/radio-doc';
+import { BadgeDoc } from '@/components/docs/badge-doc';
+import { FoundationDoc } from '@/components/docs/foundation-doc';
 export function generateStaticParams() {
   return documents.map(({ category, slug }) => ({ category, slug }));
 }
@@ -24,6 +27,12 @@ export default async function Page({ params }: Props) {
         <ButtonDoc />
       ) : slug === 'input' || slug === 'select' ? (
         <FieldDoc kind={slug} />
+      ) : slug === 'checkbox' ? (
+        <CheckboxDoc />
+      ) : slug === 'radio' ? (
+        <RadioDoc />
+      ) : slug === 'badge' ? (
+        <BadgeDoc />
       ) : (
         <FoundationDoc slug={slug} />
       )}

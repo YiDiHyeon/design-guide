@@ -17,9 +17,15 @@ import {
   Check,
   Plus,
 } from 'lucide-react';
-import { Button, type ButtonProps } from './button';
-import { Input } from './input';
-import { Select } from './select';
+import {
+  Button,
+  type ButtonProps,
+  Input,
+  Select,
+  Checkbox,
+  Radio,
+  Badge,
+} from '@/components/ui';
 import { destinationOptions } from '@/lib/control';
 
 export function LandingPage() {
@@ -32,6 +38,7 @@ export function LandingPage() {
 
   const [inputValue, setInputValue] = useState('홍길동');
   const [selectValue, setSelectValue] = useState('seoul');
+  const [checkboxAgreed, setCheckboxAgreed] = useState(true);
 
   return (
     <div className="landing-root">
@@ -250,6 +257,16 @@ export function LandingPage() {
                   value={selectValue}
                   onChange={(e) => setSelectValue(e.target.value)}
                   options={destinationOptions}
+                />
+              </div>
+
+              <div style={{ marginTop: '2px' }}>
+                <Checkbox
+                  id="hero-checkbox"
+                  size="sm"
+                  checked={checkboxAgreed}
+                  onChange={(e) => setCheckboxAgreed(e.target.checked)}
+                  label="약관 동의 완료"
                 />
               </div>
             </div>
@@ -486,6 +503,110 @@ export function LandingPage() {
               <p className="component-card-desc">
                 Lucide 아이콘이 통합된 일체형 선택 박스로 모든 브라우저에서
                 일관된 드롭다운 경험을 보장합니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* Checkbox Card */}
+          <Link href="/components/checkbox" className="component-card">
+            <div className="component-card-preview">
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                }}
+              >
+                <Checkbox size="sm" checked={true} readOnly label="선택 옵션" />
+                <Checkbox
+                  size="sm"
+                  indeterminate={true}
+                  readOnly
+                  label="일부 선택"
+                />
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Checkbox</h3>
+                <span className="bento-badge">Tri-State</span>
+              </div>
+              <p className="component-card-desc">
+                WAI-ARIA 표준의 Unchecked, Checked, Indeterminate 3가지 상태와
+                스페이스바 키보드 제어를 지원합니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* Radio Card */}
+          <Link href="/components/radio" className="component-card">
+            <div className="component-card-preview">
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                }}
+              >
+                <Radio
+                  size="sm"
+                  checked={true}
+                  readOnly
+                  label="옵션 A (선택)"
+                />
+                <Radio size="sm" checked={false} readOnly label="옵션 B" />
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Radio</h3>
+                <span className="bento-badge">Single Choice</span>
+              </div>
+              <p className="component-card-desc">
+                상호 배타적 단일 선택과 RadioGroup 컨테이너를 통한 방향키 키보드
+                탐색을 지원합니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* Badge Card */}
+          <Link href="/components/badge" className="component-card">
+            <div className="component-card-preview">
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '8px',
+                  alignItems: 'center',
+                }}
+              >
+                <Badge variant="point" appearance="solid">
+                  NEW
+                </Badge>
+                <Badge variant="blue" appearance="line">
+                  PROMO
+                </Badge>
+                <Badge variant="accent" appearance="solid">
+                  HOT
+                </Badge>
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Badge</h3>
+                <span className="bento-badge">8 Colors</span>
+              </div>
+              <p className="component-card-desc">
+                8가지 시맨틱 컬러와 Solid, Line 스타일을 조합하여 상태와
+                프로모션을 한눈에 강조합니다.
               </p>
               <span className="component-card-link">
                 자세히 보기 <ArrowRight size={13} />

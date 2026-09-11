@@ -1,7 +1,7 @@
-import { TokenValue } from './token-value';
-import { Button, buttonVariants, buttonSizes } from './button';
-import { ButtonPlayground } from './button-playground';
-import { Section, Code, Table } from './doc-parts';
+import { TokenValue } from '@/components/site/token-value';
+import { Button, buttonVariants, buttonSizes } from '@/components/ui';
+import { ButtonPlayground } from '@/components/playgrounds/button-playground';
+import { Section, Code, Table } from '@/components/site/doc-parts';
 import { CornerDownRight, Plus, Check, X } from 'lucide-react';
 export function ButtonDoc() {
   return (
@@ -245,7 +245,7 @@ export function ButtonDoc() {
         />
       </Section>
       <Section title="Code Example">
-        <Code>{`'use client';\n\nimport { useState } from 'react';\nimport { Button, buttonVariants, buttonSizes } from '@/components/button';\n\nexport default function Example() {\n  const [saved, setSaved] = useState(false);\n  return (\n    <div>\n      <Button onClick={() => setSaved(true)}>\n        변경사항 저장\n      </Button>\n      <p role="status">{saved ? '저장했습니다.' : ''}</p>\n    </div>\n  );\n}`}</Code>
+        <Code>{`'use client';\n\nimport { useState } from 'react';\nimport { Button, buttonVariants, buttonSizes } from '@/components/ui';\n\nexport default function Example() {\n  const [saved, setSaved] = useState(false);\n  return (\n    <div>\n      <Button onClick={() => setSaved(true)}>\n        변경사항 저장\n      </Button>\n      <p role="status">{saved ? '저장했습니다.' : ''}</p>\n    </div>\n  );\n}`}</Code>
         <p className="caption">
           전역 스타일을 불러온 앱에서 사용합니다. 토큰 연결:{' '}
           <code>

@@ -1,6 +1,6 @@
-import { Code, Section } from './doc-parts';
-import { TokenValue } from './token-value';
-import { TokenCatalog } from './token-catalog';
+import { Code, Section } from '@/components/site/doc-parts';
+import { TokenValue } from '@/components/site/token-value';
+import { TokenCatalog } from '@/components/site/token-catalog';
 import { ArrowRight } from 'lucide-react';
 import {
   spec,

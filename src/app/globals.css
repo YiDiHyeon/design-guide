@@ -5,6 +5,9 @@
 @import '../styles/typography.css';
 @import '../styles/button.css';
 @import '../styles/fields.css';
+@import '../styles/checkbox.css';
+@import '../styles/radio.css';
+@import '../styles/badge.css';
 @import '../styles/utilities.css';
 @import '../styles/landing.css';
 
