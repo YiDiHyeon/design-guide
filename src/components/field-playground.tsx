@@ -5,6 +5,14 @@ import { Select } from './select';
 import { Code } from './doc-parts';
 import { controlSizes, type ControlSize } from '@/lib/control';
 import { destinationOptions } from '@/lib/control';
+const sizeOptions = controlSizes.map((s) => ({ value: s, label: s }));
+const stateOptions = [
+  { value: 'default', label: 'default' },
+  { value: 'error', label: 'error' },
+  { value: 'readonly', label: 'readonly' },
+  { value: 'disabled', label: 'disabled' },
+] as const;
+
 export function FieldPlayground({ kind }: { kind: 'input' | 'select' }) {
   const id = useId();
   const [size, setSize] = useState<ControlSize>('md');
@@ -69,22 +77,21 @@ export function FieldPlayground({ kind }: { kind: 'input' | 'select' }) {
         <div className="playground-controls">
           <label>
             Size
-            <select
+            <Select
+              size="sm"
               value={size}
+              options={sizeOptions}
               onChange={(e) => setSize(e.target.value as ControlSize)}
-            >
-              {controlSizes.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
+            />
           </label>
           <label>
             State
-            <select value={state} onChange={(e) => setState(e.target.value)}>
-              {['default', 'error', 'readonly', 'disabled'].map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
+            <Select
+              size="sm"
+              value={state}
+              options={stateOptions}
+              onChange={(e) => setState(e.target.value)}
+            />
           </label>
         </div>
       </div>

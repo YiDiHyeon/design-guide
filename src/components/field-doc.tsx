@@ -7,6 +7,7 @@ import { TokenCatalog } from './token-catalog';
 import { TokenValue } from './token-value';
 import { controlSizes } from '@/lib/control';
 import { spec } from '@/lib/tokens';
+import { Search, Check, X } from 'lucide-react';
 
 export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
   const isInput = kind === 'input';
@@ -38,7 +39,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
               <Input
                 id={`${kind}-anatomy`}
                 placeholder="3. 입력 값 / placeholder"
-                startIcon={<span>⌕</span>}
+                startIcon={<Search size={16} />}
                 aria-describedby={`${kind}-anatomy-help`}
               />
             ) : (
@@ -109,7 +110,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
                 <Input
                   id="input-icon"
                   type="search"
-                  startIcon={<span>⌕</span>}
+                  startIcon={<Search size={16} />}
                   placeholder="검색어"
                 />
               </div>
@@ -269,7 +270,18 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
       <Section title="Guidelines">
         <div className="guideline-grid">
           <div className="guideline good">
-            <h3>✓ 권장해요</h3>
+            <h3>
+              <Check
+                size={16}
+                aria-hidden="true"
+                style={{
+                  display: 'inline',
+                  verticalAlign: '-2px',
+                  marginRight: '4px',
+                }}
+              />
+              권장해요
+            </h3>
             <p>항상 보이는 레이블과 구체적인 도움말을 제공합니다.</p>
             <p>
               오류에는 aria-invalid와 수정 방법을 설명하는 메시지를 함께
@@ -282,7 +294,18 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
             </p>
           </div>
           <div className="guideline bad">
-            <h3>× 피해주세요</h3>
+            <h3>
+              <X
+                size={16}
+                aria-hidden="true"
+                style={{
+                  display: 'inline',
+                  verticalAlign: '-2px',
+                  marginRight: '4px',
+                }}
+              />
+              피해주세요
+            </h3>
             <p>placeholder만으로 레이블을 대신하지 않습니다.</p>
             <p>값을 읽기만 해야 할 때 disabled로 정보를 숨기지 않습니다.</p>
             <p>

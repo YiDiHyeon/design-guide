@@ -1,5 +1,6 @@
 'use client';
 import { useState, type ComponentProps } from 'react';
+import { ChevronDown } from 'lucide-react';
 import type { ControlSize } from '@/lib/control';
 export type SelectOption = { value: string; label: string; disabled?: boolean };
 export type SelectProps = Omit<
@@ -99,7 +100,7 @@ export function Select({
         </select>
       )}
       <span className="field-icon select-indicator" aria-hidden="true">
-        ⌄
+        <ChevronDown size={16} strokeWidth={2} />
       </span>
     </div>
   );

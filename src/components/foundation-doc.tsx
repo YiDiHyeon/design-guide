@@ -1,6 +1,7 @@
 import { Code, Section } from './doc-parts';
 import { TokenValue } from './token-value';
 import { TokenCatalog } from './token-catalog';
+import { ArrowRight } from 'lucide-react';
 import {
   spec,
   primitiveNames,
@@ -76,13 +77,17 @@ export function FoundationDoc({ slug }: { slug: string }) {
               <code>--site-gray-0</code>
               <TokenValue name="--site-gray-0" />
             </div>
-            <span>→</span>
+            <span className="token-flow-arrow" aria-hidden="true">
+              <ArrowRight size={16} />
+            </span>
             <div>
               <small>SEMANTIC</small>
               <code>--site-text-on-solid</code>
               <span>단색 배경 위 텍스트</span>
             </div>
-            <span>→</span>
+            <span className="token-flow-arrow" aria-hidden="true">
+              <ArrowRight size={16} />
+            </span>
             <div>
               <small>COMPONENT</small>
               <code>--site-button-solid-default-text</code>

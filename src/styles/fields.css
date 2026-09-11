@@ -29,16 +29,26 @@
   background: transparent;
   font: inherit;
 }
+.ds-field > input:focus,
+.ds-field > input:focus-visible,
+.ds-field > select:focus,
+.ds-field > select:focus-visible {
+  outline: none;
+}
 .ds-field input::placeholder {
   color: var(--site-text-muted);
   opacity: 1;
 }
 .ds-field:focus-within {
-  outline: var(--site-border-focus) solid var(--site-line-focus);
-  outline-offset: 2px;
+  outline: none;
 }
 .ds-field[data-state='default']:focus-within {
-  border-width: var(--site-border-2);
+  outline: var(--site-border-focus) solid var(--site-line-focus);
+  outline-offset: 0;
+}
+.ds-field[data-state='error']:focus-within {
+  outline: var(--site-border-focus) solid var(--site-line-error);
+  outline-offset: 0;
 }
 .ds-field[data-state='disabled'],
 .ds-field :disabled {
@@ -95,6 +105,7 @@
   display: grid;
   gap: var(--site-space-24);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  margin: var(--site-space-20) 0;
 }
 .field-example {
   padding: var(--site-space-16);
@@ -105,6 +116,7 @@
 .field-size-list {
   display: grid;
   gap: var(--site-space-16);
+  margin: var(--site-space-20) 0;
 }
 .field-size-list > div {
   display: grid;

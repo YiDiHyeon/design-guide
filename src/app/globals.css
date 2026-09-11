@@ -24,7 +24,6 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
 body {
@@ -155,7 +154,23 @@ p {
   padding: 0 13px;
   margin-bottom: 12px;
 }
-.nav-group a {
+.nav-group > p > .nav-category-link {
+  color: inherit;
+  display: inline-block;
+  min-height: unset;
+  padding: 0;
+  margin: 0;
+  border-radius: 2px;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.nav-group > p > .nav-category-link:hover {
+  color: var(--site-text-primary);
+  background: transparent;
+}
+.nav-group > a {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -165,19 +180,21 @@ p {
   border-radius: 7px;
   margin: 3px 0;
 }
-.nav-group a:hover {
+.nav-group > a:hover {
   background: var(--site-bg-surface-light);
 }
-.nav-group a[aria-current='page'] {
+.nav-group > a[aria-current='page'] {
   color: var(--site-text-primary);
   background: var(--site-bg-main);
   font-weight: 600;
 }
 .nav-icon {
   width: 18px;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .nav-dot {
   width: 5px;
@@ -221,6 +238,13 @@ article {
 }
 .breadcrumb span {
   color: var(--site-line-hover);
+}
+.breadcrumb-category {
+  color: inherit;
+  transition: color 0.15s ease;
+}
+.breadcrumb-category:hover {
+  color: var(--site-text-primary);
 }
 .title-row {
   display: flex;
@@ -324,6 +348,12 @@ h3 {
   color: var(--site-text-secondary);
   margin-left: -1px;
   border-left: 2px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 .toc nav a[aria-current='location'] {
   border-color: var(--site-text-primary);
@@ -365,6 +395,7 @@ h3 {
   border-radius: var(--site-radius-card);
   overflow: hidden;
   margin-top: 24px;
+  margin-bottom: 20px;
 }
 .preview-label {
   display: flex;
@@ -421,6 +452,27 @@ h3 {
   border-radius: 5px;
   color: var(--site-text-primary);
   background: var(--site-bg-base);
+}
+.playground-controls select:focus,
+.playground-controls select:focus-visible {
+  outline: none;
+}
+.playground-controls .ds-select {
+  width: auto;
+  min-width: 110px;
+}
+.playground-controls .ds-select > select {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  padding-right: var(--site-space-24);
+  min-height: unset;
+  border-radius: 0;
+  outline: none;
+}
+.playground-controls .ds-select > select:focus,
+.playground-controls .ds-select > select:focus-visible {
+  outline: none;
 }
 .playground-controls .checkbox-label {
   min-height: 36px;
@@ -482,6 +534,8 @@ input[type='checkbox'] {
   background: var(--site-bg-surface-light);
   padding: 42px 20px 26px;
   border-radius: var(--site-radius-card);
+  margin-top: 24px;
+  margin-bottom: 20px;
 }
 .anatomy-demo {
   border: 1px dashed var(--site-text-primary);
@@ -578,6 +632,7 @@ input[type='checkbox'] {
   max-width: 100%;
   border: 1px solid var(--site-line-light);
   border-radius: 8px;
+  margin: 20px 0;
 }
 table {
   border-collapse: collapse;
@@ -654,6 +709,7 @@ tr:last-child th {
   border-radius: 10px;
   overflow: hidden;
   background: var(--site-bg-surface-light);
+  margin: 20px 0;
 }
 .code-label {
   border-bottom: 1px solid var(--site-line-light);

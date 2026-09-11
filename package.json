@@ -14,6 +14,7 @@
     "tokens:generate": "node scripts/generate-tokens.mjs && prettier --write src/styles/tokens src/styles/typography.css src/styles/utilities.css"
   },
   "dependencies": {
+    "lucide-react": "^1.44.0",
     "next": "^16.3.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

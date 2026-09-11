@@ -1,11 +1,24 @@
 'use client';
 import { useState } from 'react';
+import { Plus, ArrowUpRight, Check } from 'lucide-react';
 import {
   Button,
   buttonVariants,
   buttonSizes,
   type ButtonProps,
 } from './button';
+import { Select } from './select';
+
+const variantOptions = buttonVariants.map((value) => ({
+  value,
+  label: value,
+}));
+
+const sizeOptions = buttonSizes.map((value) => ({
+  value,
+  label: value,
+}));
+
 export function ButtonPlayground() {
   const [variant, setVariant] =
     useState<NonNullable<ButtonProps['variant']>>('solid');
@@ -16,7 +29,7 @@ export function ButtonPlayground() {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const iconOnly = variant === 'line-icon' || variant.startsWith('circle-');
-  const snippet = `<Button variant="${variant}" size="${size}"${iconOnly ? ' aria-label="추가"' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>\n  ${iconOnly ? '<span aria-hidden="true">＋</span>' : loading ? '저장 중' : '시작하기'}\n</Button>`;
+  const snippet = `<Button variant="${variant}" size="${size}"${iconOnly ? ' aria-label="추가"' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>\n  ${iconOnly ? '<Plus size={16} aria-hidden="true" />' : loading ? '저장 중' : '시작하기'}\n</Button>`;
   return (
     <div className="playground">
       <div className="preview-label">
@@ -24,7 +37,14 @@ export function ButtonPlayground() {
           <span className="green-dot" />
           LIVE PREVIEW
         </span>
-        <span>직접 눌러보세요 ↗</span>
+        <span>
+          직접 눌러보세요{' '}
+          <ArrowUpRight
+            size={12}
+            aria-hidden="true"
+            style={{ display: 'inline', verticalAlign: '-1px' }}
+          />
+        </span>
       </div>
       <div className="preview-stage">
         <Button
@@ -36,11 +56,13 @@ export function ButtonPlayground() {
           onClick={() => setClicks((n) => n + 1)}
         >
           {iconOnly
-            ? !loading && <span aria-hidden="true">＋</span>
+            ? !loading && <Plus size={16} aria-hidden="true" />
             : loading
               ? '저장 중'
               : '시작하기'}
-          {!loading && !iconOnly && <span aria-hidden="true">↗</span>}
+          {!loading && !iconOnly && (
+            <ArrowUpRight size={15} aria-hidden="true" />
+          )}
         </Button>
         <span className="preview-feedback" role="status">
           {clicks
@@ -51,35 +73,27 @@ export function ButtonPlayground() {
       <div className="playground-controls">
         <label>
           Variant
-          <select
+          <Select
+            size="sm"
             value={variant}
+            options={variantOptions}
             onChange={(e) => {
               setVariant(e.target.value as typeof variant);
               setCopied(false);
             }}
-          >
-            {buttonVariants.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+          />
         </label>
         <label>
           Size
-          <select
+          <Select
+            size="sm"
             value={size}
+            options={sizeOptions}
             onChange={(e) => {
               setSize(e.target.value as typeof size);
               setCopied(false);
             }}
-          >
-            {buttonSizes.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+          />
         </label>
         <label className="checkbox-label">
           <input
@@ -122,7 +136,22 @@ export function ButtonPlayground() {
           }}
           aria-label="예제 코드 복사"
         >
-          {copied ? '복사됨 ✓' : '복사'}
+          {copied ? (
+            <>
+              <Check
+                size={12}
+                aria-hidden="true"
+                style={{
+                  display: 'inline',
+                  verticalAlign: '-1px',
+                  marginRight: '3px',
+                }}
+              />
+              복사됨
+            </>
+          ) : (
+            '복사'
+          )}
         </button>
         <span className="sr-only" role="status">
           {copied ? '코드를 복사했습니다.' : ''}

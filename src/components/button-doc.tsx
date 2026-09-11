@@ -2,6 +2,7 @@ import { TokenValue } from './token-value';
 import { Button, buttonVariants, buttonSizes } from './button';
 import { ButtonPlayground } from './button-playground';
 import { Section, Code, Table } from './doc-parts';
+import { CornerDownRight, Plus, Check, X } from 'lucide-react';
 export function ButtonDoc() {
   return (
     <>
@@ -12,7 +13,9 @@ export function ButtonDoc() {
         </p>
         <ButtonPlayground />
         <div className="callout">
-          <span aria-hidden="true">↳</span>
+          <span aria-hidden="true">
+            <CornerDownRight size={15} />
+          </span>
           <p>
             <strong>하나의 화면, 하나의 주요 행동.</strong> Solid 버튼은 가장
             중요한 행동에 사용하세요.
@@ -28,8 +31,13 @@ export function ButtonDoc() {
           <div className="anatomy-demo">
             <span className="anatomy-number">1</span>
             <Button tabIndex={-1}>
-              <span aria-hidden="true">
-                ＋ <sup>3</sup>
+              <span>
+                <Plus
+                  size={14}
+                  aria-hidden="true"
+                  style={{ display: 'inline', verticalAlign: '-1px' }}
+                />{' '}
+                <sup>3</sup>
               </span>
               <span>
                 새 프로젝트 <sup aria-hidden="true">2</sup>
@@ -74,7 +82,7 @@ export function ButtonDoc() {
                   }
                 >
                   {v.includes('circle') || v === 'line-icon' ? (
-                    <span aria-hidden="true">＋</span>
+                    <Plus size={16} aria-hidden="true" />
                   ) : (
                     '시작하기'
                   )}
@@ -169,13 +177,35 @@ export function ButtonDoc() {
       <Section title="Guidelines">
         <div className="guideline-grid">
           <div className="guideline good">
-            <h3>✓ 권장해요</h3>
+            <h3>
+              <Check
+                size={16}
+                aria-hidden="true"
+                style={{
+                  display: 'inline',
+                  verticalAlign: '-2px',
+                  marginRight: '4px',
+                }}
+              />
+              권장해요
+            </h3>
             <p>“변경사항 저장”처럼 구체적인 동사로 작성합니다.</p>
             <p>주요 행동은 Solid 하나로 명확하게 표현합니다.</p>
             <p>로딩 중에는 “저장 중”처럼 현재 상황을 설명합니다.</p>
           </div>
           <div className="guideline bad">
-            <h3>× 피해주세요</h3>
+            <h3>
+              <X
+                size={16}
+                aria-hidden="true"
+                style={{
+                  display: 'inline',
+                  verticalAlign: '-2px',
+                  marginRight: '4px',
+                }}
+              />
+              피해주세요
+            </h3>
             <p>“여기 클릭”처럼 결과를 알 수 없는 레이블을 쓰지 않습니다.</p>
             <p>이동에는 버튼 대신 링크를 사용합니다.</p>
             <p>색상만으로 의미를 전달하거나 포커스 표시를 제거하지 않습니다.</p>
