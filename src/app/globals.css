@@ -6,6 +6,7 @@
 @import '../styles/button.css';
 @import '../styles/fields.css';
 @import '../styles/utilities.css';
+@import '../styles/landing.css';
 
 @theme inline {
   --color-surface: var(--site-bg-base);
