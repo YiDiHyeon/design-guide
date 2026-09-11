@@ -124,3 +124,5 @@ npm run build
 `src/components/input.tsx`, `select.tsx`와 `src/styles/fields.css`에서 구현합니다. 가이드는 `field-doc.tsx`, 실시간 예제는 `field-playground.tsx`입니다. 원본의 Input 17개, Select 17개 상태 토큰과 공통 9개 크기를 그대로 사용합니다.
 
 Input은 startIcon/endIcon과 네이티브 input 속성을 지원합니다. Select는 네이티브 단일 선택과 options 배열을 사용하며, 원본 Radix 합성 API는 제공하지 않습니다. 열린 목록의 외형은 운영체제·브라우저를 따릅니다. Select의 readOnly는 레이블을 읽기 전용 텍스트 필드로 표시하고 hidden input으로 실제 값을 전송합니다. disabled는 폼 전송에서 제외됩니다.
+
+
