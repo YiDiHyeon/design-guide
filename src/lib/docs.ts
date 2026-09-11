@@ -43,6 +43,38 @@ export const documents = [
       'Code Example',
     ],
   },
+  {
+    category: 'components',
+    slug: 'input',
+    title: 'Input',
+    description: '사용자가 텍스트를 입력하고 수정할 수 있는 필드입니다.',
+    sections: [
+      'Overview',
+      'Anatomy',
+      'Variants',
+      'Sizes',
+      'States',
+      'Guidelines',
+      'API',
+      'Code Example',
+    ],
+  },
+  {
+    category: 'components',
+    slug: 'select',
+    title: 'Select',
+    description: '미리 정의한 옵션 중 하나를 선택하는 필드입니다.',
+    sections: [
+      'Overview',
+      'Anatomy',
+      'Variants',
+      'Sizes',
+      'States',
+      'Guidelines',
+      'API',
+      'Code Example',
+    ],
+  },
 ] as const;
 export type Doc = (typeof documents)[number];
 export const sectionId = (title: string) =>

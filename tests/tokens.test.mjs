@@ -57,7 +57,7 @@ test('source inventories remain complete', () => {
   assert.equal(Object.keys(spec.semantic.base).length, 153);
   assert.equal(Object.keys(spec.semantic.tablet).length, 26);
   assert.equal(Object.keys(spec.semantic.desktop).length, 15);
-  assert.equal(Object.keys(spec.component.base).length, 91);
+  assert.equal(Object.keys(spec.component.base).length, 125);
 });
 test('source responsive typography and separate sp / gap mappings are retained', () => {
   assert.deepEqual(
@@ -87,6 +87,7 @@ test('document and component CSS contain no undefined variables', () => {
   const css = [
     '../src/app/globals.css',
     '../src/styles/button.css',
+    '../src/styles/fields.css',
     '../src/styles/typography.css',
   ]
     .map(read)
@@ -97,4 +98,19 @@ test('document and component CSS contain no undefined variables', () => {
       name in values('desktop') || local.has(name),
       `Undefined ${name}`,
     );
+});
+
+test('Input and Select retain the reference state mappings', () => {
+  for (const kind of ['input', 'select']) {
+    const names = Object.keys(spec.component.base).filter((name) =>
+      name.startsWith(`--site-${kind}-`),
+    );
+    assert.equal(names.length, 17);
+    for (const state of ['default', 'focus', 'error', 'readonly', 'disabled']) {
+      assert.ok(names.includes(`--site-${kind}-${state}-border`));
+    }
+    assert.equal(resolve(`--site-${kind}-error-border`), '#f43c3c');
+    assert.equal(resolve(`--site-${kind}-focus-border`), '#212121');
+    assert.equal(resolve(`--site-${kind}-disabled-bg`), '#e0e0e0');
+  }
 });

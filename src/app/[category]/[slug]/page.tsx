@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { documents } from '@/lib/docs';
 import { DocsShell } from '@/components/docs-shell';
+import { FieldDoc } from '@/components/field-doc';
 import { ButtonDoc } from '@/components/button-doc';
 import { FoundationDoc } from '@/components/foundation-doc';
 export function generateStaticParams() {
@@ -19,7 +20,13 @@ export default async function Page({ params }: Props) {
   if (!doc) notFound();
   return (
     <DocsShell key={doc.slug} doc={doc}>
-      {slug === 'button' ? <ButtonDoc /> : <FoundationDoc slug={slug} />}
+      {slug === 'button' ? (
+        <ButtonDoc />
+      ) : slug === 'input' || slug === 'select' ? (
+        <FieldDoc kind={slug} />
+      ) : (
+        <FoundationDoc slug={slug} />
+      )}
     </DocsShell>
   );
 }

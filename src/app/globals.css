@@ -4,6 +4,7 @@
 @import '../styles/tokens/component.css';
 @import '../styles/typography.css';
 @import '../styles/button.css';
+@import '../styles/fields.css';
 @import '../styles/utilities.css';
 
 @theme inline {

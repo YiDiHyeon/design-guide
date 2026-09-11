@@ -26,7 +26,7 @@ npm run start
 
 - `packages/ui-core-user/src/css/site/primitive.css`: Primitive 110개
 - `packages/ui-core-user/src/css/site/semantic.css`, `styles.css`: Semantic 기본 153개, Tablet override 26개, Desktop override 15개. 그림자·스크림 효과 포함
-- `packages/ui-core-user/src/css/site/component.css`: Button과 공통 Component size 91개
+- `packages/ui-core-user/src/css/site/component.css`: Button·Input·Select와 공통 Component size 125개
 - `packages/ui-core-user/src/components/site/button.tsx`: 스타일·크기 API 참고
 
 참고 레포의 파일은 수정하지 않았습니다. 토큰 명세를 보존하고 React 컴포넌트와 문서 UI는 이 레포에서 독립적으로 구현했습니다. 원본 CVA/Radix/모노레포 유틸리티에 의존하지 않습니다.
@@ -59,6 +59,7 @@ npm run tokens:generate
 - `/foundations/colors`: 원본 전체 팔레트, 색상 역할, 계층, 전체 Primitive/Semantic 명세
 - `/foundations/typography`: 원시 크기·굵기·행간, 모든 반응형 타입 역할, 실제 Text Style 예시
 - `/foundations/spacing`: 원본 Space 스케일, sp/gap 분리, 반응형 매핑, 레이아웃 역할
+- `/components/input`, `/components/select`: 실제 필드, 상태 조절, 원본 토큰·크기·API·접근성 가이드
 - `/components/button`: Overview, Anatomy, Variants, Sizes, States, Guidelines, API, Code Example
 
 데스크톱은 탐색 / 본문 / 목차 3열이며, 1180px 이하에서 우측 목차를 숨깁니다. 760px 이하에서는 네이티브 `details`로 모바일 탐색·목차를 제공합니다. 이 문서 레이아웃의 축소 지점은 제품 토큰의 768/1280 반응형 기준과 별개입니다.
@@ -116,4 +117,10 @@ npm run format:check
 npm run build
 ```
 
-6개 테스트는 전체 토큰 참조, 생성 CSS와 명세의 이름·값·breakpoint 일치, 토큰 개수, 반응형 타입·sp/gap, 원본 Button 크기·색상·radius, CSS의 미정의 변수 여부를 검사합니다. 원본과의 정합성은 이번 수정에서 지정 경로를 읽어 별도로 대조했으며, 일반 실행·검증은 참고 레포가 없어도 가능합니다.
+7개 테스트는 전체 토큰 참조, 생성 CSS와 명세의 이름·값·breakpoint 일치, 토큰 개수, 반응형 타입·sp/gap, 원본 Button 크기·색상·radius, CSS의 미정의 변수 여부를 검사합니다. 원본과의 정합성은 이번 수정에서 지정 경로를 읽어 별도로 대조했으며, 일반 실행·검증은 참고 레포가 없어도 가능합니다.
+
+## Input / Select
+
+`src/components/input.tsx`, `select.tsx`와 `src/styles/fields.css`에서 구현합니다. 가이드는 `field-doc.tsx`, 실시간 예제는 `field-playground.tsx`입니다. 원본의 Input 17개, Select 17개 상태 토큰과 공통 9개 크기를 그대로 사용합니다.
+
+Input은 startIcon/endIcon과 네이티브 input 속성을 지원합니다. Select는 네이티브 단일 선택과 options 배열을 사용하며, 원본 Radix 합성 API는 제공하지 않습니다. 열린 목록의 외형은 운영체제·브라우저를 따릅니다. Select의 readOnly는 레이블을 읽기 전용 텍스트 필드로 표시하고 hidden input으로 실제 값을 전송합니다. disabled는 폼 전송에서 제외됩니다.
