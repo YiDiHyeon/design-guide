@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Cute Cabinet Line Favicon (Transparent Background) -->
+  <rect x="4" y="3.5" width="24" height="18.5" rx="4.5" stroke="#38471D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+  <line x1="4" y1="12.75" x2="28" y2="12.75" stroke="#38471D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+  <line x1="12" y1="8" x2="20" y2="8" stroke="#F5CA45" stroke-width="3" stroke-linecap="round" />
+  <line x1="12" y1="17.5" x2="20" y2="17.5" stroke="#E66F4F" stroke-width="3" stroke-linecap="round" />
+  <path d="M8.5 22L6.5 27.5" stroke="#38471D" stroke-width="2.6" stroke-linecap="round" />
+  <path d="M23.5 22L25.5 27.5" stroke="#38471D" stroke-width="2.6" stroke-linecap="round" />
+</svg>

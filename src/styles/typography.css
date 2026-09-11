@@ -1,230 +1,230 @@
-/* Generated from src/tokens/site-spec.json. Run npm run tokens:generate. */
+/* Generated from src/tokens/core-tokens.json. Run npm run tokens:generate. */
 .text-tit-display-hero {
-  font-size: var(--site-tit-display-hero);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-display-hero);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.04em;
 }
 .text-tit-main-page {
-  font-size: var(--site-tit-main-page);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-main-page);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.04em;
 }
 .text-tit-page-title {
-  font-size: var(--site-tit-page-title);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-page-title);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-tit-section-title {
-  font-size: var(--site-tit-section-title);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-section-title);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-tit-component-header {
-  font-size: var(--site-tit-component-header);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-component-header);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-tit-banner {
-  font-size: var(--site-tit-banner);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-banner);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-tit-promo-bar {
-  font-size: var(--site-tit-promo-bar);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-promo-bar);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-tit-deal-card {
-  font-size: var(--site-tit-deal-card);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-deal-card);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.02em;
 }
 .text-price-main {
-  font-size: var(--site-price-main);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-price-main);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-txt-number-lg {
-  font-size: var(--site-tit-section-title);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-tit-section-title);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.03em;
 }
 .text-nav-menu {
-  font-size: var(--site-nav-menu);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-menu);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-nav-menu-active {
-  font-size: var(--site-nav-menu);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-menu);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-nav-util {
-  font-size: var(--site-nav-util);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-util);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-nav-mega-cat {
-  font-size: var(--site-nav-mega-cat);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-mega-cat);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-nav-mega-group {
-  font-size: var(--site-nav-mega-group);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-tight);
+  font-size: var(--guide-nav-mega-group);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-tight);
   letter-spacing: -0.02em;
 }
 .text-nav-mega-item {
-  font-size: var(--site-nav-mega-item);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-mega-item);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-nav-breadcrumb {
-  font-size: var(--site-nav-breadcrumb);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-nav-breadcrumb);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-nav-tab-label {
-  font-size: var(--site-nav-tab-label);
-  font-weight: var(--site-fw-body);
+  font-size: var(--guide-nav-tab-label);
+  font-weight: var(--guide-fw-body);
   line-height: 1.4;
   letter-spacing: -0.12px;
 }
 .text-txt-card-title {
-  font-size: var(--site-tit-card-title);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-tit-card-title);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-card-title-semibold {
-  font-size: var(--site-tit-card-title);
-  font-weight: var(--site-fw-strong);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-tit-card-title);
+  font-weight: var(--guide-fw-strong);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-card-title-bold {
-  font-size: var(--site-tit-card-title);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-tit-card-title);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-body-main {
-  font-size: var(--site-txt-body-main);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-main);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-body-main-medium {
-  font-size: var(--site-txt-body-main);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-main);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-body-main-bold {
-  font-size: var(--site-txt-body-main);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-main);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-body-sub {
-  font-size: var(--site-txt-body-sub);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-sub);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-body-sub-medium {
-  font-size: var(--site-txt-body-sub);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-sub);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-body-sub-semibold {
-  font-size: var(--site-txt-body-sub);
-  font-weight: var(--site-fw-strong);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-sub);
+  font-weight: var(--guide-fw-strong);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-body-sub-bold {
-  font-size: var(--site-txt-body-sub);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-body-sub);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-caption {
-  font-size: var(--site-txt-caption);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-caption);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-promo-label {
-  font-size: var(--site-txt-caption);
-  font-weight: var(--site-fw-heading);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-caption);
+  font-weight: var(--guide-fw-heading);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-txt-desc {
-  font-size: var(--site-txt-desc);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-desc);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-txt-banner-sub {
-  font-size: var(--site-txt-banner-sub);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-txt-banner-sub);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-price-original {
-  font-size: var(--site-price-original);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-price-original);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
   text-decoration-line: line-through;
 }
 .text-price-convert {
-  font-size: var(--site-price-convert);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-price-convert);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-badge-tag {
-  font-size: var(--site-badge-tag);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-badge-tag);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }
 .text-card-compact-title {
-  font-size: var(--site-card-compact-title);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-card-compact-title);
+  font-weight: var(--guide-fw-title);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-tab-item {
-  font-size: var(--site-tab-item);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-tab-item);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.02em;
 }
 .text-form-label {
-  font-size: var(--site-form-label);
-  font-weight: var(--site-fw-body);
-  line-height: var(--site-lh-base);
+  font-size: var(--guide-form-label);
+  font-weight: var(--guide-fw-body);
+  line-height: var(--guide-lh-base);
   letter-spacing: -0.01em;
 }

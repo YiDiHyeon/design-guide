@@ -15,6 +15,7 @@ import {
   ArrowUp,
 } from 'lucide-react';
 import { documents, sectionId, type Doc } from '@/lib/docs';
+import { CabinetLogo } from '@/components/ui';
 
 function getNavIcon(slug: string) {
   switch (slug) {
@@ -231,12 +232,12 @@ export function DocsShell({
           }}
         >
           <span className="brand-mark" aria-hidden="true">
-            d<span>g</span>
+            <CabinetLogo size={28} strokeWidth={2} />
           </span>
           design guide<span className="version">v0.1</span>
         </Link>
         <div className="header-note">
-          A personal design system
+          A reusable design foundation
           <span className="green-dot" />
         </div>
       </header>

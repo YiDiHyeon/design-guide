@@ -158,7 +158,7 @@ export function RadioDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -171,7 +171,7 @@ export function RadioDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -184,7 +184,7 @@ export function RadioDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -202,7 +202,7 @@ export function RadioDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -238,7 +238,7 @@ export function RadioDoc() {
               style={{
                 marginBottom: '12px',
                 fontSize: '14px',
-                color: 'var(--site-text-primary)',
+                color: 'var(--guide-text-primary)',
               }}
             >
               1. Vertical Layout (수직 배치 - 추천)
@@ -246,7 +246,7 @@ export function RadioDoc() {
             <p
               style={{
                 fontSize: '13px',
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 marginBottom: '16px',
               }}
             >
@@ -277,7 +277,7 @@ export function RadioDoc() {
               style={{
                 marginBottom: '12px',
                 fontSize: '14px',
-                color: 'var(--site-text-primary)',
+                color: 'var(--guide-text-primary)',
               }}
             >
               2. Horizontal Layout (수평 배치)
@@ -285,7 +285,7 @@ export function RadioDoc() {
             <p
               style={{
                 fontSize: '13px',
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 marginBottom: '16px',
               }}
             >

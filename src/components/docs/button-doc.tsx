@@ -17,7 +17,7 @@ export function ButtonDoc() {
             <CornerDownRight size={15} />
           </span>
           <p>
-            <strong>하나의 화면, 하나의 주요 행동.</strong> Solid 버튼은 가장
+            <strong>하나의 화면, 하나의 주요 행동.</strong> Primary 버튼은 가장
             중요한 행동에 사용하세요.
           </p>
         </div>
@@ -68,49 +68,27 @@ export function ButtonDoc() {
         </p>
       </Section>
       <Section title="Variants">
-        <p>원본의 일곱 가지 Button 스타일을 사용합니다.</p>
+        <p>
+          행동의 중요도와 의미를 기준으로 다섯 가지 스타일을 제공합니다. 아이콘
+          전용 형태는 별도 variant가 아니라 iconOnly 옵션으로 표현합니다.
+        </p>
         <div className="variant-grid">
           {buttonVariants.map((v, i) => (
             <div className="variant-card" key={v}>
               <div>
-                <Button
-                  variant={v}
-                  aria-label={
-                    v.includes('circle') || v === 'line-icon'
-                      ? '추가'
-                      : undefined
-                  }
-                >
-                  {v.includes('circle') || v === 'line-icon' ? (
-                    <Plus size={16} aria-hidden="true" />
-                  ) : (
-                    '시작하기'
-                  )}
-                </Button>
+                <Button variant={v}>시작하기</Button>
               </div>
               <h3>
-                {
-                  [
-                    'Solid',
-                    'Secondary',
-                    'Line',
-                    'Line icon',
-                    'Circle light',
-                    'Circle dark',
-                    'Solid light',
-                  ][i]
-                }
+                {['Primary', 'Secondary', 'Outline', 'Ghost', 'Danger'][i]}
               </h3>
               <p>
                 {
                   [
-                    '가장 중요한 주요 행동',
-                    '보조 행동을 위한 단색 버튼',
-                    '테두리로 구분하는 행동',
-                    '아이콘 전용 테두리 버튼',
-                    '밝은 원형 아이콘 버튼',
-                    '어두운 원형 아이콘 버튼',
-                    '밝은 단색 버튼',
+                    '화면에서 가장 중요한 행동',
+                    '주요 행동을 보조하는 선택',
+                    '중립적인 경계가 필요한 행동',
+                    '강조가 낮은 도구형 행동',
+                    '삭제처럼 되돌리기 어려운 행동',
                   ][i]
                 }
               </p>
@@ -121,15 +99,16 @@ export function ButtonDoc() {
       </Section>
       <Section title="Sizes">
         <p>
-          원본 Component 크기 9가지를 제공합니다. 기본 md는 40px이며, 터치
-          환경에서는 lg(44px) 이상을 권장합니다.
+          개인 웹서비스에서 반복해서 쓰기 좋은 네 단계만 제공합니다. 기본 md는
+          40px이며, 모바일의 주요 행동에는 lg(48px) 이상을 권장합니다.
         </p>
         <div className="sample-row">
           {buttonSizes.map((size) => (
             <div key={size}>
               <Button size={size}>시작하기</Button>
               <span>
-                {size} · <TokenValue name={`--site-component-${size}-height`} />
+                {size} ·{' '}
+                <TokenValue name={`--guide-component-${size}-height`} />
               </span>
             </div>
           ))}
@@ -138,9 +117,9 @@ export function ButtonDoc() {
           headings={['Size', 'Height', 'Padding X', 'Font size']}
           rows={buttonSizes.map((size) => [
             size,
-            <TokenValue key="h" name={`--site-component-${size}-height`} />,
-            <TokenValue key="p" name={`--site-component-${size}-padding-x`} />,
-            <TokenValue key="f" name={`--site-component-${size}-font-size`} />,
+            <TokenValue key="h" name={`--guide-component-${size}-height`} />,
+            <TokenValue key="p" name={`--guide-component-${size}-padding-x`} />,
+            <TokenValue key="f" name={`--guide-component-${size}-font-size`} />,
           ])}
         />
       </Section>
@@ -224,12 +203,13 @@ export function ButtonDoc() {
             [
               <code key="v">variant</code>,
               buttonVariants.join(' | '),
-              '"solid"',
+              '"primary"',
             ],
             [<code key="s">size</code>, buttonSizes.join(' | '), '"md"'],
             [<code key="d">disabled</code>, 'boolean', 'false'],
             [<code key="l">loading</code>, 'boolean', 'false'],
             [<code key="f">fullWidth</code>, 'boolean', 'false'],
+            [<code key="i">iconOnly</code>, 'boolean', 'false'],
             [
               <code key="t">type</code>,
               '"button" | "submit" | "reset"',
@@ -248,10 +228,7 @@ export function ButtonDoc() {
         <Code>{`'use client';\n\nimport { useState } from 'react';\nimport { Button, buttonVariants, buttonSizes } from '@/components/ui';\n\nexport default function Example() {\n  const [saved, setSaved] = useState(false);\n  return (\n    <div>\n      <Button onClick={() => setSaved(true)}>\n        변경사항 저장\n      </Button>\n      <p role="status">{saved ? '저장했습니다.' : ''}</p>\n    </div>\n  );\n}`}</Code>
         <p className="caption">
           전역 스타일을 불러온 앱에서 사용합니다. 토큰 연결:{' '}
-          <code>
-            --site-gray-0 → --site-text-on-solid →
-            --site-button-solid-default-text
-          </code>
+          <code>--guide-brand-600 → --guide-button-primary-default-bg</code>
         </p>
       </Section>
     </>

@@ -24,7 +24,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
           <p>
             {isInput
               ? 'placeholder는 입력 예시입니다. 값이 입력되어도 남아 있는 별도 label을 반드시 제공합니다.'
-              : '이 가이드의 Select는 네이티브 select로 독립 구현했습니다. 트리거는 원본 site 토큰을 사용하고, 열린 목록의 외형과 키보드 동작은 브라우저·운영체제를 따릅니다.'}
+              : 'Select는 네이티브 select를 기반으로 구현했습니다. 트리거는 공통 semantic 토큰을 사용하고, 열린 목록의 외형과 키보드 동작은 브라우저·운영체제를 따릅니다.'}
           </p>
         </div>
       </Section>
@@ -90,8 +90,8 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
       <Section title="Variants">
         <p>
           {isInput
-            ? '원본 Input에는 별도의 시각적 variant prop이 없습니다. 기본형에 아이콘과 네이티브 type을 조합합니다.'
-            : '원본 Select는 하나의 기본 스타일을 사용합니다. 필수 선택 여부, 초기 선택과 비활성 옵션을 조합합니다. 이 구현은 단일 선택 전용입니다.'}
+            ? 'Input은 별도의 시각적 variant 대신 아이콘과 네이티브 type을 조합합니다.'
+            : 'Select는 하나의 기본 스타일을 사용합니다. 필수 선택 여부, 초기 선택과 비활성 옵션을 조합하는 단일 선택 컴포넌트입니다.'}
         </p>
         <div className="field-examples">
           {isInput ? (
@@ -168,8 +168,8 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
       </Section>
       <Section title="Sizes">
         <p>
-          원본 공통 Component size 9개를 사용합니다. 기본 md는 40px입니다. 터치
-          영역이 필요한 화면에서는 lg(44px) 이상을 선택합니다.
+          공통 Control size 네 단계를 사용합니다. 기본 md는 40px이며, 모바일의
+          주요 입력에는 lg(48px)를 권장합니다.
         </p>
         <div className="field-size-list">
           {controlSizes.map((size) => (
@@ -189,7 +189,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
                   defaultValue="seoul"
                 />
               )}
-              <TokenValue name={`--site-component-${size}-height`} />
+              <TokenValue name={`--guide-component-${size}-height`} />
             </div>
           ))}
         </div>
@@ -200,7 +200,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
             ...['height', 'padding-x', 'font-size'].map((part) => (
               <TokenValue
                 key={part}
-                name={`--site-component-${size}-${part}`}
+                name={`--guide-component-${size}-${part}`}
               />
             )),
           ])}
@@ -258,10 +258,10 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
             : '네이티브 select에는 readonly 속성이 없습니다. readOnly에서는 선택된 레이블을 읽기 전용 텍스트 필드로 표시하고, name이 있으면 hidden input으로 실제 값을 전송합니다. 이때 목록은 열리지 않습니다. disabled 상태는 폼 전송에서 제외됩니다.'}
         </p>
         <details className="token-catalog">
-          <summary>{title} 상태 토큰 전체 · 원본 이름과 매핑</summary>
+          <summary>{title} 상태 토큰 전체</summary>
           <TokenCatalog
             names={Object.keys(spec.component.base).filter((name) =>
-              name.startsWith(`--site-${kind}-`),
+              name.startsWith(`--guide-${kind}-`),
             )}
           />
         </details>
@@ -315,15 +315,15 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
           </div>
         </div>
         <p className="caption">
-          원본 색상 값을 보존합니다. 오류·placeholder 등의 대비는 사용하는
-          배경과 글자 크기에 맞게 확인합니다.
+          오류·placeholder 등의 대비는 사용하는 배경과 글자 크기에 맞게 실제
+          화면에서 확인합니다.
         </p>
       </Section>
       <Section title="API">
         <p>
           {isInput
             ? '네이티브 input 속성을 지원합니다. size는 HTML의 문자 수가 아닌 디자인 크기입니다. className은 실제 input, wrapperClassName은 컨테이너에 적용됩니다.'
-            : '이 레포의 API입니다. 원본 Radix의 SelectTrigger/SelectItem 합성 API 대신 options 배열과 네이티브 onChange 이벤트를 사용합니다. className은 컨테이너에 적용됩니다.'}
+            : 'options 배열과 네이티브 onChange 이벤트를 사용하는 단순한 단일 선택 API입니다. className은 컨테이너에 적용됩니다.'}
         </p>
         <Table
           headings={['Prop', 'Type', 'Default / 설명']}

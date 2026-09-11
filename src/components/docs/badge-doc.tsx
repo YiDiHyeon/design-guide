@@ -133,7 +133,7 @@ export function BadgeDoc() {
               style={{
                 marginBottom: '8px',
                 fontSize: '14px',
-                color: 'var(--site-text-primary)',
+                color: 'var(--guide-text-primary)',
               }}
             >
               1. Solid (면 채움)
@@ -141,7 +141,7 @@ export function BadgeDoc() {
             <p
               style={{
                 fontSize: '13px',
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 marginBottom: '16px',
               }}
             >
@@ -169,7 +169,7 @@ export function BadgeDoc() {
               style={{
                 marginBottom: '8px',
                 fontSize: '14px',
-                color: 'var(--site-text-primary)',
+                color: 'var(--guide-text-primary)',
               }}
             >
               2. Line (외곽선 라인)
@@ -177,7 +177,7 @@ export function BadgeDoc() {
             <p
               style={{
                 fontSize: '13px',
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 marginBottom: '16px',
               }}
             >

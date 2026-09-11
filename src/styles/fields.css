@@ -2,18 +2,18 @@
 .ds-field {
   display: flex;
   align-items: center;
-  gap: var(--site-space-8);
+  gap: var(--guide-space-8);
   width: 100%;
   min-width: 0;
   position: relative;
-  border: var(--site-border-default) solid var(--field-border);
-  border-radius: var(--site-radius-input);
+  border: var(--guide-border-default) solid var(--field-border);
+  border-radius: var(--guide-radius-input);
   background: var(--field-bg);
   color: var(--field-text);
   height: var(--field-height);
   padding-inline: var(--field-padding);
-  font: var(--site-fw-body) var(--field-font)/var(--site-lh-base)
-    var(--site-font-base);
+  font: var(--guide-fw-body) var(--field-font)/var(--guide-lh-base)
+    var(--guide-font-base);
   letter-spacing: -0.02em;
 }
 .ds-field > input:not([type='hidden']),
@@ -36,18 +36,18 @@
   outline: none;
 }
 .ds-field input::placeholder {
-  color: var(--site-text-muted);
+  color: var(--guide-text-muted);
   opacity: 1;
 }
 .ds-field:focus-within {
   outline: none;
 }
 .ds-field[data-state='default']:focus-within {
-  outline: var(--site-border-focus) solid var(--site-line-focus);
+  outline: var(--guide-border-focus) solid var(--guide-line-focus);
   outline-offset: 0;
 }
 .ds-field[data-state='error']:focus-within {
-  outline: var(--site-border-focus) solid var(--site-line-error);
+  outline: var(--guide-border-focus) solid var(--guide-line-error);
   outline-offset: 0;
 }
 .ds-field[data-state='disabled'],
@@ -66,15 +66,15 @@
 }
 .ds-select > select {
   appearance: none;
-  padding-right: var(--site-space-24);
+  padding-right: var(--guide-space-24);
   cursor: pointer;
 }
 .ds-select option {
-  background: var(--site-bg-base);
-  color: var(--site-text-primary);
+  background: var(--guide-bg-base);
+  color: var(--guide-text-primary);
 }
 .ds-select option:disabled {
-  color: var(--site-text-disabled);
+  color: var(--guide-text-disabled);
 }
 .select-indicator {
   position: absolute;
@@ -89,40 +89,40 @@
 }
 .field-label {
   display: block;
-  font-weight: var(--site-fw-title);
-  margin-bottom: var(--site-space-8);
-  color: var(--site-text-primary);
+  font-weight: var(--guide-fw-title);
+  margin-bottom: var(--guide-space-8);
+  color: var(--guide-text-primary);
 }
 .field-help {
-  margin-top: var(--site-space-8);
-  color: var(--site-text-secondary);
-  font-size: var(--site-txt-caption);
+  margin-top: var(--guide-space-8);
+  color: var(--guide-text-secondary);
+  font-size: var(--guide-txt-caption);
 }
 .field-error {
-  color: var(--site-text-error);
+  color: var(--guide-text-error);
 }
 .field-examples {
   display: grid;
-  gap: var(--site-space-24);
+  gap: var(--guide-space-24);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  margin: var(--site-space-20) 0;
+  margin: var(--guide-space-20) 0;
 }
 .field-example {
-  padding: var(--site-space-16);
-  border: 1px solid var(--site-line-light);
-  border-radius: var(--site-radius-card);
+  padding: var(--guide-space-16);
+  border: 1px solid var(--guide-line-light);
+  border-radius: var(--guide-radius-card);
   min-width: 0;
 }
 .field-size-list {
   display: grid;
-  gap: var(--site-space-16);
-  margin: var(--site-space-20) 0;
+  gap: var(--guide-space-16);
+  margin: var(--guide-space-20) 0;
 }
 .field-size-list > div {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) 44px;
   align-items: center;
-  gap: var(--site-space-12);
+  gap: var(--guide-space-12);
 }
 @media (forced-colors: active) {
   .ds-field {
@@ -139,109 +139,84 @@
     display: none;
   }
 }
-.ds-field[data-size='xxxs'] {
-  --field-height: var(--site-component-xxxs-height);
-  --field-padding: var(--site-component-xxxs-padding-x);
-  --field-font: var(--site-component-xxxs-font-size);
-}
-.ds-field[data-size='xxs'] {
-  --field-height: var(--site-component-xxs-height);
-  --field-padding: var(--site-component-xxs-padding-x);
-  --field-font: var(--site-component-xxs-font-size);
-}
-.ds-field[data-size='xs'] {
-  --field-height: var(--site-component-xs-height);
-  --field-padding: var(--site-component-xs-padding-x);
-  --field-font: var(--site-component-xs-font-size);
-}
 .ds-field[data-size='sm'] {
-  --field-height: var(--site-component-sm-height);
-  --field-padding: var(--site-component-sm-padding-x);
-  --field-font: var(--site-component-sm-font-size);
+  --field-height: var(--guide-component-sm-height);
+  --field-padding: var(--guide-component-sm-padding-x);
+  --field-font: var(--guide-component-sm-font-size);
 }
 .ds-field[data-size='md'] {
-  --field-height: var(--site-component-md-height);
-  --field-padding: var(--site-component-md-padding-x);
-  --field-font: var(--site-component-md-font-size);
+  --field-height: var(--guide-component-md-height);
+  --field-padding: var(--guide-component-md-padding-x);
+  --field-font: var(--guide-component-md-font-size);
 }
 .ds-field[data-size='lg'] {
-  --field-height: var(--site-component-lg-height);
-  --field-padding: var(--site-component-lg-padding-x);
-  --field-font: var(--site-component-lg-font-size);
+  --field-height: var(--guide-component-lg-height);
+  --field-padding: var(--guide-component-lg-padding-x);
+  --field-font: var(--guide-component-lg-font-size);
 }
 .ds-field[data-size='xl'] {
-  --field-height: var(--site-component-xl-height);
-  --field-padding: var(--site-component-xl-padding-x);
-  --field-font: var(--site-component-xl-font-size);
-}
-.ds-field[data-size='xxl'] {
-  --field-height: var(--site-component-xxl-height);
-  --field-padding: var(--site-component-xxl-padding-x);
-  --field-font: var(--site-component-xxl-font-size);
-}
-.ds-field[data-size='xxxl'] {
-  --field-height: var(--site-component-xxxl-height);
-  --field-padding: var(--site-component-xxxl-padding-x);
-  --field-font: var(--site-component-xxxl-font-size);
+  --field-height: var(--guide-component-xl-height);
+  --field-padding: var(--guide-component-xl-padding-x);
+  --field-font: var(--guide-component-xl-font-size);
 }
 .ds-input[data-state='default'] {
-  --field-bg: var(--site-input-default-bg);
-  --field-border: var(--site-input-default-border);
-  --field-text: var(--site-input-default-text);
-  --field-icon: var(--site-input-default-icon);
+  --field-bg: var(--guide-input-default-bg);
+  --field-border: var(--guide-input-default-border);
+  --field-text: var(--guide-input-default-text);
+  --field-icon: var(--guide-input-default-icon);
 }
 .ds-input[data-state='readonly'] {
-  --field-bg: var(--site-input-readonly-bg);
-  --field-border: var(--site-input-readonly-border);
-  --field-text: var(--site-input-readonly-text);
-  --field-icon: var(--site-input-readonly-icon);
+  --field-bg: var(--guide-input-readonly-bg);
+  --field-border: var(--guide-input-readonly-border);
+  --field-text: var(--guide-input-readonly-text);
+  --field-icon: var(--guide-input-readonly-icon);
 }
 .ds-input[data-state='disabled'] {
-  --field-bg: var(--site-input-disabled-bg);
-  --field-border: var(--site-input-disabled-border);
-  --field-text: var(--site-input-disabled-text);
-  --field-icon: var(--site-input-disabled-icon);
+  --field-bg: var(--guide-input-disabled-bg);
+  --field-border: var(--guide-input-disabled-border);
+  --field-text: var(--guide-input-disabled-text);
+  --field-icon: var(--guide-input-disabled-icon);
 }
 .ds-input[data-state='error'] {
-  --field-bg: var(--site-input-default-bg);
-  --field-border: var(--site-input-error-border);
-  --field-text: var(--site-input-error-text);
-  --field-icon: var(--site-input-default-icon);
+  --field-bg: var(--guide-input-default-bg);
+  --field-border: var(--guide-input-error-border);
+  --field-text: var(--guide-input-error-text);
+  --field-icon: var(--guide-input-default-icon);
 }
 .ds-input[data-state='default']:focus-within {
-  --field-border: var(--site-input-focus-border);
-  --field-text: var(--site-input-focus-text);
-  --field-icon: var(--site-input-focus-icon);
+  --field-border: var(--guide-input-focus-border);
+  --field-text: var(--guide-input-focus-text);
+  --field-icon: var(--guide-input-focus-icon);
 }
 .ds-select[data-state='default'] {
-  --field-bg: var(--site-select-default-bg);
-  --field-border: var(--site-select-default-border);
-  --field-text: var(--site-select-default-text);
-  --field-icon: var(--site-select-default-icon);
+  --field-bg: var(--guide-select-default-bg);
+  --field-border: var(--guide-select-default-border);
+  --field-text: var(--guide-select-default-text);
+  --field-icon: var(--guide-select-default-icon);
 }
 .ds-select[data-state='readonly'] {
-  --field-bg: var(--site-select-readonly-bg);
-  --field-border: var(--site-select-readonly-border);
-  --field-text: var(--site-select-readonly-text);
-  --field-icon: var(--site-select-readonly-icon);
+  --field-bg: var(--guide-select-readonly-bg);
+  --field-border: var(--guide-select-readonly-border);
+  --field-text: var(--guide-select-readonly-text);
+  --field-icon: var(--guide-select-readonly-icon);
 }
 .ds-select[data-state='disabled'] {
-  --field-bg: var(--site-select-disabled-bg);
-  --field-border: var(--site-select-disabled-border);
-  --field-text: var(--site-select-disabled-text);
-  --field-icon: var(--site-select-disabled-icon);
+  --field-bg: var(--guide-select-disabled-bg);
+  --field-border: var(--guide-select-disabled-border);
+  --field-text: var(--guide-select-disabled-text);
+  --field-icon: var(--guide-select-disabled-icon);
 }
 .ds-select[data-state='error'] {
-  --field-bg: var(--site-select-default-bg);
-  --field-border: var(--site-select-error-border);
-  --field-text: var(--site-select-error-text);
-  --field-icon: var(--site-select-default-icon);
+  --field-bg: var(--guide-select-default-bg);
+  --field-border: var(--guide-select-error-border);
+  --field-text: var(--guide-select-error-text);
+  --field-icon: var(--guide-select-default-icon);
 }
 .ds-select[data-state='default']:focus-within {
-  --field-border: var(--site-select-focus-border);
-  --field-text: var(--site-select-focus-text);
-  --field-icon: var(--site-select-focus-icon);
+  --field-border: var(--guide-select-focus-border);
+  --field-text: var(--guide-select-focus-text);
+  --field-icon: var(--guide-select-focus-icon);
 }
 .ds-select[data-state='default'][data-placeholder] > select {
-  color: var(--site-text-muted);
+  color: var(--guide-text-muted);
 }

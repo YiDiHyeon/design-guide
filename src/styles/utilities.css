@@ -1,196 +1,202 @@
-/* Generated from src/tokens/site-spec.json. Run npm run tokens:generate. */
+/* Generated from src/tokens/core-tokens.json. Run npm run tokens:generate. */
 @utility gap-xxs {
-  gap: var(--site-gap-xxs);
+  gap: var(--guide-gap-xxs);
 }
 @utility gap-x-xxs {
-  column-gap: var(--site-gap-xxs);
+  column-gap: var(--guide-gap-xxs);
 }
 @utility gap-y-xxs {
-  row-gap: var(--site-gap-xxs);
+  row-gap: var(--guide-gap-xxs);
 }
 @utility gap-xs {
-  gap: var(--site-gap-xs);
+  gap: var(--guide-gap-xs);
 }
 @utility gap-x-xs {
-  column-gap: var(--site-gap-xs);
+  column-gap: var(--guide-gap-xs);
 }
 @utility gap-y-xs {
-  row-gap: var(--site-gap-xs);
+  row-gap: var(--guide-gap-xs);
 }
 @utility gap-sm {
-  gap: var(--site-gap-sm);
+  gap: var(--guide-gap-sm);
 }
 @utility gap-x-sm {
-  column-gap: var(--site-gap-sm);
+  column-gap: var(--guide-gap-sm);
 }
 @utility gap-y-sm {
-  row-gap: var(--site-gap-sm);
+  row-gap: var(--guide-gap-sm);
 }
 @utility gap-md {
-  gap: var(--site-gap-md);
+  gap: var(--guide-gap-md);
 }
 @utility gap-x-md {
-  column-gap: var(--site-gap-md);
+  column-gap: var(--guide-gap-md);
 }
 @utility gap-y-md {
-  row-gap: var(--site-gap-md);
+  row-gap: var(--guide-gap-md);
 }
 @utility gap-lg {
-  gap: var(--site-gap-lg);
+  gap: var(--guide-gap-lg);
 }
 @utility gap-x-lg {
-  column-gap: var(--site-gap-lg);
+  column-gap: var(--guide-gap-lg);
 }
 @utility gap-y-lg {
-  row-gap: var(--site-gap-lg);
+  row-gap: var(--guide-gap-lg);
 }
 @utility gap-xl {
-  gap: var(--site-gap-xl);
+  gap: var(--guide-gap-xl);
 }
 @utility gap-x-xl {
-  column-gap: var(--site-gap-xl);
+  column-gap: var(--guide-gap-xl);
 }
 @utility gap-y-xl {
-  row-gap: var(--site-gap-xl);
+  row-gap: var(--guide-gap-xl);
 }
 @utility gap-xxl {
-  gap: var(--site-gap-xxl);
+  gap: var(--guide-gap-xxl);
 }
 @utility gap-x-xxl {
-  column-gap: var(--site-gap-xxl);
+  column-gap: var(--guide-gap-xxl);
 }
 @utility gap-y-xxl {
-  row-gap: var(--site-gap-xxl);
+  row-gap: var(--guide-gap-xxl);
 }
 @utility gap-3xl {
-  gap: var(--site-gap-3xl);
+  gap: var(--guide-gap-3xl);
 }
 @utility gap-x-3xl {
-  column-gap: var(--site-gap-3xl);
+  column-gap: var(--guide-gap-3xl);
 }
 @utility gap-y-3xl {
-  row-gap: var(--site-gap-3xl);
+  row-gap: var(--guide-gap-3xl);
 }
 @utility gap-4xl {
-  gap: var(--site-gap-4xl);
+  gap: var(--guide-gap-4xl);
 }
 @utility gap-x-4xl {
-  column-gap: var(--site-gap-4xl);
+  column-gap: var(--guide-gap-4xl);
 }
 @utility gap-y-4xl {
-  row-gap: var(--site-gap-4xl);
+  row-gap: var(--guide-gap-4xl);
 }
 @utility gap-5xl {
-  gap: var(--site-gap-5xl);
+  gap: var(--guide-gap-5xl);
 }
 @utility gap-x-5xl {
-  column-gap: var(--site-gap-5xl);
+  column-gap: var(--guide-gap-5xl);
 }
 @utility gap-y-5xl {
-  row-gap: var(--site-gap-5xl);
+  row-gap: var(--guide-gap-5xl);
 }
 @utility text-primary {
-  color: var(--site-text-primary);
+  color: var(--guide-text-primary);
 }
 @utility text-body {
-  color: var(--site-text-body);
+  color: var(--guide-text-body);
 }
 @utility text-secondary {
-  color: var(--site-text-secondary);
+  color: var(--guide-text-secondary);
 }
 @utility text-tertiary {
-  color: var(--site-text-tertiary);
+  color: var(--guide-text-tertiary);
 }
 @utility text-muted {
-  color: var(--site-text-muted);
+  color: var(--guide-text-muted);
 }
 @utility text-disabled {
-  color: var(--site-text-disabled);
+  color: var(--guide-text-disabled);
 }
 @utility text-point {
-  color: var(--site-text-point);
+  color: var(--guide-text-point);
 }
 @utility text-link {
-  color: var(--site-text-link);
+  color: var(--guide-text-link);
+}
+@utility text-brand {
+  color: var(--guide-text-brand);
 }
 @utility text-on-image {
-  color: var(--site-text-on-image);
+  color: var(--guide-text-on-image);
 }
 @utility text-on-image-sub {
-  color: var(--site-text-on-image-sub);
+  color: var(--guide-text-on-image-sub);
 }
 @utility text-on-solid {
-  color: var(--site-text-on-solid);
+  color: var(--guide-text-on-solid);
 }
 @utility text-on-disabled {
-  color: var(--site-text-on-disabled);
+  color: var(--guide-text-on-disabled);
 }
 @utility text-success {
-  color: var(--site-text-success);
+  color: var(--guide-text-success);
 }
 @utility text-warning {
-  color: var(--site-text-warning);
+  color: var(--guide-text-warning);
 }
 @utility text-error {
-  color: var(--site-text-error);
+  color: var(--guide-text-error);
 }
 @utility bg-base {
-  background-color: var(--site-bg-base);
+  background-color: var(--guide-bg-base);
 }
 @utility bg-surface-light {
-  background-color: var(--site-bg-surface-light);
+  background-color: var(--guide-bg-surface-light);
+}
+@utility bg-surface-warm {
+  background-color: var(--guide-bg-surface-warm);
 }
 @utility bg-main {
-  background-color: var(--site-bg-main);
+  background-color: var(--guide-bg-main);
 }
 @utility bg-promo {
-  background-color: var(--site-bg-promo);
+  background-color: var(--guide-bg-promo);
 }
 @utility bg-disabled {
-  background-color: var(--site-bg-disabled);
+  background-color: var(--guide-bg-disabled);
 }
 @utility bg-success-tint {
-  background-color: var(--site-bg-success-tint);
+  background-color: var(--guide-bg-success-tint);
 }
 @utility bg-warning-tint {
-  background-color: var(--site-bg-warning-tint);
+  background-color: var(--guide-bg-warning-tint);
 }
 @utility bg-error-tint {
-  background-color: var(--site-bg-error-tint);
+  background-color: var(--guide-bg-error-tint);
 }
 @utility bg-info-tint {
-  background-color: var(--site-bg-info-tint);
+  background-color: var(--guide-bg-info-tint);
 }
 @utility border-light {
-  border-color: var(--site-line-light);
+  border-color: var(--guide-line-light);
 }
 @utility border-strong {
-  border-color: var(--site-line-strong);
+  border-color: var(--guide-line-strong);
 }
 @utility border-heading {
-  border-color: var(--site-line-heading);
+  border-color: var(--guide-line-heading);
 }
 @utility border-on-image {
-  border-color: var(--site-line-on-image);
+  border-color: var(--guide-line-on-image);
 }
 @utility border-point {
-  border-color: var(--site-line-point);
+  border-color: var(--guide-line-point);
 }
 @utility border-focus {
-  border-color: var(--site-line-focus);
+  border-color: var(--guide-line-focus);
 }
 @utility border-hover {
-  border-color: var(--site-line-hover);
+  border-color: var(--guide-line-hover);
 }
 @utility border-default {
-  border-color: var(--site-line-default);
+  border-color: var(--guide-line-default);
 }
 @utility border-error {
-  border-color: var(--site-line-error);
+  border-color: var(--guide-line-error);
 }
 @utility border-checked {
-  border-color: var(--site-line-checked);
+  border-color: var(--guide-line-checked);
 }
 @utility border-accent {
-  border-color: var(--site-line-accent);
+  border-color: var(--guide-line-accent);
 }

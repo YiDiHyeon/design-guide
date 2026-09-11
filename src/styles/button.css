@@ -1,255 +1,173 @@
-/* Native Button implementation; token names and mappings follow the site specification. */
+/* Role-first Button recipe for the neutral core theme. */
 .ds-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  gap: var(--site-gap-xs);
+  gap: var(--guide-gap-xs);
   min-height: var(--button-height);
   padding: 0 var(--button-padding);
-  border: var(--site-border-default) solid transparent;
-  border-radius: var(--site-radius-button);
-  font-family: var(--site-font-base);
+  border: var(--guide-border-default) solid var(--button-border);
+  border-radius: var(--guide-radius-button);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-family: var(--guide-font-base);
   font-size: var(--button-font-size);
-  font-weight: var(--site-fw-title);
-  line-height: var(--site-lh-base);
-  letter-spacing: -0.02em;
+  font-weight: var(--guide-fw-strong);
+  line-height: var(--guide-lh-base);
+  letter-spacing: -0.01em;
   cursor: pointer;
   transition:
     background-color 120ms,
-    border-color 120ms;
+    border-color 120ms,
+    color 120ms,
+    transform 120ms;
 }
+
+.ds-button svg {
+  color: currentColor;
+}
+
 .ds-button:focus-visible,
 .ds-button.example-focus {
-  outline: var(--site-border-focus) solid var(--site-line-focus);
+  outline: var(--guide-border-2) solid var(--guide-line-accent);
   outline-offset: 2px;
 }
-.ds-button:disabled {
-  cursor: not-allowed;
+
+.ds-button:active:not(:disabled) {
+  transform: translateY(1px);
 }
-.ds-button[data-size='xxxs'] {
-  --button-height: var(--site-component-xxxs-height);
-  --button-padding: var(--site-component-xxxs-padding-x);
-  --button-font-size: var(--site-component-xxxs-font-size);
+
+.ds-button[data-icon-only='true'] {
+  width: var(--button-height);
+  padding: 0;
+  aspect-ratio: 1;
 }
-.ds-button[data-size='xxs'] {
-  --button-height: var(--site-component-xxs-height);
-  --button-padding: var(--site-component-xxs-padding-x);
-  --button-font-size: var(--site-component-xxs-font-size);
-}
-.ds-button[data-size='xs'] {
-  --button-height: var(--site-component-xs-height);
-  --button-padding: var(--site-component-xs-padding-x);
-  --button-font-size: var(--site-component-xs-font-size);
-}
+
 .ds-button[data-size='sm'] {
-  --button-height: var(--site-component-sm-height);
-  --button-padding: var(--site-component-sm-padding-x);
-  --button-font-size: var(--site-component-sm-font-size);
+  --button-height: var(--guide-component-sm-height);
+  --button-padding: var(--guide-component-sm-padding-x);
+  --button-font-size: var(--guide-component-sm-font-size);
 }
+
 .ds-button[data-size='md'] {
-  --button-height: var(--site-component-md-height);
-  --button-padding: var(--site-component-md-padding-x);
-  --button-font-size: var(--site-component-md-font-size);
+  --button-height: var(--guide-component-md-height);
+  --button-padding: var(--guide-component-md-padding-x);
+  --button-font-size: var(--guide-component-md-font-size);
 }
+
 .ds-button[data-size='lg'] {
-  --button-height: var(--site-component-lg-height);
-  --button-padding: var(--site-component-lg-padding-x);
-  --button-font-size: var(--site-component-lg-font-size);
+  --button-height: var(--guide-component-lg-height);
+  --button-padding: var(--guide-component-lg-padding-x);
+  --button-font-size: var(--guide-component-lg-font-size);
 }
+
 .ds-button[data-size='xl'] {
-  --button-height: var(--site-component-xl-height);
-  --button-padding: var(--site-component-xl-padding-x);
-  --button-font-size: var(--site-component-xl-font-size);
+  --button-height: var(--guide-component-xl-height);
+  --button-padding: var(--guide-component-xl-padding-x);
+  --button-font-size: var(--guide-component-xl-font-size);
 }
-.ds-button[data-size='xxl'] {
-  --button-height: var(--site-component-xxl-height);
-  --button-padding: var(--site-component-xxl-padding-x);
-  --button-font-size: var(--site-component-xxl-font-size);
+
+.ds-button[data-variant='primary'] {
+  --button-bg: var(--guide-button-primary-default-bg);
+  --button-border: var(--guide-button-primary-default-border);
+  --button-text: var(--guide-button-primary-default-text);
 }
-.ds-button[data-size='xxxl'] {
-  --button-height: var(--site-component-xxxl-height);
-  --button-padding: var(--site-component-xxxl-padding-x);
-  --button-font-size: var(--site-component-xxxl-font-size);
-}
-.ds-button[data-variant='solid'] {
-  background: var(--site-button-solid-default-bg);
-  color: var(--site-button-solid-default-text);
-}
-.ds-button[data-variant='solid'] svg {
-  color: var(--site-button-solid-default-icon);
-}
-.ds-button[data-variant='solid']:hover:not(:disabled),
-.ds-button[data-variant='solid'].example-hover {
-  background: var(--site-button-solid-hover-bg);
-  color: var(--site-button-solid-hover-text);
-}
-.ds-button[data-variant='solid']:hover:not(:disabled) svg,
-.ds-button[data-variant='solid'].example-hover svg {
-  color: var(--site-button-solid-hover-icon);
-}
-.ds-button[data-variant='solid']:active:not(:disabled),
-.ds-button[data-variant='solid'].example-pressed {
-  background: var(--site-button-solid-pressed-bg);
-  color: var(--site-button-solid-pressed-text);
-}
-.ds-button[data-variant='solid']:active:not(:disabled) svg,
-.ds-button[data-variant='solid'].example-pressed svg {
-  color: var(--site-button-solid-pressed-icon);
-}
-.ds-button[data-variant='solid']:disabled {
-  background: var(--site-button-solid-disabled-bg);
-  color: var(--site-button-solid-disabled-text);
-}
-.ds-button[data-variant='solid']:disabled svg {
-  color: var(--site-button-solid-disabled-icon);
-}
+
 .ds-button[data-variant='secondary'] {
-  background: var(--site-button-secondary-default-bg);
-  color: var(--site-button-secondary-default-text);
+  --button-bg: var(--guide-button-secondary-default-bg);
+  --button-border: var(--guide-button-secondary-default-border);
+  --button-text: var(--guide-button-secondary-default-text);
 }
-.ds-button[data-variant='secondary'] svg {
-  color: var(--site-button-secondary-default-icon);
+
+.ds-button[data-variant='outline'] {
+  --button-bg: var(--guide-button-outline-default-bg);
+  --button-border: var(--guide-button-outline-default-border);
+  --button-text: var(--guide-button-outline-default-text);
 }
+
+.ds-button[data-variant='ghost'] {
+  --button-bg: var(--guide-button-ghost-default-bg);
+  --button-border: var(--guide-button-ghost-default-border);
+  --button-text: var(--guide-button-ghost-default-text);
+}
+
+.ds-button[data-variant='danger'] {
+  --button-bg: var(--guide-button-danger-default-bg);
+  --button-border: var(--guide-button-danger-default-border);
+  --button-text: var(--guide-button-danger-default-text);
+}
+
+.ds-button[data-variant='primary']:hover:not(:disabled),
+.ds-button[data-variant='primary'].example-hover {
+  --button-bg: var(--guide-button-primary-hover-bg);
+  --button-border: var(--guide-button-primary-hover-border);
+  --button-text: var(--guide-button-primary-hover-text);
+}
+
 .ds-button[data-variant='secondary']:hover:not(:disabled) {
-  background: var(--site-button-secondary-hover-bg);
-  color: var(--site-button-secondary-hover-text);
+  --button-bg: var(--guide-button-secondary-hover-bg);
+  --button-border: var(--guide-button-secondary-hover-border);
+  --button-text: var(--guide-button-secondary-hover-text);
 }
-.ds-button[data-variant='secondary']:hover:not(:disabled) svg {
-  color: var(--site-button-secondary-hover-icon);
+
+.ds-button[data-variant='outline']:hover:not(:disabled) {
+  --button-bg: var(--guide-button-outline-hover-bg);
+  --button-border: var(--guide-button-outline-hover-border);
+  --button-text: var(--guide-button-outline-hover-text);
 }
+
+.ds-button[data-variant='ghost']:hover:not(:disabled) {
+  --button-bg: var(--guide-button-ghost-hover-bg);
+  --button-border: var(--guide-button-ghost-hover-border);
+  --button-text: var(--guide-button-ghost-hover-text);
+}
+
+.ds-button[data-variant='danger']:hover:not(:disabled) {
+  --button-bg: var(--guide-button-danger-hover-bg);
+  --button-border: var(--guide-button-danger-hover-border);
+  --button-text: var(--guide-button-danger-hover-text);
+}
+
+.ds-button[data-variant='primary']:active:not(:disabled),
+.ds-button[data-variant='primary'].example-pressed {
+  --button-bg: var(--guide-button-primary-pressed-bg);
+  --button-border: var(--guide-button-primary-pressed-border);
+  --button-text: var(--guide-button-primary-pressed-text);
+}
+
 .ds-button[data-variant='secondary']:active:not(:disabled) {
-  background: var(--site-button-secondary-pressed-bg);
-  color: var(--site-button-secondary-pressed-text);
+  --button-bg: var(--guide-button-secondary-pressed-bg);
+  --button-border: var(--guide-button-secondary-pressed-border);
+  --button-text: var(--guide-button-secondary-pressed-text);
 }
-.ds-button[data-variant='secondary']:active:not(:disabled) svg {
-  color: var(--site-button-secondary-pressed-icon);
+
+.ds-button[data-variant='outline']:active:not(:disabled) {
+  --button-bg: var(--guide-button-outline-pressed-bg);
+  --button-border: var(--guide-button-outline-pressed-border);
+  --button-text: var(--guide-button-outline-pressed-text);
 }
-.ds-button[data-variant='secondary']:disabled {
-  background: var(--site-button-secondary-disabled-bg);
-  color: var(--site-button-secondary-disabled-text);
+
+.ds-button[data-variant='ghost']:active:not(:disabled) {
+  --button-bg: var(--guide-button-ghost-pressed-bg);
+  --button-border: var(--guide-button-ghost-pressed-border);
+  --button-text: var(--guide-button-ghost-pressed-text);
 }
-.ds-button[data-variant='secondary']:disabled svg {
-  color: var(--site-button-secondary-disabled-icon);
+
+.ds-button[data-variant='danger']:active:not(:disabled) {
+  --button-bg: var(--guide-button-danger-pressed-bg);
+  --button-border: var(--guide-button-danger-pressed-border);
+  --button-text: var(--guide-button-danger-pressed-text);
 }
-.ds-button[data-variant='line'] {
-  color: var(--site-button-line-default-text);
-  border-color: var(--site-button-line-default-border);
-  background: transparent;
+
+.ds-button:disabled {
+  --button-bg: var(--guide-button-disabled-bg);
+  --button-border: var(--guide-button-disabled-border);
+  --button-text: var(--guide-button-disabled-text);
+  cursor: not-allowed;
+  transform: none;
 }
-.ds-button[data-variant='line'] svg {
-  color: var(--site-button-line-default-icon);
-}
-.ds-button[data-variant='line']:hover:not(:disabled) {
-  background: var(--site-button-line-hover-bg);
-  color: var(--site-button-line-hover-text);
-  border-color: var(--site-button-line-hover-border);
-}
-.ds-button[data-variant='line']:hover:not(:disabled) svg {
-  color: var(--site-button-line-hover-icon);
-}
-.ds-button[data-variant='line']:active:not(:disabled) {
-  background: var(--site-button-line-pressed-bg);
-  color: var(--site-button-line-pressed-text);
-  border-color: var(--site-button-line-pressed-border);
-}
-.ds-button[data-variant='line']:active:not(:disabled) svg {
-  color: var(--site-button-line-pressed-icon);
-}
-.ds-button[data-variant='line']:disabled {
-  color: var(--site-button-line-disabled-text);
-  border-color: var(--site-button-line-disabled-border);
-}
-.ds-button[data-variant='line']:disabled svg {
-  color: var(--site-button-line-disabled-icon);
-}
-.ds-button[data-variant='line-icon'] {
-  color: var(--site-button-line-icon-default-text);
-  border-color: var(--site-button-line-icon-default-border);
-  background: transparent;
-  width: var(--button-height);
-  padding: 0;
-  aspect-ratio: 1;
-}
-.ds-button[data-variant='line-icon'] svg {
-  color: var(--site-button-line-icon-default-icon);
-}
-.ds-button[data-variant='line-icon']:hover:not(:disabled) {
-  background: var(--site-button-line-icon-hover-bg);
-  color: var(--site-button-line-icon-hover-text);
-  border-color: var(--site-button-line-icon-hover-border);
-}
-.ds-button[data-variant='line-icon']:hover:not(:disabled) svg {
-  color: var(--site-button-line-icon-hover-icon);
-}
-.ds-button[data-variant='line-icon']:active:not(:disabled) {
-  background: var(--site-button-line-icon-pressed-bg);
-  color: var(--site-button-line-icon-pressed-text);
-  border-color: var(--site-button-line-icon-pressed-border);
-}
-.ds-button[data-variant='line-icon']:active:not(:disabled) svg {
-  color: var(--site-button-line-icon-pressed-icon);
-}
-.ds-button[data-variant='line-icon']:disabled {
-  border-color: var(--site-button-line-icon-disabled-border);
-}
-.ds-button[data-variant='line-icon']:disabled svg {
-  color: var(--site-button-line-icon-disabled-icon);
-}
-.ds-button[data-variant='circle-light'] {
-  background: var(--site-button-circle-light-bg);
-  color: var(--site-button-circle-light-icon);
-  width: var(--button-height);
-  padding: 0;
-  aspect-ratio: 1;
-  border-radius: var(--site-radius-chip);
-  box-shadow: var(--shadow-sm);
-}
-.ds-button[data-variant='circle-light']:hover:not(:disabled) {
-  background: var(--site-button-circle-light-hover-bg);
-}
-.ds-button[data-variant='circle-light']:hover:not(:disabled) svg {
-  color: var(--site-button-circle-light-hover-icon);
-}
-.ds-button[data-variant='circle-light']:active:not(:disabled) {
-  background: var(--site-button-circle-light-pressed-bg);
-}
-.ds-button[data-variant='circle-light']:active:not(:disabled) svg {
-  color: var(--site-button-circle-light-pressed-icon);
-}
-.ds-button[data-variant='circle-light']:disabled {
-  background: var(--site-bg-disabled);
-  color: var(--site-text-on-disabled);
-}
-.ds-button[data-variant='circle-dark'] {
-  background: var(--site-button-circle-dark-bg);
-  color: var(--site-button-circle-dark-icon);
-  width: var(--button-height);
-  padding: 0;
-  aspect-ratio: 1;
-  border-radius: var(--site-radius-chip);
-}
-.ds-button[data-variant='circle-dark']:disabled {
-  background: var(--site-bg-disabled);
-  color: var(--site-text-on-disabled);
-}
-.ds-button[data-variant='solid-light'] {
-  background: var(--site-button-solid-light-default-bg);
-  color: var(--site-button-solid-light-default-text);
-}
-.ds-button[data-variant='solid-light'] svg {
-  color: var(--site-button-solid-light-default-icon);
-}
-.ds-button[data-variant='solid-light']:hover:not(:disabled) {
-  background: var(--site-button-solid-light-hover-bg);
-}
-.ds-button[data-variant='solid-light']:active:not(:disabled) {
-  background: var(--site-button-solid-light-pressed-bg);
-}
-.ds-button[data-variant='solid-light']:disabled {
-  background: var(--site-bg-disabled);
-  color: var(--site-text-on-disabled);
-}
+
 @media (prefers-reduced-motion: reduce) {
   .ds-button {
     transition: none;

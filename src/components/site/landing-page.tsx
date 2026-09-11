@@ -25,13 +25,14 @@ import {
   Checkbox,
   Radio,
   Badge,
+  CabinetLogo,
 } from '@/components/ui';
 import { destinationOptions } from '@/lib/control';
 
 export function LandingPage() {
   // Hero Interactive States
   const [buttonVariant, setButtonVariant] =
-    useState<NonNullable<ButtonProps['variant']>>('solid');
+    useState<NonNullable<ButtonProps['variant']>>('primary');
   const [buttonSize, setButtonSize] =
     useState<NonNullable<ButtonProps['size']>>('md');
   const [clickCount, setClickCount] = useState(0);
@@ -49,7 +50,7 @@ export function LandingPage() {
         <div className="landing-header-inner">
           <Link href="/" className="landing-brand">
             <span className="landing-brand-mark" aria-hidden="true">
-              d<span>g</span>
+              <CabinetLogo size={26} strokeWidth={2} />
             </span>
             <span>design guide</span>
             <span className="landing-version-pill">v0.1</span>
@@ -117,7 +118,7 @@ export function LandingPage() {
               </div>
 
               <div className="bento-button-controls">
-                {(['solid', 'secondary', 'line', 'circle-light'] as const).map(
+                {(['primary', 'secondary', 'outline', 'ghost'] as const).map(
                   (v) => (
                     <button
                       key={v}
@@ -138,23 +139,14 @@ export function LandingPage() {
                 variant={buttonVariant}
                 size={buttonSize}
                 onClick={() => setClickCount((n) => n + 1)}
-                aria-label={
-                  buttonVariant === 'circle-light' ? '추가' : undefined
-                }
               >
-                {buttonVariant === 'circle-light' ? (
-                  <Plus size={16} />
-                ) : (
-                  <>
-                    <span>클릭해 보세요</span>
-                    <ArrowRight size={14} />
-                  </>
-                )}
+                <span>클릭해 보세요</span>
+                <ArrowRight size={14} />
               </Button>
               <span
                 style={{
                   fontSize: '11px',
-                  color: 'var(--site-text-secondary)',
+                  color: 'var(--guide-text-secondary)',
                 }}
               >
                 {clickCount > 0
@@ -170,7 +162,7 @@ export function LandingPage() {
                   gap: '6px',
                   alignItems: 'center',
                   fontSize: '11px',
-                  color: 'var(--site-text-secondary)',
+                  color: 'var(--guide-text-secondary)',
                 }}
               >
                 <span>Size:</span>
@@ -192,7 +184,7 @@ export function LandingPage() {
                 style={{
                   fontSize: '12px',
                   fontWeight: 600,
-                  color: 'var(--site-text-primary)',
+                  color: 'var(--guide-text-primary)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '4px',
@@ -224,7 +216,7 @@ export function LandingPage() {
                     fontSize: '11px',
                     fontWeight: 600,
                     marginBottom: '6px',
-                    color: 'var(--site-text-secondary)',
+                    color: 'var(--guide-text-secondary)',
                   }}
                 >
                   Name Input
@@ -246,7 +238,7 @@ export function LandingPage() {
                     fontSize: '11px',
                     fontWeight: 600,
                     marginBottom: '6px',
-                    color: 'var(--site-text-secondary)',
+                    color: 'var(--guide-text-secondary)',
                   }}
                 >
                   Destination Select
@@ -286,7 +278,7 @@ export function LandingPage() {
               <div
                 className="palette-block"
                 style={{
-                  background: 'var(--site-text-brand)',
+                  background: 'var(--guide-text-brand)',
                   color: '#ffffff',
                 }}
               >
@@ -295,7 +287,7 @@ export function LandingPage() {
               <div
                 className="palette-block"
                 style={{
-                  background: 'var(--site-text-primary)',
+                  background: 'var(--guide-text-primary)',
                   color: '#ffffff',
                 }}
               >
@@ -310,8 +302,8 @@ export function LandingPage() {
               <div
                 className="palette-block"
                 style={{
-                  background: 'var(--site-line-light)',
-                  color: 'var(--site-text-primary)',
+                  background: 'var(--guide-line-light)',
+                  color: 'var(--guide-text-primary)',
                 }}
               >
                 #eeeeee
@@ -411,7 +403,7 @@ export function LandingPage() {
       {/* Components Showcase */}
       <section
         className="landing-section"
-        style={{ borderTop: '1px solid var(--site-line-light)' }}
+        style={{ borderTop: '1px solid var(--guide-line-light)' }}
       >
         <div className="section-tag">
           <Code2 size={14} />
@@ -430,13 +422,13 @@ export function LandingPage() {
               <div
                 style={{ display: 'flex', gap: '8px', alignItems: 'center' }}
               >
-                <Button variant="solid" size="sm">
+                <Button variant="primary" size="sm">
                   확인
                 </Button>
                 <Button variant="secondary" size="sm">
                   취소
                 </Button>
-                <Button variant="line-icon" size="sm" aria-label="추가">
+                <Button variant="outline" size="sm" iconOnly aria-label="추가">
                   <Plus size={14} />
                 </Button>
               </div>
@@ -444,11 +436,11 @@ export function LandingPage() {
             <div className="component-card-body">
               <div className="component-card-header">
                 <h3 className="component-card-title">Button</h3>
-                <span className="bento-badge">7 Variants</span>
+                <span className="bento-badge">5 Roles</span>
               </div>
               <p className="component-card-desc">
-                Solid, Secondary, Line, Icon, Circle 등 다양한 상황에 최적화된
-                7가지 버튼 스타일을 제공합니다.
+                Primary, Secondary, Outline, Ghost, Danger로 행동의 중요도와
+                의미를 명확하게 표현합니다.
               </p>
               <span className="component-card-link">
                 자세히 보기 <ArrowRight size={13} />
@@ -619,7 +611,7 @@ export function LandingPage() {
       {/* Foundations Showcase */}
       <section
         className="landing-section"
-        style={{ borderTop: '1px solid var(--site-line-light)' }}
+        style={{ borderTop: '1px solid var(--guide-line-light)' }}
       >
         <div className="section-tag">
           <Layers size={14} />
@@ -641,7 +633,7 @@ export function LandingPage() {
                   alignItems: 'center',
                   gap: '8px',
                   marginBottom: '12px',
-                  color: 'var(--site-text-primary)',
+                  color: 'var(--guide-text-primary)',
                   fontWeight: 700,
                   fontSize: '17px',
                 }}
@@ -652,7 +644,7 @@ export function LandingPage() {
               <p
                 style={{
                   fontSize: '13px',
-                  color: 'var(--site-text-secondary)',
+                  color: 'var(--guide-text-secondary)',
                   margin: '0 0 20px',
                   lineHeight: 1.5,
                 }}
@@ -667,7 +659,7 @@ export function LandingPage() {
                   flex: 1,
                   height: '24px',
                   borderRadius: '4px',
-                  background: 'var(--site-text-brand)',
+                  background: 'var(--guide-text-brand)',
                 }}
               />
               <span
@@ -706,7 +698,7 @@ export function LandingPage() {
                   alignItems: 'center',
                   gap: '8px',
                   marginBottom: '12px',
-                  color: 'var(--site-text-primary)',
+                  color: 'var(--guide-text-primary)',
                   fontWeight: 700,
                   fontSize: '17px',
                 }}
@@ -717,7 +709,7 @@ export function LandingPage() {
               <p
                 style={{
                   fontSize: '13px',
-                  color: 'var(--site-text-secondary)',
+                  color: 'var(--guide-text-secondary)',
                   margin: '0 0 20px',
                   lineHeight: 1.5,
                 }}
@@ -728,12 +720,12 @@ export function LandingPage() {
             </div>
             <div
               style={{
-                background: 'var(--site-bg-surface-light)',
+                background: 'var(--guide-bg-surface-light)',
                 padding: '8px 12px',
                 borderRadius: '6px',
                 fontSize: '12px',
-                fontFamily: 'var(--site-font-code)',
-                color: 'var(--site-text-secondary)',
+                fontFamily: 'var(--guide-font-code)',
+                color: 'var(--guide-text-secondary)',
               }}
             >
               12px · 14px · 16px · 20px · 28px
@@ -749,7 +741,7 @@ export function LandingPage() {
                   alignItems: 'center',
                   gap: '8px',
                   marginBottom: '12px',
-                  color: 'var(--site-text-primary)',
+                  color: 'var(--guide-text-primary)',
                   fontWeight: 700,
                   fontSize: '17px',
                 }}
@@ -760,7 +752,7 @@ export function LandingPage() {
               <p
                 style={{
                   fontSize: '13px',
-                  color: 'var(--site-text-secondary)',
+                  color: 'var(--guide-text-secondary)',
                   margin: '0 0 20px',
                   lineHeight: 1.5,
                 }}
@@ -781,7 +773,7 @@ export function LandingPage() {
                 style={{
                   width: '8px',
                   height: '100%',
-                  background: 'var(--site-line-hover)',
+                  background: 'var(--guide-line-hover)',
                   borderRadius: '2px',
                 }}
               />
@@ -789,7 +781,7 @@ export function LandingPage() {
                 style={{
                   width: '16px',
                   height: '100%',
-                  background: 'var(--site-line-hover)',
+                  background: 'var(--guide-line-hover)',
                   borderRadius: '2px',
                 }}
               />
@@ -797,7 +789,7 @@ export function LandingPage() {
                 style={{
                   width: '24px',
                   height: '100%',
-                  background: 'var(--site-line-hover)',
+                  background: 'var(--guide-line-hover)',
                   borderRadius: '2px',
                 }}
               />
@@ -805,7 +797,7 @@ export function LandingPage() {
                 style={{
                   width: '32px',
                   height: '100%',
-                  background: 'var(--site-text-primary)',
+                  background: 'var(--guide-text-primary)',
                   borderRadius: '2px',
                 }}
               />
@@ -835,14 +827,11 @@ export function LandingPage() {
       <footer className="landing-footer">
         <div className="landing-footer-inner">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span
-              className="landing-brand-mark"
-              style={{ width: '22px', height: '22px', fontSize: '10px' }}
-            >
-              d<span>g</span>
+            <span className="landing-brand-mark" aria-hidden="true">
+              <CabinetLogo size={20} strokeWidth={2} />
             </span>
             <span
-              style={{ fontWeight: 600, color: 'var(--site-text-primary)' }}
+              style={{ fontWeight: 600, color: 'var(--guide-text-primary)' }}
             >
               Design Guide
             </span>
