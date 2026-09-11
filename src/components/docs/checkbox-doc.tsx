@@ -184,7 +184,7 @@ export function CheckboxDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -197,7 +197,7 @@ export function CheckboxDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -215,7 +215,7 @@ export function CheckboxDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -233,7 +233,7 @@ export function CheckboxDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -251,7 +251,7 @@ export function CheckboxDoc() {
           <div className="token-card" style={{ padding: '16px' }}>
             <div
               style={{
-                color: 'var(--site-text-muted)',
+                color: 'var(--guide-text-muted)',
                 fontSize: '12px',
                 marginBottom: '8px',
               }}
@@ -286,8 +286,8 @@ export function CheckboxDoc() {
               style={{
                 width: '100%',
                 maxWidth: '460px',
-                background: 'var(--site-bg-base)',
-                border: '1px solid var(--site-line-default)',
+                background: 'var(--guide-bg-base)',
+                border: '1px solid var(--guide-line-default)',
                 borderRadius: '8px',
                 padding: '20px',
               }}
@@ -296,7 +296,7 @@ export function CheckboxDoc() {
               <div
                 style={{
                   paddingBottom: '14px',
-                  borderBottom: '1px solid var(--site-line-light)',
+                  borderBottom: '1px solid var(--guide-line-light)',
                 }}
               >
                 <Checkbox

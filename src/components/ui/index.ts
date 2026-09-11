@@ -4,3 +4,4 @@ export * from './select';
 export * from './checkbox';
 export * from './radio';
 export * from './badge';
+export * from './cabinet-logo';

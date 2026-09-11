@@ -1,14 +1,4 @@
-export const controlSizes = [
-  'xxxs',
-  'xxs',
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  'xxl',
-  'xxxl',
-] as const;
+export const controlSizes = ['sm', 'md', 'lg', 'xl'] as const;
 export type ControlSize = (typeof controlSizes)[number];
 
 export const destinationOptions = [

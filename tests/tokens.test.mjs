@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import postcss from 'postcss';
 const spec = JSON.parse(
   readFileSync(
-    new URL('../src/tokens/site-spec.json', import.meta.url),
+    new URL('../src/tokens/core-tokens.json', import.meta.url),
     'utf8',
   ),
 );
@@ -52,36 +52,35 @@ test('generated CSS preserves every name, value and breakpoint in the specificat
     assert.deepEqual(actual, spec[layer]);
   }
 });
-test('source inventories remain complete', () => {
-  assert.equal(Object.keys(spec.primitive.base).length, 110);
-  assert.equal(Object.keys(spec.semantic.base).length, 153);
-  assert.equal(Object.keys(spec.semantic.tablet).length, 26);
-  assert.equal(Object.keys(spec.semantic.desktop).length, 15);
-  assert.equal(Object.keys(spec.component.base).length, 125);
+test('core token namespace is independent and consistent', () => {
+  for (const layer of ['primitive', 'semantic', 'component'])
+    for (const group of Object.values(spec[layer]))
+      for (const name of Object.keys(group))
+        assert.ok(name.startsWith('--guide-'), `Unexpected namespace: ${name}`);
 });
-test('source responsive typography and separate sp / gap mappings are retained', () => {
+test('responsive type and stable spacing follow the core policy', () => {
   assert.deepEqual(
-    modes.map((m) => resolve('--site-tit-display-hero', m)),
-    ['30px', '36px', '40px'],
+    modes.map((m) => resolve('--guide-tit-display-hero', m)),
+    ['36px', '40px', '40px'],
   );
   assert.deepEqual(
-    modes.map((m) => resolve('--site-sp-md', m)),
-    ['16px', '18px', '20px'],
+    modes.map((m) => resolve('--guide-sp-md', m)),
+    ['16px', '16px', '16px'],
   );
   assert.deepEqual(
-    modes.map((m) => resolve('--site-gap-md', m)),
+    modes.map((m) => resolve('--guide-gap-md', m)),
     ['12px', '12px', '12px'],
   );
 });
-test('source Button dimensions, radius and colors are retained', () => {
-  const sizes = ['xxxs', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'];
+test('Button uses four purposeful sizes and role-first colors', () => {
+  const sizes = ['sm', 'md', 'lg', 'xl'];
   assert.deepEqual(
-    sizes.map((s) => resolve(`--site-component-${s}-height`)),
-    ['24px', '28px', '32px', '36px', '40px', '44px', '48px', '52px', '56px'],
+    sizes.map((s) => resolve(`--guide-component-${s}-height`)),
+    ['32px', '40px', '48px', '56px'],
   );
-  assert.equal(resolve('--site-radius-button'), '4px');
-  assert.equal(resolve('--site-button-solid-default-bg'), '#212121');
-  assert.equal(resolve('--site-button-secondary-default-bg'), '#757575');
+  assert.equal(resolve('--guide-radius-button'), '8px');
+  assert.equal(resolve('--guide-button-primary-default-bg'), '#38471d');
+  assert.equal(resolve('--guide-button-secondary-default-bg'), '#475569');
 });
 test('document and component CSS contain no undefined variables', () => {
   const css = [
@@ -91,6 +90,7 @@ test('document and component CSS contain no undefined variables', () => {
     '../src/styles/checkbox.css',
     '../src/styles/radio.css',
     '../src/styles/badge.css',
+    '../src/styles/landing.css',
     '../src/styles/typography.css',
   ]
     .map(read)
@@ -103,17 +103,30 @@ test('document and component CSS contain no undefined variables', () => {
     );
 });
 
-test('Input and Select retain the reference state mappings', () => {
+test('Input and Select expose the shared state contract', () => {
   for (const kind of ['input', 'select']) {
     const names = Object.keys(spec.component.base).filter((name) =>
-      name.startsWith(`--site-${kind}-`),
+      name.startsWith(`--guide-${kind}-`),
     );
     assert.equal(names.length, 17);
     for (const state of ['default', 'focus', 'error', 'readonly', 'disabled']) {
-      assert.ok(names.includes(`--site-${kind}-${state}-border`));
+      assert.ok(names.includes(`--guide-${kind}-${state}-border`));
     }
-    assert.equal(resolve(`--site-${kind}-error-border`), '#f43c3c');
-    assert.equal(resolve(`--site-${kind}-focus-border`), '#212121');
-    assert.equal(resolve(`--site-${kind}-disabled-bg`), '#e0e0e0');
+    assert.equal(resolve(`--guide-${kind}-error-border`), '#ef4444');
+    assert.equal(resolve(`--guide-${kind}-focus-border`), '#38471d');
+    assert.equal(resolve(`--guide-${kind}-disabled-bg`), '#cbd5e1');
   }
+});
+
+test('core brand colors match the palette specification', () => {
+  const expected = {
+    '--guide-color-olive': '#38471d',
+    '--guide-color-fresh-olive': '#7f9445',
+    '--guide-color-butter-yellow': '#f5ca45',
+    '--guide-color-cream': '#fff8e5',
+    '--guide-color-deep-ink': '#23281d',
+    '--guide-color-tomato-coral': '#e66f4f',
+  };
+  for (const [name, value] of Object.entries(expected))
+    assert.equal(resolve(name), value);
 });

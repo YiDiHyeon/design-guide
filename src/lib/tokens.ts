@@ -1,4 +1,4 @@
-import spec from '@/tokens/site-spec.json';
+import spec from '@/tokens/core-tokens.json';
 export { spec };
 export type TokenMode = 'base' | 'tablet' | 'desktop';
 export function tokenMap(mode: TokenMode = 'base'): Record<string, string> {
@@ -24,7 +24,7 @@ export function resolveToken(
 export const primitiveNames = Object.keys(spec.primitive.base);
 export const semanticNames = Object.keys(spec.semantic.base);
 export const typographyNames = semanticNames.filter((name) =>
-  /^--site-(tit|txt|nav|price|badge-tag|card-compact|tab-item|form-label)/.test(
+  /^--guide-(tit|txt|nav|price|badge-tag|card-compact|tab-item|form-label)/.test(
     name,
   ),
 );

@@ -23,7 +23,7 @@ export const documents = [
     category: 'foundations',
     slug: 'spacing',
     title: 'Spacing',
-    description: '원본 Space 스케일과 반응형 sp·gap 역할을 정의합니다.',
+    description: '4px 기반의 간격 스케일과 레이아웃 역할을 정의합니다.',
     sections: ['Overview', 'Spacing scale', 'Semantic spacing', 'Guidelines'],
   },
   {

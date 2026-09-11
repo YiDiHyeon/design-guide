@@ -1,36 +1,26 @@
 import type { ComponentProps } from 'react';
 
 export const buttonVariants = [
-  'solid',
+  'primary',
   'secondary',
-  'line',
-  'line-icon',
-  'circle-light',
-  'circle-dark',
-  'solid-light',
+  'outline',
+  'ghost',
+  'danger',
 ] as const;
-export const buttonSizes = [
-  'xxxs',
-  'xxs',
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  'xxl',
-  'xxxl',
-] as const;
+export const buttonSizes = ['sm', 'md', 'lg', 'xl'] as const;
 export type ButtonProps = ComponentProps<'button'> & {
   variant?: (typeof buttonVariants)[number];
   size?: (typeof buttonSizes)[number];
   loading?: boolean;
   fullWidth?: boolean;
+  iconOnly?: boolean;
 };
 export function Button({
-  variant = 'solid',
+  variant = 'primary',
   size = 'md',
   loading = false,
   fullWidth = false,
+  iconOnly = false,
   disabled,
   children,
   className = '',
@@ -45,6 +35,7 @@ export function Button({
       aria-busy={loading || undefined}
       data-variant={variant}
       data-size={size}
+      data-icon-only={iconOnly || undefined}
       className={`ds-button ${fullWidth ? 'w-full' : ''} ${className}`}
     >
       {loading && <span className="spinner" aria-hidden="true" />}

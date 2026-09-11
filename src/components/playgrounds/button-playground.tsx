@@ -21,15 +21,15 @@ const sizeOptions = buttonSizes.map((value) => ({
 
 export function ButtonPlayground() {
   const [variant, setVariant] =
-    useState<NonNullable<ButtonProps['variant']>>('solid');
+    useState<NonNullable<ButtonProps['variant']>>('primary');
   const [size, setSize] = useState<NonNullable<ButtonProps['size']>>('md');
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [clicks, setClicks] = useState(0);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
-  const iconOnly = variant === 'line-icon' || variant.startsWith('circle-');
-  const snippet = `<Button variant="${variant}" size="${size}"${iconOnly ? ' aria-label="추가"' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>\n  ${iconOnly ? '<Plus size={16} aria-hidden="true" />' : loading ? '저장 중' : '시작하기'}\n</Button>`;
+  const [iconOnly, setIconOnly] = useState(false);
+  const snippet = `<Button variant="${variant}" size="${size}"${iconOnly ? ' iconOnly aria-label="추가"' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>\n  ${iconOnly ? '<Plus size={16} aria-hidden="true" />' : loading ? '저장 중' : '시작하기'}\n</Button>`;
   return (
     <div className="playground">
       <div className="preview-label">
@@ -53,6 +53,7 @@ export function ButtonPlayground() {
           size={size}
           disabled={disabled}
           loading={loading}
+          iconOnly={iconOnly}
           onClick={() => setClicks((n) => n + 1)}
         >
           {iconOnly
@@ -94,6 +95,17 @@ export function ButtonPlayground() {
               setCopied(false);
             }}
           />
+        </label>
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={iconOnly}
+            onChange={(e) => {
+              setIconOnly(e.target.checked);
+              setCopied(false);
+            }}
+          />
+          Icon only
         </label>
         <label className="checkbox-label">
           <input

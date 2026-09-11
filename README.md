@@ -1,113 +1,77 @@
 # Design Guide
 
-site Primitive·Semantic 토큰 명세를 사용하는 독립적인 개인 디자인 시스템 문서 사이트입니다. Next.js App Router + TypeScript + Tailwind CSS로 구현했습니다.
+개인 웹서비스와 토이 프로젝트에서 재사용하기 위한 중립적인 디자인 기반입니다. 특정 브랜드에 종속되지 않는 Core 토큰과 컴포넌트를 제공하고, 프로젝트별 Theme이 의미 기반 토큰을 덮어쓰는 구조로 설계했습니다.
+
+당근의 SEED Design을 비롯한 공개 디자인 시스템의 계층화와 문서화 방식을 학습 자료로 참고했지만, 이 프로젝트의 토큰 값·이름·컴포넌트 정책은 개인 웹서비스의 요구에 맞춰 독립적으로 설계했습니다. SEED Design 및 특정 회사와 공식적인 관련이 없습니다.
+
+## 원칙
+
+- **Clear**: 정보 위계와 인터랙션 상태를 즉시 구분합니다.
+- **Calm**: 장식보다 콘텐츠와 구조를 우선합니다.
+- **Adaptable**: Core는 중립적으로 유지하고 프로젝트별 Theme을 적용합니다.
+- **Accessible**: 색상 대비, 키보드 조작, 포커스 표시와 터치 크기를 기본 조건으로 둡니다.
 
 ## 실행
 
-Node.js 20.9 이상 (Node.js 24 검증).
+Node.js 20.9 이상이 필요합니다.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-개발 주소: http://localhost:3000. `/`는 `/components/button`으로 이동합니다.
+개발 주소는 `http://localhost:3000`입니다.
 
-```sh
-npm run build
-npm run start
-```
+## 토큰 구조
 
-다른 레포, 환경 변수, 외부 서비스에 의존하지 않습니다. 버전은 `package-lock.json`으로 고정합니다.
-
-## 토큰 기준
-
-`src/tokens/site-spec.json`이 독립적인 토큰 명세입니다. 참고 저장소의 다음 경로만 읽어 이름·값·매핑·반응형 정의를 추출했습니다.
-
-- `packages/ui-core-user/src/css/site/primitive.css`: Primitive 110개
-- `packages/ui-core-user/src/css/site/semantic.css`, `styles.css`: Semantic 기본 153개, Tablet override 26개, Desktop override 15개. 그림자·스크림 효과 포함
-- `packages/ui-core-user/src/css/site/component.css`: Button·Input·Select와 공통 Component size 125개
-- `packages/ui-core-user/src/components/site/button.tsx`: 스타일·크기 API 참고
-
-참고 레포의 파일은 수정하지 않았습니다. 토큰 명세를 보존하고 React 컴포넌트와 문서 UI는 이 레포에서 독립적으로 구현했습니다. 원본 CVA/Radix/모노레포 유틸리티에 의존하지 않습니다.
+`src/tokens/core-tokens.json`이 단일 토큰 명세입니다.
 
 ```text
---site-gray-0 → --site-text-on-solid → --site-button-solid-default-text
---site-space-16 → --site-sp-md (Mobile)
---site-height-40 → --site-component-md-height
+Primitive → Semantic → Component
+                  ↑
+                Theme
 ```
 
-이름과 매핑을 임의로 재설계하지 않습니다. 원본에는 Component에서 Primitive로 직접 연결하는 경우와 Semantic 내부의 레이아웃·효과 원시 값도 있습니다. 이를 숨기거나 다른 이름으로 바꾸지 않고 보존합니다.
+- **Primitive**: 색, 크기, 간격, radius처럼 의미를 부여하기 전의 값
+- **Semantic**: text, background, border, action, feedback 같은 UI 역할
+- **Component**: Button과 Field가 상태별로 소비하는 계약
+- **Theme**: Semantic과 필요한 Component 토큰만 덮어쓰는 프로젝트별 브랜드 계층
 
-- Mobile 기본, Tablet ≥768px, Desktop ≥1280px
-- `sp-md`: 16 / 18 / 20px. `gap-md`: 12 / 12 / 12px
-- `tit-display-hero`: 30 / 36 / 40px
-- `site-font-sans`의 외부 글꼴 변수는 로컬에서 `--font-pretendard: 'Pretendard'`로 연결합니다. 설치된 Pretendard가 없으면 원본의 system-ui fallback을 사용합니다. 폰트 파일은 포함하지 않습니다.
-- 문서의 현재 값은 CSS에서 직접 읽고 화면 크기 변경 시 갱신합니다.
-- 모든 Primitive·Semantic은 Colors의 전체 명세에서 조회할 수 있습니다. 각 Foundations 페이지에는 관련 토큰과 사용 예제를 별도로 제공합니다.
+기본 브랜드 컬러는 단단한 Cabinet Olive(#38471D)를 메인(Primary)으로 하며, Fresh Olive(#7F9445), Butter Yellow(#F5CA45), Cream(#FFF8E5), Deep Ink(#23281D), Tomato Coral(#E66F4F)의 보조 컬러와 고대비 Neutral 팔레트로 구성되어 있습니다.
 
-명세 변경 후 생성 파일을 갱신하세요.
+## 주요 기준
+
+- 본문 기본 크기 16px, 기본 행간 1.5
+- 4px 기반 간격 스케일
+- Control 크기: `sm` 32px, `md` 40px, `lg` 48px, `xl` 56px
+- Button 역할: `primary`, `secondary`, `outline`, `ghost`, `danger`
+- 아이콘 전용 Button은 `iconOnly`와 접근 가능한 이름을 함께 사용
+- Mobile-first, 주요 반응형 기준 768px / 1280px
+
+## 문서
+
+- `/foundations/colors`: Primitive 팔레트, Semantic 색상, 토큰 계층
+- `/foundations/typography`: 타입 스케일과 사용 원칙
+- `/foundations/spacing`: 4px 기반 간격, layout·radius·touch 토큰
+- `/components/*`: Button, Input, Select, Checkbox, Radio, Badge의 사용법과 API
+
+## 토큰 생성
+
+명세를 변경한 뒤 생성 CSS를 갱신합니다.
 
 ```sh
 npm run tokens:generate
 ```
 
-이 명령은 **새 레포의 JSON만** 읽습니다. 참고 레포에 접근하지 않습니다. 생성된 CSS는 함께 버전 관리합니다.
-
-## 문서와 구조
-
-- `/foundations/colors`: 원본 전체 팔레트, 색상 역할, 계층, 전체 Primitive/Semantic 명세
-- `/foundations/typography`: 원시 크기·굵기·행간, 모든 반응형 타입 역할, 실제 Text Style 예시
-- `/foundations/spacing`: 원본 Space 스케일, sp/gap 분리, 반응형 매핑, 레이아웃 역할
-- `/components/input`, `/components/select`: 실제 필드, 상태 조절, 원본 토큰·크기·API·접근성 가이드
-- `/components/button`: Overview, Anatomy, Variants, Sizes, States, Guidelines, API, Code Example
-
-데스크톱은 탐색 / 본문 / 목차 3열이며, 1180px 이하에서 우측 목차를 숨깁니다. 760px 이하에서는 네이티브 `details`로 모바일 탐색·목차를 제공합니다. 이 문서 레이아웃의 축소 지점은 제품 토큰의 768/1280 반응형 기준과 별개입니다.
+생성 대상은 다음과 같습니다.
 
 ```text
-src/tokens/site-spec.json         원본 기준의 토큰·타입 스타일 명세
-scripts/generate-tokens.mjs       로컬 명세 → CSS 생성
-src/styles/tokens/primitive.css   생성된 Primitive
-src/styles/tokens/semantic.css    생성된 Semantic + 반응형
-src/styles/tokens/component.css   생성된 Button·크기 토큰
-src/styles/typography.css         생성된 Text Style
-src/styles/utilities.css          역할 기반 Tailwind utility
-src/styles/button.css            Button 스타일
-src/styles/fields.css            Input·Select 스타일
-src/styles/checkbox.css          Checkbox 스타일
-src/styles/radio.css             Radio 스타일
-src/styles/badge.css             Badge 스타일
-src/components/ui/               순수 디자인 시스템 UI 컴포넌트 (Button, Input, Select, Checkbox, Radio, Badge)
-src/components/docs/             문서 페이지 컴포넌트 (*-doc.tsx)
-src/components/playgrounds/      인터랙티브 실시간 조작기 (*-playground.tsx)
-src/components/site/             가이드 사이트 셸, 랜딩, 공통 요소 (DocsShell, LandingPage, DocParts)
-src/lib/docs.ts                  문서 목록 및 목차
-src/lib/tokens.ts                명세 조회와 반응형 값 해석
-src/app/[category]/[slug]/page.tsx 정적 문서 경로
-src/app/globals.css              Tailwind 연결과 전역 스타일
-tests/tokens.test.mjs            토큰 정합성 검증
+src/styles/tokens/primitive.css
+src/styles/tokens/semantic.css
+src/styles/tokens/component.css
+src/styles/typography.css
+src/styles/utilities.css
 ```
-
-Tailwind 기본 숫자 스케일을 덮어쓰지 않습니다. `p-sp-md`, `gap-md`, `text-body`, `bg-base`, `border-default` 등 역할 기반 유틸리티와 `text-tit-main-page`, `text-txt-body-main` 등 타입 스타일을 사용합니다.
-
-## Button
-
-- variant: `solid`, `secondary`, `line`, `line-icon`, `circle-light`, `circle-dark`, `solid-light`
-- size: `xxxs`, `xxs`, `xs`, `sm`, `md`, `lg`, `xl`, `xxl`, `xxxl`
-- 높이: 24 / 28 / 32 / 36 / 40 / 44 / 48 / 52 / 56px
-- 기본값: `solid`, `md`, `type="button"`; 원본 radius 4px
-- HTML button 속성과 React ref, `disabled`, `loading`, `fullWidth` 지원
-- 아이콘 전용 사용 시 `aria-label` 필수
-
-원본에 정의된 상태 색상을 사용합니다. 원본에 disabled 토큰이 없는 circle / solid-light에는 기존 `site-bg-disabled`와 `site-text-on-disabled`를 적용했습니다. 로딩 시 실행을 차단하고 `aria-busy`를 제공합니다. 원본에 없는 loading/fullWidth 동작은 문서 사이트의 부가 API입니다.
-
-최소 크기를 임의로 44px로 늘리지 않습니다. 터치 환경에서 44px 영역이 필요하면 lg 이상을 선택하거나 별도의 터치 영역을 확보하세요. 원본의 모든 색상 조합이 작은 텍스트의 4.5:1 대비를 만족한다고 가정하지 않습니다. 색상 값은 보존하고 사용 맥락에 맞게 검토합니다.
-
-키보드 Enter/Space 실행, `focus-visible`, 본문 건너뛰기, 현재 페이지/목차 ARIA, 상태 안내, 모션 감소, 강제 색상 모드를 고려했습니다.
-
-## 확장
-
-`src/lib/docs.ts`에 새 문서를 등록하고, `button-doc.tsx`의 8개 섹션과 `Section`, `Table`, `Code`, `DocsShell`을 재사용하세요. 문서 라우트에 본문을 연결하면 내비게이션·목차·정적 경로는 등록 정보에서 생성됩니다. 컴포넌트 토큰은 명세에 추가 후 CSS를 생성합니다.
 
 ## 검증
 
@@ -120,12 +84,8 @@ npm run format:check
 npm run build
 ```
 
-7개 테스트는 전체 토큰 참조, 생성 CSS와 명세의 이름·값·breakpoint 일치, 토큰 개수, 반응형 타입·sp/gap, 원본 Button 크기·색상·radius, CSS의 미정의 변수 여부를 검사합니다. 원본과의 정합성은 이번 수정에서 지정 경로를 읽어 별도로 대조했으며, 일반 실행·검증은 참고 레포가 없어도 가능합니다.
+테스트는 모든 토큰 참조, 생성 결과와 명세의 일치, Core 크기·색상 정책, 컴포넌트 상태 토큰과 CSS의 미정의 변수 여부를 검사합니다.
 
-## Input / Select
+## 확장 원칙
 
-`src/components/input.tsx`, `select.tsx`와 `src/styles/fields.css`에서 구현합니다. 가이드는 `field-doc.tsx`, 실시간 예제는 `field-playground.tsx`입니다. 원본의 Input 17개, Select 17개 상태 토큰과 공통 9개 크기를 그대로 사용합니다.
-
-Input은 startIcon/endIcon과 네이티브 input 속성을 지원합니다. Select는 네이티브 단일 선택과 options 배열을 사용하며, 원본 Radix 합성 API는 제공하지 않습니다. 열린 목록의 외형은 운영체제·브라우저를 따릅니다. Select의 readOnly는 레이블을 읽기 전용 텍스트 필드로 표시하고 hidden input으로 실제 값을 전송합니다. disabled는 폼 전송에서 제외됩니다.
-
-
+새 프로젝트를 위해 Core 값을 직접 수정하지 않습니다. 먼저 Theme 파일에서 Brand 및 Semantic 토큰을 덮어쓰고, 두 개 이상의 컴포넌트에서 반복되는 요구만 Core로 승격합니다. 새 컴포넌트는 사용 목적, 사용하지 않는 경우, 상태, 접근성, 토큰 연결과 API를 함께 문서화합니다.
