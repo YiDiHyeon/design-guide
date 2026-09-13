@@ -95,6 +95,7 @@
       "--guide-space-48": "48px",
       "--guide-space-64": "64px",
       "--guide-space-80": "80px",
+      "--guide-height-24": "24px",
       "--guide-height-32": "32px",
       "--guide-height-40": "40px",
       "--guide-height-48": "48px",
@@ -343,6 +344,9 @@
   },
   "component": {
     "base": {
+      "--guide-component-xs-height": "var(--guide-height-24)",
+      "--guide-component-xs-padding-x": "var(--guide-space-8)",
+      "--guide-component-xs-font-size": "var(--guide-size-12)",
       "--guide-component-sm-height": "var(--guide-height-32)",
       "--guide-component-sm-padding-x": "var(--guide-space-12)",
       "--guide-component-sm-font-size": "var(--guide-size-14)",

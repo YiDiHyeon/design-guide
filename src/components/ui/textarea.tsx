@@ -1,25 +1,28 @@
 'use client';
 
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 import type { ControlSize } from '@/lib/control';
 import { useFieldControl } from './field-context';
-export type InputProps = Omit<ComponentProps<'input'>, 'size'> & {
+
+export type TextareaResize = 'vertical' | 'none';
+
+export type TextareaProps = Omit<ComponentProps<'textarea'>, 'size'> & {
   size?: ControlSize;
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
+  resize?: TextareaResize;
   wrapperClassName?: string;
 };
-export function Input({
+
+export function Textarea({
   size: ownSize,
-  startIcon,
-  endIcon,
+  resize = 'none',
   wrapperClassName = '',
   className = '',
   disabled: ownDisabled,
   readOnly: ownReadOnly,
+  rows = 4,
   'aria-invalid': ownInvalid,
   ...props
-}: InputProps) {
+}: TextareaProps) {
   const {
     size,
     disabled,
@@ -41,30 +44,23 @@ export function Input({
       : invalid && invalid !== 'false'
         ? 'error'
         : 'default';
+
   return (
     <div
-      className={`ds-field ds-input ${wrapperClassName}`}
+      className={`ds-field ds-input ds-textarea ${wrapperClassName}`}
       data-size={size}
       data-state={state}
+      data-resize={resize}
     >
-      {startIcon && (
-        <span className="field-icon" aria-hidden="true">
-          {startIcon}
-        </span>
-      )}
-      <input
+      <textarea
         {...props}
         {...fieldProps}
+        rows={rows}
         className={className}
         disabled={disabled}
         readOnly={readOnly}
         aria-invalid={invalid}
       />
-      {endIcon && (
-        <span className="field-icon" aria-hidden="true">
-          {endIcon}
-        </span>
-      )}
     </div>
   );
 }

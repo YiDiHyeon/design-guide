@@ -1,6 +1,6 @@
 'use client';
-import { useId, useState } from 'react';
-import { Input, Select } from '@/components/ui';
+import { useState } from 'react';
+import { Field, Input, Select } from '@/components/ui';
 import { Code } from '@/components/site/doc-parts';
 import { controlSizes, type ControlSize } from '@/lib/control';
 import { destinationOptions } from '@/lib/control';
@@ -13,23 +13,21 @@ const stateOptions = [
 ] as const;
 
 export function FieldPlayground({ kind }: { kind: 'input' | 'select' }) {
-  const id = useId();
   const [size, setSize] = useState<ControlSize>('md');
   const [state, setState] = useState('default');
   const [value, setValue] = useState('');
   const invalid = state === 'error';
-  const common = {
-    id,
-    size,
-    disabled: state === 'disabled',
-    readOnly: state === 'readonly',
-    'aria-invalid': invalid,
-    'aria-describedby': `${id}-help`,
-  };
-  const example =
+  const label = kind === 'input' ? '이름' : '여행지';
+  const description =
     kind === 'input'
-      ? `<label htmlFor="name">이름</label>\n<Input id="name" size="${size}" placeholder="이름을 입력하세요"${common.disabled ? ' disabled' : ''}${common.readOnly ? ' readOnly' : ''}${invalid ? ' aria-invalid="true"' : ''} aria-describedby="name-help" />\n<p id="name-help">${invalid ? '이름을 확인해 주세요.' : '예약에 사용할 이름을 입력하세요.'}</p>`
-      : `<label htmlFor="destination">여행지</label>\n<Select id="destination" size="${size}"\n  options={[{ value: 'seoul', label: '서울' }, { value: 'busan', label: '부산' }]}\n  placeholder="여행지를 선택하세요"${common.disabled ? '\n  disabled' : ''}${common.readOnly ? '\n  readOnly' : ''}${invalid ? '\n  aria-invalid="true"' : ''}\n  aria-describedby="destination-help"\n/>\n<p id="destination-help">${invalid ? '여행지를 확인해 주세요.' : '한 곳을 선택해 주세요.'}</p>`;
+      ? '예약에 사용할 이름을 입력하세요.'
+      : '여행할 도시 한 곳을 선택해 주세요.';
+  const fieldAttributes = `label="${label}" size="${size}"${state === 'disabled' ? ' disabled' : ''}${state === 'readonly' ? ' readOnly' : ''}${invalid ? ' invalid' : ' invalid={false}'}`;
+  const controlExample =
+    kind === 'input'
+      ? '<Input placeholder="이름을 입력하세요" />'
+      : '<Select options={destinationOptions} placeholder="여행지를 선택하세요" />';
+  const example = `<Field ${fieldAttributes}\n  description="${description}"\n  errorMessage="입력한 값을 확인해 주세요."\n>\n  ${controlExample}\n</Field>`;
   return (
     <>
       <div className="playground">
@@ -39,35 +37,30 @@ export function FieldPlayground({ kind }: { kind: 'input' | 'select' }) {
         </div>
         <div className="preview-stage">
           <div className="field-demo">
-            <label className="field-label" htmlFor={id}>
-              {kind === 'input' ? '이름' : '여행지'}
-            </label>
-            {kind === 'input' ? (
-              <Input
-                {...common}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder="이름을 입력하세요"
-              />
-            ) : (
-              <Select
-                {...common}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                options={destinationOptions}
-                placeholder="여행지를 선택하세요"
-              />
-            )}
-            <p
-              id={`${id}-help`}
-              className={`field-help ${invalid ? 'field-error' : ''}`}
+            <Field
+              label={label}
+              size={size}
+              disabled={state === 'disabled'}
+              readOnly={state === 'readonly'}
+              invalid={invalid}
+              description={description}
+              errorMessage="입력한 값을 확인해 주세요."
             >
-              {invalid
-                ? '입력한 값을 확인해 주세요.'
-                : kind === 'input'
-                  ? '예약에 사용할 이름을 입력하세요.'
-                  : '여행할 도시 한 곳을 선택해 주세요.'}
-            </p>
+              {kind === 'input' ? (
+                <Input
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder="이름을 입력하세요"
+                />
+              ) : (
+                <Select
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  options={destinationOptions}
+                  placeholder="여행지를 선택하세요"
+                />
+              )}
+            </Field>
             <p className="field-help" role="status">
               현재 값: {value || '없음'}
             </p>

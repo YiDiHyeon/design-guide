@@ -231,13 +231,6 @@ export function BadgeDoc() {
             <Badge variant="red" appearance="line" startIcon={<AlertCircle />}>
               마감 임박
             </Badge>
-            <Badge
-              variant="default"
-              appearance="solid"
-              endIcon={<ArrowRight />}
-            >
-              이벤트 바로가기
-            </Badge>
           </div>
         </div>
       </Section>
