@@ -1,5 +1,8 @@
 /* Generated from src/tokens/core-tokens.json. Run npm run tokens:generate. */
 :root {
+  --guide-component-xs-height: var(--guide-height-24);
+  --guide-component-xs-padding-x: var(--guide-space-8);
+  --guide-component-xs-font-size: var(--guide-size-12);
   --guide-component-sm-height: var(--guide-height-32);
   --guide-component-sm-padding-x: var(--guide-space-12);
   --guide-component-sm-font-size: var(--guide-size-14);

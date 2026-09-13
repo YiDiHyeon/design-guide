@@ -1,4 +1,4 @@
-import { Input, Select } from '@/components/ui';
+import { Field, Input, Select } from '@/components/ui';
 import { FieldPlayground } from '@/components/playgrounds/field-playground';
 import { destinationOptions } from '@/lib/control';
 import { Section, Table, Code } from '@/components/site/doc-parts';
@@ -30,29 +30,25 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
       </Section>
       <Section title="Anatomy">
         <div className="anatomy-panel">
-          <div className="field-demo">
-            <label className="field-label" htmlFor={`${kind}-anatomy`}>
-              1. {isInput ? '이름' : '여행지'}
-            </label>
+          <Field
+            className="field-demo"
+            label={`1. ${isInput ? '이름' : '여행지'}`}
+            description="5. 도움말 또는 오류 메시지"
+          >
             {isInput ? (
               <Input
                 id={`${kind}-anatomy`}
                 placeholder="3. 입력 값 / placeholder"
                 startIcon={<Search size={16} />}
-                aria-describedby={`${kind}-anatomy-help`}
               />
             ) : (
               <Select
                 id={`${kind}-anatomy`}
                 options={destinationOptions}
                 placeholder="3. 선택 값 / placeholder"
-                aria-describedby={`${kind}-anatomy-help`}
               />
             )}
-            <p className="field-help" id={`${kind}-anatomy-help`}>
-              5. 도움말 또는 오류 메시지
-            </p>
-          </div>
+          </Field>
         </div>
         <Table
           headings={['번호', '구성 요소', '역할']}

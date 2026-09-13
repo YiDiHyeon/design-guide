@@ -2,6 +2,7 @@
 import { useState, type ComponentProps } from 'react';
 import { ChevronDown } from 'lucide-react';
 import type { ControlSize } from '@/lib/control';
+import { useFieldControl } from './field-context';
 export type SelectOption = { value: string; label: string; disabled?: boolean };
 export type SelectProps = Omit<
   ComponentProps<'select'>,
@@ -15,18 +16,32 @@ export type SelectProps = Omit<
   readOnly?: boolean;
 };
 export function Select({
-  size = 'md',
+  size: ownSize,
   options,
   value,
   defaultValue,
   placeholder,
-  readOnly = false,
-  disabled,
+  readOnly: ownReadOnly,
+  disabled: ownDisabled,
   className = '',
   onChange,
-  'aria-invalid': invalid,
+  'aria-invalid': ownInvalid,
   ...props
 }: SelectProps) {
+  const {
+    size,
+    disabled,
+    readOnly,
+    'aria-invalid': invalid,
+    ...fieldProps
+  } = useFieldControl({
+    ...props,
+    size: ownSize,
+    disabled: ownDisabled,
+    readOnly: ownReadOnly,
+    'aria-invalid': ownInvalid,
+  });
+
   const [internalValue, setInternalValue] = useState(
     defaultValue ??
       (placeholder
@@ -51,7 +66,7 @@ export function Select({
       {readOnly && !disabled ? (
         <>
           <input
-            id={props.id}
+            id={fieldProps.id}
             type="text"
             readOnly
             value={
@@ -61,7 +76,7 @@ export function Select({
             }
             aria-label={props['aria-label']}
             aria-labelledby={props['aria-labelledby']}
-            aria-describedby={props['aria-describedby']}
+            aria-describedby={fieldProps['aria-describedby']}
             aria-invalid={invalid}
             tabIndex={props.tabIndex}
           />
@@ -75,6 +90,7 @@ export function Select({
       ) : (
         <select
           {...props}
+          {...fieldProps}
           value={selectedValue}
           disabled={disabled}
           aria-invalid={invalid}

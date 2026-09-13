@@ -43,7 +43,7 @@ Primitive → Semantic → Component
 
 - 본문 기본 크기 16px, 기본 행간 1.5
 - 4px 기반 간격 스케일
-- Control 크기: `sm` 32px, `md` 40px, `lg` 48px, `xl` 56px
+- Button 크기: `xs` 24px, `sm` 32px, `md` 40px, `lg` 48px, `xl` 56px
 - Button 역할: `primary`, `secondary`, `outline`, `ghost`, `danger`
 - 아이콘 전용 Button은 `iconOnly`와 접근 가능한 이름을 함께 사용
 - Mobile-first, 주요 반응형 기준 768px / 1280px
@@ -53,7 +53,7 @@ Primitive → Semantic → Component
 - `/foundations/colors`: Primitive 팔레트, Semantic 색상, 토큰 계층
 - `/foundations/typography`: 타입 스케일과 사용 원칙
 - `/foundations/spacing`: 4px 기반 간격, layout·radius·touch 토큰
-- `/components/*`: Button, Input, Select, Checkbox, Radio, Badge의 사용법과 API
+- `/components/*`: Button, Input, Textarea, Select, Checkbox, Radio, Switch, Badge의 사용법과 API
 
 ## 토큰 생성
 

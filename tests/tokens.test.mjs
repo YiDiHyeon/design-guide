@@ -72,11 +72,11 @@ test('responsive type and stable spacing follow the core policy', () => {
     ['12px', '12px', '12px'],
   );
 });
-test('Button uses four purposeful sizes and role-first colors', () => {
-  const sizes = ['sm', 'md', 'lg', 'xl'];
+test('Button uses five purposeful sizes and role-first colors', () => {
+  const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   assert.deepEqual(
     sizes.map((s) => resolve(`--guide-component-${s}-height`)),
-    ['32px', '40px', '48px', '56px'],
+    ['24px', '32px', '40px', '48px', '56px'],
   );
   assert.equal(resolve('--guide-radius-button'), '8px');
   assert.equal(resolve('--guide-button-primary-default-bg'), '#38471d');

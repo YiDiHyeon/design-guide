@@ -99,8 +99,10 @@ export function ButtonDoc() {
       </Section>
       <Section title="Sizes">
         <p>
-          개인 웹서비스에서 반복해서 쓰기 좋은 네 단계만 제공합니다. 기본 md는
-          40px이며, 모바일의 주요 행동에는 lg(48px) 이상을 권장합니다.
+          인라인 보조 행동을 위한 xs부터 주요 행동을 위한 xl까지 다섯 단계를
+          제공합니다. 기본 md는 40px이며, 모바일의 주요 행동에는 lg(48px) 이상을
+          권장합니다. xs(24px)는 배지 옆 바로가기처럼 밀도가 높은 보조 행동에만
+          사용합니다.
         </p>
         <div className="sample-row">
           {buttonSizes.map((size) => (

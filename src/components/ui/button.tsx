@@ -7,7 +7,7 @@ export const buttonVariants = [
   'ghost',
   'danger',
 ] as const;
-export const buttonSizes = ['sm', 'md', 'lg', 'xl'] as const;
+export const buttonSizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 export type ButtonProps = ComponentProps<'button'> & {
   variant?: (typeof buttonVariants)[number];
   size?: (typeof buttonSizes)[number];

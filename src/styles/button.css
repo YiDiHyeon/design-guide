@@ -44,6 +44,12 @@
   aspect-ratio: 1;
 }
 
+.ds-button[data-size='xs'] {
+  --button-height: var(--guide-component-xs-height);
+  --button-padding: var(--guide-component-xs-padding-x);
+  --button-font-size: var(--guide-component-xs-font-size);
+}
+
 .ds-button[data-size='sm'] {
   --button-height: var(--guide-component-sm-height);
   --button-padding: var(--guide-component-sm-padding-x);

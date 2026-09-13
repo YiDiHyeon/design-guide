@@ -7,9 +7,11 @@ import {
   Ruler,
   MousePointerClick,
   TextCursorInput,
+  NotebookPen,
   ChevronDownSquare,
   CheckSquare,
   CircleDot,
+  ToggleRight,
   BadgeCheck,
   Box,
   ArrowUp,
@@ -29,12 +31,16 @@ function getNavIcon(slug: string) {
       return <MousePointerClick size={16} strokeWidth={1.75} />;
     case 'input':
       return <TextCursorInput size={16} strokeWidth={1.75} />;
+    case 'textarea':
+      return <NotebookPen size={16} strokeWidth={1.75} />;
     case 'select':
       return <ChevronDownSquare size={16} strokeWidth={1.75} />;
     case 'checkbox':
       return <CheckSquare size={16} strokeWidth={1.75} />;
     case 'radio':
       return <CircleDot size={16} strokeWidth={1.75} />;
+    case 'switch':
+      return <ToggleRight size={16} strokeWidth={1.75} />;
     case 'badge':
       return <BadgeCheck size={16} strokeWidth={1.75} />;
     default:
