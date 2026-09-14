@@ -15,10 +15,18 @@
 @theme inline {
   --color-surface: var(--guide-bg-base);
   --color-surface-subtle: var(--guide-bg-surface-light);
+  --color-surface-main: var(--guide-bg-main);
   --color-foreground: var(--guide-text-primary);
   --color-muted: var(--guide-text-secondary);
   --color-accent: var(--guide-text-primary);
   --color-line: var(--guide-line-light);
+  --color-line-strong: var(--guide-line-strong);
+  --color-olive: var(--guide-text-brand);
+  --color-fresh-olive: var(--guide-color-fresh-olive);
+  --color-butter-yellow: var(--guide-color-butter-yellow);
+  --color-cream: var(--guide-color-cream);
+  --color-deep-ink: var(--guide-text-primary);
+  --color-tomato-coral: var(--guide-color-tomato-coral);
   --spacing-ds-inline: var(--guide-gap-sm);
   --spacing-ds-control: var(--guide-sp-md);
   --spacing-ds-group: var(--guide-sp-lg);
@@ -65,6 +73,14 @@ code,
 pre {
   font-family: 'SFMono-Regular', Consolas, monospace;
   font-size: 12px;
+}
+:not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: var(--guide-bg-main);
+  border: 1px solid var(--guide-line-light);
+  color: var(--guide-text-primary);
 }
 p {
   margin: 0;
@@ -141,6 +157,10 @@ p {
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
+  scrollbar-width: none;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 .nav-group {
   margin-bottom: 32px;
@@ -393,9 +413,13 @@ h3 {
 .playground {
   border: 1px solid var(--guide-line-light);
   border-radius: var(--guide-radius-card);
-  overflow: hidden;
+  overflow: visible;
   margin-top: 24px;
   margin-bottom: 20px;
+  position: relative;
+}
+.playground:has([data-open]) {
+  z-index: 500;
 }
 .preview-label {
   display: flex;
@@ -404,6 +428,8 @@ h3 {
   background: var(--guide-bg-surface-light);
   color: var(--guide-text-secondary);
   font-size: 10px;
+  border-top-left-radius: calc(var(--guide-radius-card) - 1px);
+  border-top-right-radius: calc(var(--guide-radius-card) - 1px);
 }
 .preview-label > span:first-child {
   display: flex;
@@ -432,11 +458,33 @@ h3 {
 }
 .playground-controls {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
   gap: 16px;
   padding: 16px 20px;
   border-top: 1px solid var(--guide-line-light);
+  border-bottom-left-radius: calc(var(--guide-radius-card) - 1px);
+  border-bottom-right-radius: calc(var(--guide-radius-card) - 1px);
+  position: relative;
+}
+.playground-controls:has([data-open]) {
+  z-index: 500;
+}
+.playground-controls .control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 125px;
+  flex: 1;
+}
+.playground-controls .control-group:has([data-open]) {
+  z-index: 500;
+  position: relative;
+}
+.playground-controls .control-group label {
+  font-size: 11px;
+  color: var(--guide-text-secondary);
+  font-weight: 500;
 }
 .playground-controls label {
   display: flex;
@@ -457,9 +505,11 @@ h3 {
 .playground-controls select:focus-visible {
   outline: none;
 }
+.playground-controls .ds-select-root {
+  width: 100%;
+}
 .playground-controls .ds-select {
-  width: auto;
-  min-width: 110px;
+  width: 100%;
 }
 .playground-controls .ds-select > select {
   border: 0;
@@ -547,13 +597,17 @@ input[type='checkbox'] {
   position: absolute;
   left: -10px;
   top: -10px;
-  background: var(--guide-text-primary);
-  color: var(--guide-text-on-solid);
+  background: var(--guide-color-olive);
+  color: #ffffff;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   text-align: center;
   font-size: 11px;
+}
+[data-theme='dark'] .anatomy-number {
+  background: var(--guide-text-brand);
+  color: var(--guide-color-deep-ink);
 }
 .anatomy-legend {
   display: flex;
@@ -724,6 +778,82 @@ tr:last-child th {
   overflow: auto;
   line-height: 1.9;
   color: var(--guide-text-primary);
+}
+
+.token-card {
+  background: var(--guide-bg-surface-light);
+  border: 1px solid var(--guide-line-light);
+  border-radius: var(--guide-radius-card);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.token-card:hover {
+  border-color: var(--guide-line-strong);
+}
+.feature-card {
+  background: var(--guide-bg-surface-light);
+  border: 1px solid var(--guide-line-light);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  border-color: var(--guide-line-strong);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+[data-theme='dark'] .feature-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+[data-theme='dark'] .feature-card:hover {
+  border-color: var(--guide-dark-line-strong);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+.feature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: color-mix(in srgb, var(--guide-color-olive) 12%, var(--guide-bg-surface-light));
+  color: var(--guide-text-brand);
+  border: 1px solid color-mix(in srgb, var(--guide-color-olive) 25%, transparent);
+}
+[data-theme='dark'] .feature-badge {
+  background: color-mix(in srgb, var(--guide-text-brand) 16%, var(--guide-dark-bg-surface));
+  color: var(--guide-text-brand);
+  border-color: color-mix(in srgb, var(--guide-text-brand) 34%, transparent);
+}
+.feature-demo-stage {
+  background: var(--guide-bg-base);
+  border: 1px solid var(--guide-line-light);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-top: 16px;
+}
+.feature-demo-stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed var(--guide-line-light);
+  font-size: 11px;
+  color: var(--guide-text-secondary);
+}
+.feature-demo-stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--guide-text-muted);
 }
 .doc-footer {
   display: flex;
@@ -971,7 +1101,10 @@ tr:last-child th {
 .spacing-scale > div > div {
   height: 18px;
   border-radius: 3px;
-  background: var(--guide-text-primary);
+  background: var(--guide-color-olive);
+}
+[data-theme='dark'] .spacing-scale > div > div {
+  background: var(--guide-text-brand);
 }
 .not-found {
   max-width: 650px;

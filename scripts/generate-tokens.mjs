@@ -10,11 +10,12 @@ const header =
 for (const layer of ['primitive', 'semantic', 'component']) {
   let css = header;
   for (const [mode, values] of Object.entries(spec[layer])) {
-    const rule = `:root {\n${Object.entries(values)
+    const selector = mode === 'dark' ? '[data-theme="dark"]' : ':root';
+    const rule = `${selector} {\n${Object.entries(values)
       .map(([name, value]) => `  ${name}: ${value};`)
       .join('\n')}\n}\n`;
     css +=
-      mode === 'base'
+      mode === 'base' || mode === 'dark'
         ? rule
         : `@media (min-width: ${mode === 'tablet' ? 768 : 1280}px) {\n${rule}}\n`;
   }

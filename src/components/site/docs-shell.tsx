@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   Palette,
   Type,
@@ -15,12 +15,20 @@ import {
   BadgeCheck,
   Box,
   ArrowUp,
+  Compass,
 } from 'lucide-react';
 import { documents, sectionId, type Doc } from '@/lib/docs';
 import { CabinetLogo } from '@/components/ui';
+import { ThemeToggle } from '@/components/site/theme-toggle';
+
+let sidebarScrollTop = 0;
+const sidebarScrollKey = 'cabinet-design:sidebar-scroll-top';
+const pendingSidebarScrollKey = 'cabinet-design:pending-sidebar-scroll-top';
 
 function getNavIcon(slug: string) {
   switch (slug) {
+    case 'overview':
+      return <Compass size={16} strokeWidth={1.75} />;
     case 'colors':
       return <Palette size={16} strokeWidth={1.75} />;
     case 'typography':
@@ -58,15 +66,36 @@ export function DocsShell({
   const [active, setActive] = useState('overview');
   const isManualScroll = useRef(false);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
+
+  const rememberSidebarScroll = () => {
+    if (sidebarRef.current) {
+      sidebarScrollTop = sidebarRef.current.scrollTop;
+      sessionStorage.setItem(pendingSidebarScrollKey, String(sidebarScrollTop));
+      sessionStorage.setItem(sidebarScrollKey, String(sidebarScrollTop));
+    }
+  };
 
   const scrollToTop = (behavior: ScrollBehavior = 'instant') => {
     window.scrollTo({ top: 0, left: 0, behavior });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scrollToTop('instant');
+    const storedScrollTop =
+      sessionStorage.getItem(pendingSidebarScrollKey) ??
+      sessionStorage.getItem(sidebarScrollKey);
+    const scrollTop =
+      storedScrollTop === null ? sidebarScrollTop : Number(storedScrollTop);
+    if (!Number.isFinite(scrollTop)) return;
+
+    sidebarScrollTop = scrollTop;
+    if (sidebarRef.current) sidebarRef.current.scrollTop = scrollTop;
+    const frame = requestAnimationFrame(() => {
+      if (sidebarRef.current) sidebarRef.current.scrollTop = scrollTop;
+      sessionStorage.removeItem(pendingSidebarScrollKey);
+    });
+    return () => cancelAnimationFrame(frame);
   }, [doc.slug]);
 
   useEffect(() => {
@@ -135,7 +164,7 @@ export function DocsShell({
   }, [doc]);
   const navigation = (
     <>
-      {['foundations', 'components'].map((category) => {
+      {['overview', 'foundations', 'components'].map((category) => {
         const categoryDocs = documents.filter((d) => d.category === category);
         const firstDoc = categoryDocs[0];
         return (
@@ -145,6 +174,7 @@ export function DocsShell({
                 <Link
                   href={`/${firstDoc.category}/${firstDoc.slug}`}
                   className="nav-category-link"
+                  scroll={false}
                   onClick={(e) => {
                     const details = (e.target as HTMLElement).closest(
                       'details',
@@ -165,6 +195,7 @@ export function DocsShell({
               <Link
                 key={d.slug}
                 href={`/${d.category}/${d.slug}`}
+                scroll={false}
                 aria-current={d.slug === doc.slug ? 'page' : undefined}
                 onClick={(e) => {
                   const details = (e.target as HTMLElement).closest('details');
@@ -240,20 +271,33 @@ export function DocsShell({
           <span className="brand-mark" aria-hidden="true">
             <CabinetLogo size={28} strokeWidth={2} />
           </span>
-          design guide<span className="version">v0.1</span>
+          cabinet design<span className="version">v0.1</span>
         </Link>
-        <div className="header-note">
-          A reusable design foundation
-          <span className="green-dot" />
+        <div className="flex items-center gap-3">
+          <div className="header-note">
+            A reusable design foundation
+            <span className="green-dot" />
+          </div>
+          <ThemeToggle />
         </div>
       </header>
       <div className="site-grid">
-        <aside className="sidebar">
+        <aside
+          ref={sidebarRef}
+          className="sidebar"
+          onClickCapture={rememberSidebarScroll}
+          onScroll={(event) => {
+            if (sessionStorage.getItem(pendingSidebarScrollKey) !== null)
+              return;
+            sidebarScrollTop = event.currentTarget.scrollTop;
+            sessionStorage.setItem(sidebarScrollKey, String(sidebarScrollTop));
+          }}
+        >
           <nav aria-label="문서 탐색">{navigation}</nav>
           <div className="sidebar-bottom">
             <span className="tiny-label">BUILT WITH INTENTION</span>
             <p>작은 원칙, 일관된 경험.</p>
-            <span>Design Guide © 2026</span>
+            <span>Cabinet Design © 2026</span>
           </div>
         </aside>
         <main id="main" tabIndex={-1}>
@@ -269,20 +313,28 @@ export function DocsShell({
           </div>
           <article>
             <div className="breadcrumb">
-              <Link
-                href={`/${doc.category}/${documents.find((d) => d.category === doc.category)?.slug ?? doc.slug}`}
-                className="breadcrumb-category"
-                onClick={() => {
-                  const first = documents.find(
-                    (d) => d.category === doc.category,
-                  )?.slug;
-                  if (first === doc.slug) {
-                    scrollToTop('smooth');
-                  }
-                }}
-              >
-                {doc.category === 'foundations' ? 'Foundations' : 'Components'}
-              </Link>
+              {doc.category === 'overview' ? (
+                <Link href="/" className="breadcrumb-category">
+                  Cabinet Design
+                </Link>
+              ) : (
+                <Link
+                  href={`/${doc.category}/${documents.find((d) => d.category === doc.category)?.slug ?? doc.slug}`}
+                  className="breadcrumb-category"
+                  onClick={() => {
+                    const first = documents.find(
+                      (d) => d.category === doc.category,
+                    )?.slug;
+                    if (first === doc.slug) {
+                      scrollToTop('smooth');
+                    }
+                  }}
+                >
+                  {doc.category === 'foundations'
+                    ? 'Foundations'
+                    : 'Components'}
+                </Link>
+              )}
               <span>/</span>
               {doc.title}
             </div>

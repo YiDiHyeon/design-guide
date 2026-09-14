@@ -15,7 +15,7 @@ export interface CabinetLogoProps extends React.SVGProps<SVGSVGElement> {
 export function CabinetLogo({
   size = 24,
   type = 'two-tier',
-  frameColor = 'var(--guide-color-olive, #38471D)',
+  frameColor = 'var(--guide-brand-logo-frame, var(--guide-color-olive, #38471D))',
   topAccentColor = 'var(--guide-color-butter-yellow, #F5CA45)',
   bottomAccentColor = 'var(--guide-color-tomato-coral, #E66F4F)',
   monochrome = false,

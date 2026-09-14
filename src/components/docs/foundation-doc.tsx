@@ -98,7 +98,7 @@ export function FoundationDoc({ slug }: { slug: string }) {
                     margin: '0 0 4px',
                     fontSize: '16px',
                     fontWeight: 750,
-                    color: 'var(--guide-color-olive)',
+                    color: 'var(--guide-text-brand)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',

@@ -32,6 +32,23 @@ test('all token references resolve in mobile, tablet and desktop', () => {
   for (const mode of modes)
     for (const name of Object.keys(values(mode))) resolve(name, mode);
 });
+test('all dark semantic token references resolve', () => {
+  const darkValues = {
+    ...values('base'),
+    ...spec.semantic.dark,
+  };
+  function resolveDark(name, seen = new Set()) {
+    const value = darkValues[name];
+    assert.ok(value, `Missing ${name}`);
+    assert.ok(!seen.has(name), `Cycle ${name}`);
+    return value.replace(/var\((--[\w-]+)\)/g, (_, ref) =>
+      resolveDark(ref, new Set([...seen, name])),
+    );
+  }
+  for (const name of Object.keys(spec.semantic.dark)) {
+    resolveDark(name);
+  }
+});
 test('generated CSS preserves every name, value and breakpoint in the specification', () => {
   for (const layer of ['primitive', 'semantic', 'component']) {
     const actual = {};
@@ -41,7 +58,7 @@ test('generated CSS preserves every name, value and breakpoint in the specificat
         let parent = decl.parent;
         while (parent && parent.type !== 'atrule') parent = parent.parent;
         const mode = !parent
-          ? 'base'
+          ? (decl.parent?.selector?.includes('data-theme') ? 'dark' : 'base')
           : parent.params.includes('768')
             ? 'tablet'
             : 'desktop';
@@ -89,6 +106,7 @@ test('document and component CSS contain no undefined variables', () => {
     '../src/styles/fields.css',
     '../src/styles/checkbox.css',
     '../src/styles/radio.css',
+    '../src/styles/switch.css',
     '../src/styles/badge.css',
     '../src/styles/landing.css',
     '../src/styles/typography.css',
@@ -129,4 +147,48 @@ test('core brand colors match the palette specification', () => {
   };
   for (const [name, value] of Object.entries(expected))
     assert.equal(resolve(name), value);
+});
+
+test('dark text and control boundaries meet their contrast targets', () => {
+  const dark = { ...values('base'), ...spec.semantic.dark };
+  function resolveDark(name, seen = new Set()) {
+    assert.ok(dark[name], `Missing ${name}`);
+    assert.ok(!seen.has(name), `Cycle ${name}`);
+    return dark[name].replace(/var\((--[\w-]+)\)/g, (_, ref) =>
+      resolveDark(ref, new Set([...seen, name])),
+    );
+  }
+  function luminance(hex) {
+    const channels = hex
+      .match(/[\da-f]{2}/gi)
+      .map((part) => Number.parseInt(part, 16) / 255);
+    const [red, green, blue] = channels.map((channel) =>
+      channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4,
+    );
+    return red * 0.2126 + green * 0.7152 + blue * 0.0722;
+  }
+  function contrast(first, second) {
+    const [lighter, darker] = [luminance(first), luminance(second)].sort(
+      (a, b) => b - a,
+    );
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+  assert.ok(
+    contrast(
+      resolveDark('--guide-text-muted'),
+      resolveDark('--guide-bg-surface-light'),
+    ) >= 4.5,
+  );
+  assert.ok(
+    contrast(
+      resolveDark('--guide-input-default-text'),
+      resolveDark('--guide-input-default-bg'),
+    ) >= 4.5,
+  );
+  assert.ok(
+    contrast(
+      resolveDark('--guide-line-default'),
+      resolveDark('--guide-bg-surface-warm'),
+    ) >= 3,
+  );
 });

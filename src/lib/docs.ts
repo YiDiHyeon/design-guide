@@ -1,5 +1,22 @@
 export const documents = [
   {
+    category: 'overview',
+    slug: 'overview',
+    title: 'Overview',
+    description:
+      '개인 웹서비스와 토이 프로젝트를 위한 중립적이고 단단한 디자인 가이드의 소개와 시작 가이드입니다.',
+    sections: [
+      'Overview',
+      'Background',
+      'Design Principles',
+      'Tech Stack',
+      'Token Architecture',
+      'Getting Started',
+      'Usage & Patterns',
+      'Next Steps',
+    ],
+  },
+  {
     category: 'foundations',
     slug: 'colors',
     title: 'Colors',

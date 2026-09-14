@@ -95,6 +95,11 @@
   color: var(--guide-text-on-solid);
 }
 
+[data-theme='dark']
+  .ds-checkbox-box:is([data-checked='true'], [data-indeterminate='true']) {
+  color: var(--guide-color-deep-ink);
+}
+
 /* Focus Visible */
 .ds-checkbox-input:focus-visible + .ds-checkbox-box {
   outline: var(--guide-border-focus) solid var(--guide-line-focus);
