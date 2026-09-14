@@ -31,7 +31,7 @@
   padding: 2px;
   border: var(--guide-border-default) solid var(--guide-line-default);
   border-radius: var(--guide-radius-full);
-  background: var(--guide-bg-surface-strong);
+  background: var(--guide-line-strong);
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease,
@@ -45,6 +45,14 @@
   box-shadow: 0 1px 2px rgb(0 0 0 / 18%);
   transform: translateX(0);
   transition: transform 0.15s ease;
+}
+
+[data-theme='dark']
+  .ds-switch-wrapper:not([data-state='disabled'])
+  .ds-switch-input:not(:checked)
+  + .ds-switch-track
+  .ds-switch-thumb {
+  background: var(--guide-neutral-200);
 }
 
 .ds-switch-wrapper[data-size='sm'] {

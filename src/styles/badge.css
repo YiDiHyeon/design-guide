@@ -36,6 +36,17 @@
   --guide-badge-red-line: var(--guide-red-500);
 }
 
+[data-theme='dark'] {
+  --guide-badge-default-solid-bg: var(--guide-neutral-500);
+  --guide-badge-default-line: var(--guide-neutral-300);
+  --guide-badge-accent-line: var(--guide-color-butter-yellow);
+  --guide-badge-pink-solid-bg: #f472a1;
+  --guide-badge-pink-line: #f472a1;
+  --guide-badge-blue-line: var(--guide-brand-300);
+  --guide-badge-red-solid-bg: var(--guide-red-400);
+  --guide-badge-red-line: var(--guide-red-400);
+}
+
 .ds-badge {
   display: inline-flex;
   align-items: center;
@@ -157,4 +168,15 @@
 .ds-badge[data-variant='red'][data-appearance='line'] {
   border-color: var(--guide-badge-red-line);
   color: var(--guide-badge-red-line);
+}
+
+[data-theme='dark']
+  .ds-badge[data-appearance='solid']:is(
+    [data-variant='point'],
+    [data-variant='pink'],
+    [data-variant='orange'],
+    [data-variant='cyan'],
+    [data-variant='red']
+  ) {
+  color: var(--guide-color-deep-ink);
 }

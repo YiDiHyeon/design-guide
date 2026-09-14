@@ -123,6 +123,10 @@
   --button-text: var(--guide-button-outline-hover-text);
 }
 
+[data-theme='dark'] .ds-button[data-variant='outline']:hover:not(:disabled) {
+  --button-border: var(--guide-line-focus);
+}
+
 .ds-button[data-variant='ghost']:hover:not(:disabled) {
   --button-bg: var(--guide-button-ghost-hover-bg);
   --button-border: var(--guide-button-ghost-hover-border);

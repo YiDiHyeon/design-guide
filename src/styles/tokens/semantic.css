@@ -120,6 +120,7 @@
   --guide-icon-md-svg-stroke: 17.778px;
   --guide-icon-lg-svg-stroke: 13.333px;
   --guide-brand-logo: var(--guide-brand-logo-base);
+  --guide-brand-logo-frame: var(--guide-brand-logo-base);
   --guide-overlay-scrim: rgb(15 23 42 / 64%);
   --guide-font-base: var(--guide-font-sans);
   --guide-fw-heading: var(--guide-fw-700);
@@ -207,4 +208,56 @@
     --guide-container-max: var(--guide-container-1280);
     --guide-margin-container: var(--guide-space-0);
   }
+}
+[data-theme='dark'] {
+  --guide-text-primary: var(--guide-neutral-50);
+  --guide-text-body: var(--guide-neutral-100);
+  --guide-text-secondary: var(--guide-neutral-300);
+  --guide-text-tertiary: var(--guide-neutral-400);
+  --guide-text-muted: var(--guide-neutral-400);
+  --guide-text-disabled: var(--guide-neutral-600);
+  --guide-text-point: var(--guide-color-tomato-coral);
+  --guide-text-link: var(--guide-brand-300);
+  --guide-text-brand: var(--guide-brand-300);
+  --guide-text-on-image: var(--guide-neutral-0);
+  --guide-text-on-image-sub: var(--guide-neutral-300);
+  --guide-text-on-solid: var(--guide-neutral-0);
+  --guide-text-on-disabled: var(--guide-neutral-500);
+  --guide-text-success: var(--guide-green-400);
+  --guide-text-warning: var(--guide-color-butter-yellow);
+  --guide-text-error: var(--guide-red-400);
+  --guide-bg-base: var(--guide-dark-bg-base);
+  --guide-bg-surface-light: var(--guide-dark-bg-surface);
+  --guide-bg-surface-warm: var(--guide-dark-bg-warm);
+  --guide-bg-main: var(--guide-dark-bg-main);
+  --guide-bg-promo: var(--guide-brand-700);
+  --guide-bg-disabled: #22291e;
+  --guide-bg-success-tint: #182618;
+  --guide-bg-warning-tint: #2c2411;
+  --guide-bg-error-tint: #2b1414;
+  --guide-bg-info-tint: #192415;
+  --guide-line-light: var(--guide-dark-line-light);
+  --guide-line-strong: var(--guide-dark-line-strong);
+  --guide-line-heading: var(--guide-neutral-100);
+  --guide-line-on-image: var(--guide-neutral-0);
+  --guide-line-point: var(--guide-color-tomato-coral);
+  --guide-line-focus: var(--guide-brand-300);
+  --guide-line-hover: var(--guide-neutral-400);
+  --guide-line-default: var(--guide-dark-line-control);
+  --guide-line-error: var(--guide-red-400);
+  --guide-line-checked: var(--guide-brand-300);
+  --guide-line-accent: var(--guide-brand-300);
+  --guide-icon-strong-color: var(--guide-neutral-50);
+  --guide-icon-default-color: var(--guide-neutral-300);
+  --guide-icon-muted-color: var(--guide-neutral-500);
+  --guide-icon-on-solid-color: var(--guide-neutral-0);
+  --guide-icon-point-color: var(--guide-red-400);
+  --guide-brand-logo: var(--guide-neutral-100);
+  --guide-brand-logo-frame: var(--guide-neutral-100);
+  --guide-overlay-scrim: rgb(0 0 0 / 75%);
+  --guide-shadow-header: 0 1px 0 0 rgb(255 255 255 / 6%);
+  --guide-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 40%);
+  --guide-shadow-md: 0 8px 20px -6px rgb(0 0 0 / 50%);
+  --guide-shadow-lg: 0 18px 40px -12px rgb(0 0 0 / 60%);
+  --guide-shadow-quick-menu: 0 0 50px 0 rgb(0 0 0 / 40%);
 }

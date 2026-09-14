@@ -53,6 +53,13 @@
   --guide-brand-800: #1f2710;
   --guide-brand-900: #161c0c;
   --guide-brand-logo-base: #38471d;
+  --guide-dark-bg-base: #0f130d;
+  --guide-dark-bg-surface: #181f14;
+  --guide-dark-bg-warm: #232d1d;
+  --guide-dark-bg-main: #141a11;
+  --guide-dark-line-light: #2f3d27;
+  --guide-dark-line-strong: #495d3c;
+  --guide-dark-line-control: #697764;
   --guide-red-50: #fef2f2;
   --guide-red-400: #f87171;
   --guide-red-500: #ef4444;

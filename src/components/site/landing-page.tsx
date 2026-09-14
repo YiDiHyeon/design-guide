@@ -24,9 +24,14 @@ import {
   Select,
   Checkbox,
   Radio,
+  RadioGroup,
+  Switch,
+  Textarea,
+  Field,
   Badge,
   CabinetLogo,
 } from '@/components/ui';
+import { ThemeToggle } from '@/components/site/theme-toggle';
 import { destinationOptions } from '@/lib/control';
 
 export function LandingPage() {
@@ -35,11 +40,14 @@ export function LandingPage() {
     useState<NonNullable<ButtonProps['variant']>>('primary');
   const [buttonSize, setButtonSize] =
     useState<NonNullable<ButtonProps['size']>>('md');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [clickCount, setClickCount] = useState(0);
 
   const [inputValue, setInputValue] = useState('홍길동');
   const [selectValue, setSelectValue] = useState('seoul');
   const [checkboxAgreed, setCheckboxAgreed] = useState(true);
+  const [switchPush, setSwitchPush] = useState(true);
+  const [roleValue, setRoleValue] = useState('developer');
 
   return (
     <div className="landing-root">
@@ -52,11 +60,14 @@ export function LandingPage() {
             <span className="landing-brand-mark" aria-hidden="true">
               <CabinetLogo size={26} strokeWidth={2} />
             </span>
-            <span>design guide</span>
+            <span>Cabinet Design</span>
             <span className="landing-version-pill">v0.1</span>
           </Link>
 
           <nav className="landing-nav" aria-label="메인 네비게이션">
+            <Link href="/overview/overview" className="landing-nav-link">
+              Overview
+            </Link>
             <Link href="/foundations/colors" className="landing-nav-link">
               Foundations
             </Link>
@@ -66,11 +77,12 @@ export function LandingPage() {
           </nav>
 
           <div className="landing-header-actions">
-            <Link href="/foundations/colors" className="landing-btn-docs">
-              <span className="desktop-only">문서 바로가기</span>
-              <span className="mobile-only">문서 보기</span>
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
+            <ThemeToggle />
+            {/*<Link href="/overview/overview" className="landing-btn-docs">*/}
+            {/*  <span className="desktop-only">문서 바로가기</span>*/}
+            {/*  <span className="mobile-only">문서 보기</span>*/}
+            {/*  <ArrowRight size={14} aria-hidden="true" />*/}
+            {/*</Link>*/}
           </div>
         </div>
       </header>
@@ -85,7 +97,7 @@ export function LandingPage() {
         <h1 className="landing-hero-title">
           일관된 프로덕트 경험을
           <br />
-          만드는 <span className="accent-text">Design Guide</span>
+          만드는 <span className="accent-text">Cabinet Design</span>
         </h1>
 
         <p className="landing-hero-desc">
@@ -94,7 +106,7 @@ export function LandingPage() {
         </p>
 
         <div className="landing-hero-cta">
-          <Link href="/foundations/colors" className="landing-cta-primary">
+          <Link href="/overview/overview" className="landing-cta-primary">
             <span>문서 시작하기</span>
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
@@ -117,20 +129,27 @@ export function LandingPage() {
                 <span className="bento-badge">Live Preview</span>
               </div>
 
+              {/* Variant Controls */}
               <div className="bento-button-controls">
-                {(['primary', 'secondary', 'outline', 'ghost'] as const).map(
-                  (v) => (
-                    <button
-                      key={v}
-                      type="button"
-                      className="bento-chip"
-                      data-active={buttonVariant === v}
-                      onClick={() => setButtonVariant(v)}
-                    >
-                      {v}
-                    </button>
-                  ),
-                )}
+                {(
+                  [
+                    'primary',
+                    'secondary',
+                    'outline',
+                    'ghost',
+                    'danger',
+                  ] as const
+                ).map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    className="bento-chip"
+                    data-active={buttonVariant === v}
+                    onClick={() => setButtonVariant(v)}
+                  >
+                    {v}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -138,58 +157,58 @@ export function LandingPage() {
               <Button
                 variant={buttonVariant}
                 size={buttonSize}
+                disabled={isButtonDisabled}
                 onClick={() => setClickCount((n) => n + 1)}
               >
                 <span>클릭해 보세요</span>
                 <ArrowRight size={14} />
               </Button>
-              <span
-                style={{
-                  fontSize: '11px',
-                  color: 'var(--guide-text-secondary)',
-                }}
-              >
-                {clickCount > 0
-                  ? `총 ${clickCount}번 클릭되었어요!`
-                  : '버튼을 직접 클릭하고 조작해 보세요.'}
-              </span>
+              <div className="flex items-center gap-2 text-xs text-secondary">
+                <span>
+                  {clickCount > 0
+                    ? `총 ${clickCount}번 클릭되었어요!`
+                    : '버튼을 직접 클릭하고 조작해 보세요.'}
+                </span>
+                {clickCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setClickCount(0)}
+                    className="text-xs text-olive underline cursor-pointer hover:opacity-80"
+                  >
+                    초기화
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="bento-card-footer">
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '6px',
-                  alignItems: 'center',
-                  fontSize: '11px',
-                  color: 'var(--guide-text-secondary)',
-                }}
-              >
-                <span>Size:</span>
-                {(['sm', 'md', 'lg'] as const).map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    className="bento-chip"
-                    style={{ padding: '3px 8px', fontSize: '11px' }}
-                    data-active={buttonSize === s}
-                    onClick={() => setButtonSize(s)}
-                  >
-                    {s}
-                  </button>
-                ))}
+              <div className="flex items-center gap-3 text-xs text-secondary flex-wrap">
+                <div className="flex items-center gap-1">
+                  <span className="font-medium">Size:</span>
+                  {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      className="bento-chip px-2 py-1 text-xs"
+                      data-active={buttonSize === s}
+                      onClick={() => setButtonSize(s)}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="bento-chip px-2 py-1 text-xs"
+                  data-active={isButtonDisabled}
+                  onClick={() => setIsButtonDisabled((d) => !d)}
+                >
+                  {isButtonDisabled ? 'Disabled ✓' : 'Disable'}
+                </button>
               </div>
               <Link
                 href="/components/button"
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  color: 'var(--guide-text-primary)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  textDecoration: 'none',
-                }}
+                className="text-xs font-semibold text-primary inline-flex items-center gap-1 hover:text-olive transition-colors no-underline"
               >
                 Button 문서
                 <ArrowRight size={12} />
@@ -211,13 +230,7 @@ export function LandingPage() {
               <div>
                 <label
                   htmlFor="hero-input"
-                  style={{
-                    display: 'block',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    marginBottom: '6px',
-                    color: 'var(--guide-text-secondary)',
-                  }}
+                  className="block text-xs font-semibold mb-2 text-secondary"
                 >
                   Name Input
                 </label>
@@ -233,13 +246,7 @@ export function LandingPage() {
               <div>
                 <label
                   htmlFor="hero-select"
-                  style={{
-                    display: 'block',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    marginBottom: '6px',
-                    color: 'var(--guide-text-secondary)',
-                  }}
+                  className="block text-xs font-semibold mb-2 text-secondary"
                 >
                   Destination Select
                 </label>
@@ -252,14 +259,36 @@ export function LandingPage() {
                 />
               </div>
 
-              <div style={{ marginTop: '2px' }}>
+              <div className="flex flex-col gap-2 pt-1 border-t border-light">
+                <Switch
+                  id="hero-switch"
+                  size="sm"
+                  checked={switchPush}
+                  onChange={(e) => setSwitchPush(e.target.checked)}
+                  label="실시간 푸시 알림 수신"
+                />
+
                 <Checkbox
                   id="hero-checkbox"
                   size="sm"
                   checked={checkboxAgreed}
                   onChange={(e) => setCheckboxAgreed(e.target.checked)}
-                  label="약관 동의 완료"
+                  label="이용약관 및 개인정보 동의"
                 />
+              </div>
+
+              <div className="pt-1">
+                <RadioGroup
+                  name="hero-role"
+                  size="sm"
+                  direction="horizontal"
+                  value={roleValue}
+                  onChange={setRoleValue}
+                  aria-label="직무 선택"
+                >
+                  <Radio value="developer" label="개발자" />
+                  <Radio value="designer" label="디자이너" />
+                </RadioGroup>
               </div>
             </div>
           </div>
@@ -276,52 +305,47 @@ export function LandingPage() {
 
             <div className="palette-strip">
               <div
-                className="palette-block"
-                style={{
-                  background: 'var(--guide-text-brand)',
-                  color: '#ffffff',
-                }}
+                className="palette-block palette-block-olive"
+                title="Cabinet Olive (#38471D)"
               >
-                Brand
+                <span>Olive</span>
+                <span className="text-[10px] font-mono">#38471D</span>
               </div>
               <div
-                className="palette-block"
-                style={{
-                  background: 'var(--guide-text-primary)',
-                  color: '#ffffff',
-                }}
+                className="palette-block palette-block-fresh"
+                title="Fresh Olive (#7F9445)"
               >
-                #212121
+                <span>Fresh</span>
+                <span className="text-[10px] font-mono">#7F9445</span>
               </div>
               <div
-                className="palette-block"
-                style={{ background: '#757575', color: '#ffffff' }}
+                className="palette-block palette-block-yellow"
+                title="Butter Yellow (#F5CA45)"
               >
-                #757575
+                <span className="font-bold">Yellow</span>
+                <span className="text-[10px] font-mono">#F5CA45</span>
               </div>
               <div
-                className="palette-block"
-                style={{
-                  background: 'var(--guide-line-light)',
-                  color: 'var(--guide-text-primary)',
-                }}
+                className="palette-block palette-block-coral"
+                title="Tomato Coral (#E66F4F)"
               >
-                #eeeeee
+                <span>Coral</span>
+                <span className="text-[10px] font-mono">#E66F4F</span>
               </div>
             </div>
 
             <div className="palette-specs">
               <div className="spec-cell">
                 <span>Radius</span>
-                <strong>4px / 8px</strong>
+                <strong>4px · 6px · 8px</strong>
               </div>
               <div className="spec-cell">
-                <span>Height</span>
-                <strong>36px / 40px</strong>
+                <span>Spacing</span>
+                <strong>4px Scale</strong>
               </div>
               <div className="spec-cell">
-                <span>Base Grid</span>
-                <strong>8px Spacing</strong>
+                <span>Typography</span>
+                <strong>12px ~ 28px</strong>
               </div>
             </div>
           </div>
@@ -334,7 +358,7 @@ export function LandingPage() {
           <Sparkles size={14} />
           Core Pillars
         </div>
-        <h2 className="section-title">디자인 가이드가 추구하는 원칙</h2>
+        <h2 className="section-title">Cabinet Design이 추구하는 원칙</h2>
         <p className="section-desc">
           시각적 완성도뿐 아니라 개발 용이성과 웹 접근성을 충족하도록 정밀하게
           설계되었습니다.
@@ -401,27 +425,22 @@ export function LandingPage() {
       </section>
 
       {/* Components Showcase */}
-      <section
-        className="landing-section"
-        style={{ borderTop: '1px solid var(--guide-line-light)' }}
-      >
+      <section className="landing-section border-t border-light">
         <div className="section-tag">
           <Code2 size={14} />
           Components
         </div>
         <h2 className="section-title">핵심 인터랙션 컴포넌트</h2>
         <p className="section-desc">
-          자주 사용되는 기본 컴포넌트들이 고도화된 상태 제어와 통일된 디자인으로
+          자주 사용되는 9개의 기본 컴포넌트들이 고도화된 상태 제어와 통일된 디자인으로
           제공됩니다.
         </p>
 
         <div className="components-grid">
-          {/* Button Card */}
+          {/* 1. Button Card */}
           <Link href="/components/button" className="component-card">
             <div className="component-card-preview">
-              <div
-                style={{ display: 'flex', gap: '8px', alignItems: 'center' }}
-              >
+              <div className="flex items-center gap-2">
                 <Button variant="primary" size="sm">
                   확인
                 </Button>
@@ -436,11 +455,11 @@ export function LandingPage() {
             <div className="component-card-body">
               <div className="component-card-header">
                 <h3 className="component-card-title">Button</h3>
-                <span className="bento-badge">5 Roles</span>
+                <span className="bento-badge">5 Variants</span>
               </div>
               <p className="component-card-desc">
-                Primary, Secondary, Outline, Ghost, Danger로 행동의 중요도와
-                의미를 명확하게 표현합니다.
+                Primary, Secondary, Outline, Ghost, Danger의 5가지 역할과 5단계 크기로
+                행동의 중요도를 명확하게 표현합니다.
               </p>
               <span className="component-card-link">
                 자세히 보기 <ArrowRight size={13} />
@@ -448,26 +467,55 @@ export function LandingPage() {
             </div>
           </Link>
 
-          {/* Input Card */}
+          {/* 2. Field Card */}
+          <Link href="/components/field" className="component-card">
+            <div className="component-card-preview">
+              <div className="w-4/5 max-w-[240px]">
+                <Field
+                  label="프로필 닉네임"
+                  size="sm"
+                  description="영문/한글 2~10자"
+                  count={{ current: 3, max: 10 }}
+                >
+                  <Input size="sm" defaultValue="홍길동" readOnly />
+                </Field>
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Field</h3>
+                <span className="bento-badge">Full ARIA</span>
+              </div>
+              <p className="component-card-desc">
+                라벨, 도움말 설명, 에러 메시지, 글자 수 카운터를 입력 컨트롤과 접근성
+                표준(WAI-ARIA)으로 자동 연결합니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* 3. Input Card */}
           <Link href="/components/input" className="component-card">
             <div className="component-card-preview">
-              <div style={{ width: '80%' }}>
+              <div className="w-4/5 max-w-[240px]">
                 <Input
                   size="sm"
                   placeholder="텍스트를 입력하세요"
+                  defaultValue="Cabinet Design"
                   readOnly
-                  value="Design Guide"
                 />
               </div>
             </div>
             <div className="component-card-body">
               <div className="component-card-header">
                 <h3 className="component-card-title">Input</h3>
-                <span className="bento-badge">9 Sizes</span>
+                <span className="bento-badge">4 Sizes</span>
               </div>
               <p className="component-card-desc">
-                9단계 크기 스케일과 Default, Error, ReadOnly, Disabled 상태를
-                지원하는 텍스트 입력 필드입니다.
+                4단계 크기 스케일과 Default, Error, ReadOnly, Disabled 상태를
+                지원하는 표준 텍스트 입력 필드입니다.
               </p>
               <span className="component-card-link">
                 자세히 보기 <ArrowRight size={13} />
@@ -475,14 +523,14 @@ export function LandingPage() {
             </div>
           </Link>
 
-          {/* Select Card */}
+          {/* 4. Select Card */}
           <Link href="/components/select" className="component-card">
             <div className="component-card-preview">
-              <div style={{ width: '80%' }}>
+              <div className="w-4/5 max-w-[240px]">
                 <Select
                   size="sm"
                   options={destinationOptions}
-                  value="seoul"
+                  defaultValue="seoul"
                   readOnly
                 />
               </div>
@@ -490,11 +538,10 @@ export function LandingPage() {
             <div className="component-card-body">
               <div className="component-card-header">
                 <h3 className="component-card-title">Select</h3>
-                <span className="bento-badge">Custom Indicator</span>
+                <span className="bento-badge">Seed Dropdown</span>
               </div>
               <p className="component-card-desc">
-                Lucide 아이콘이 통합된 일체형 선택 박스로 모든 브라우저에서
-                일관된 드롭다운 경험을 보장합니다.
+                실시간 검색, 다중 선택 태그/요약 모드, 아이템 보조 설명 및 아이콘을 지원하는 풍부한 드롭다운 리스트박스입니다.
               </p>
               <span className="component-card-link">
                 자세히 보기 <ArrowRight size={13} />
@@ -502,17 +549,43 @@ export function LandingPage() {
             </div>
           </Link>
 
-          {/* Checkbox Card */}
+          {/* 5. Textarea Card */}
+          <Link href="/components/textarea" className="component-card">
+            <div className="component-card-preview">
+              <div className="w-4/5 max-w-[240px]">
+                <Textarea
+                  size="sm"
+                  rows={2}
+                  defaultValue="작은 원칙으로 일관된 경험을 만듭니다."
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Textarea</h3>
+                <span className="bento-badge">Multi-line</span>
+              </div>
+              <p className="component-card-desc">
+                여러 줄의 긴 텍스트 입력을 위한 영역으로 행 수(rows)와 수직 리사이즈
+                제어를 완벽하게 지원합니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* 6. Checkbox Card */}
           <Link href="/components/checkbox" className="component-card">
             <div className="component-card-preview">
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
-              >
-                <Checkbox size="sm" checked={true} readOnly label="선택 옵션" />
+              <div className="flex flex-col gap-2">
+                <Checkbox
+                  size="sm"
+                  defaultChecked={true}
+                  readOnly
+                  label="선택 옵션"
+                />
                 <Checkbox
                   size="sm"
                   indeterminate={true}
@@ -536,24 +609,18 @@ export function LandingPage() {
             </div>
           </Link>
 
-          {/* Radio Card */}
+          {/* 7. Radio Card */}
           <Link href="/components/radio" className="component-card">
             <div className="component-card-preview">
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
+              <RadioGroup
+                name="preview-radio"
+                size="sm"
+                defaultValue="opt-a"
+                className="flex flex-col gap-2"
               >
-                <Radio
-                  size="sm"
-                  checked={true}
-                  readOnly
-                  label="옵션 A (선택)"
-                />
-                <Radio size="sm" checked={false} readOnly label="옵션 B" />
-              </div>
+                <Radio value="opt-a" label="옵션 A (선택됨)" readOnly />
+                <Radio value="opt-b" label="옵션 B" readOnly />
+              </RadioGroup>
             </div>
             <div className="component-card-body">
               <div className="component-card-header">
@@ -570,16 +637,43 @@ export function LandingPage() {
             </div>
           </Link>
 
-          {/* Badge Card */}
+          {/* 8. Switch Card */}
+          <Link href="/components/switch" className="component-card">
+            <div className="component-card-preview">
+              <div className="flex flex-col gap-3">
+                <Switch
+                  size="sm"
+                  defaultChecked={true}
+                  readOnly
+                  label="켜짐 상태"
+                />
+                <Switch
+                  size="sm"
+                  defaultChecked={false}
+                  readOnly
+                  label="꺼짐 상태"
+                />
+              </div>
+            </div>
+            <div className="component-card-body">
+              <div className="component-card-header">
+                <h3 className="component-card-title">Switch</h3>
+                <span className="bento-badge">Instant Toggle</span>
+              </div>
+              <p className="component-card-desc">
+                설정의 켜짐과 꺼짐 상태를 즉각적이고 직관적으로 전환하는 모던 토글
+                스위치 컴포넌트입니다.
+              </p>
+              <span className="component-card-link">
+                자세히 보기 <ArrowRight size={13} />
+              </span>
+            </div>
+          </Link>
+
+          {/* 9. Badge Card */}
           <Link href="/components/badge" className="component-card">
             <div className="component-card-preview">
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '8px',
-                  alignItems: 'center',
-                }}
-              >
+              <div className="flex items-center gap-2">
                 <Badge variant="point" appearance="solid">
                   NEW
                 </Badge>
@@ -609,10 +703,7 @@ export function LandingPage() {
       </section>
 
       {/* Foundations Showcase */}
-      <section
-        className="landing-section"
-        style={{ borderTop: '1px solid var(--guide-line-light)' }}
-      >
+      <section className="landing-section border-t border-light">
         <div className="section-tag">
           <Layers size={14} />
           Foundations
@@ -627,64 +718,31 @@ export function LandingPage() {
           {/* Colors Card */}
           <Link href="/foundations/colors" className="foundation-card">
             <div>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '12px',
-                  color: 'var(--guide-text-primary)',
-                  fontWeight: 700,
-                  fontSize: '17px',
-                }}
-              >
-                <Palette size={18} />
+              <div className="flex items-center gap-2 mb-3 text-primary font-bold text-base">
+                <Palette size={18} className="text-olive" />
                 Colors
               </div>
-              <p
-                style={{
-                  fontSize: '13px',
-                  color: 'var(--guide-text-secondary)',
-                  margin: '0 0 20px',
-                  lineHeight: 1.5,
-                }}
-              >
-                브랜드 오렌지(#ff6f0f)부터 뉴트럴 그레이 스케일 및 상태별 피드백
-                색상 토큰을 정의합니다.
+              <p className="text-xs sm:text-sm text-secondary m-0 mb-5 leading-relaxed">
+                Cabinet Olive, Fresh Olive 등 고대비 브랜드 팔레트와
+                Semantic 색상 체계를 정의합니다.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '6px' }}>
+            <div className="flex gap-2">
               <span
-                style={{
-                  flex: 1,
-                  height: '24px',
-                  borderRadius: '4px',
-                  background: 'var(--guide-text-brand)',
-                }}
+                className="flex-1 h-6 rounded bg-[var(--guide-color-olive)]"
+                title="Cabinet Olive (#38471D)"
               />
               <span
-                style={{
-                  flex: 1,
-                  height: '24px',
-                  borderRadius: '4px',
-                  background: '#212121',
-                }}
+                className="flex-1 h-6 rounded bg-fresh-olive"
+                title="Fresh Olive (#7F9445)"
               />
               <span
-                style={{
-                  flex: 1,
-                  height: '24px',
-                  borderRadius: '4px',
-                  background: '#757575',
-                }}
+                className="flex-1 h-6 rounded bg-butter-yellow"
+                title="Butter Yellow (#F5CA45)"
               />
               <span
-                style={{
-                  flex: 1,
-                  height: '24px',
-                  borderRadius: '4px',
-                  background: '#e0e0e0',
-                }}
+                className="flex-1 h-6 rounded bg-tomato-coral"
+                title="Tomato Coral (#E66F4F)"
               />
             </div>
           </Link>
@@ -692,42 +750,16 @@ export function LandingPage() {
           {/* Typography Card */}
           <Link href="/foundations/typography" className="foundation-card">
             <div>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '12px',
-                  color: 'var(--guide-text-primary)',
-                  fontWeight: 700,
-                  fontSize: '17px',
-                }}
-              >
-                <Type size={18} />
+              <div className="flex items-center gap-2 mb-3 text-primary font-bold text-base">
+                <Type size={18} className="text-fresh-olive" />
                 Typography
               </div>
-              <p
-                style={{
-                  fontSize: '13px',
-                  color: 'var(--guide-text-secondary)',
-                  margin: '0 0 20px',
-                  lineHeight: 1.5,
-                }}
-              >
+              <p className="text-xs sm:text-sm text-secondary m-0 mb-5 leading-relaxed">
                 모바일과 데스크톱 반응형 타이포그래피 스케일과 최적의
                 줄간격(Line Height)을 규정합니다.
               </p>
             </div>
-            <div
-              style={{
-                background: 'var(--guide-bg-surface-light)',
-                padding: '8px 12px',
-                borderRadius: '6px',
-                fontSize: '12px',
-                fontFamily: 'var(--guide-font-code)',
-                color: 'var(--guide-text-secondary)',
-              }}
-            >
+            <div className="bg-surface-warm border border-light px-3 py-2 rounded-md text-xs font-mono text-secondary">
               12px · 14px · 16px · 20px · 28px
             </div>
           </Link>
@@ -735,71 +767,35 @@ export function LandingPage() {
           {/* Spacing Card */}
           <Link href="/foundations/spacing" className="foundation-card">
             <div>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '12px',
-                  color: 'var(--guide-text-primary)',
-                  fontWeight: 700,
-                  fontSize: '17px',
-                }}
-              >
-                <Ruler size={18} />
+              <div className="flex items-center gap-2 mb-3 text-primary font-bold text-base">
+                <Ruler size={18} className="text-tomato-coral" />
                 Spacing
               </div>
-              <p
-                style={{
-                  fontSize: '13px',
-                  color: 'var(--guide-text-secondary)',
-                  margin: '0 0 20px',
-                  lineHeight: 1.5,
-                }}
-              >
-                8px 그리드 시스템을 기반으로 일관된 간격(Gap)과 레이아웃 패딩을
-                제공합니다.
+              <p className="text-xs sm:text-sm text-secondary m-0 mb-5 leading-relaxed">
+                4px 그리드 스케일(sp-4 ~ sp-64)을 기반으로 일관된 간격(Gap)과
+                레이아웃 패딩을 제공합니다.
               </p>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                height: '24px',
-              }}
-            >
+            <div className="flex items-center gap-1 h-6">
               <span
-                style={{
-                  width: '8px',
-                  height: '100%',
-                  background: 'var(--guide-line-hover)',
-                  borderRadius: '2px',
-                }}
+                className="w-2 h-full bg-surface-warm border border-strong rounded-sm"
+                title="sp-4 (4px)"
               />
               <span
-                style={{
-                  width: '16px',
-                  height: '100%',
-                  background: 'var(--guide-line-hover)',
-                  borderRadius: '2px',
-                }}
+                className="w-4 h-full bg-surface-warm border border-strong rounded-sm"
+                title="sp-8 (8px)"
               />
               <span
-                style={{
-                  width: '24px',
-                  height: '100%',
-                  background: 'var(--guide-line-hover)',
-                  borderRadius: '2px',
-                }}
+                className="w-6 h-full bg-surface-warm border border-strong rounded-sm"
+                title="sp-12 (12px)"
               />
               <span
-                style={{
-                  width: '32px',
-                  height: '100%',
-                  background: 'var(--guide-text-primary)',
-                  borderRadius: '2px',
-                }}
+                className="w-8 h-full bg-surface-warm border border-strong rounded-sm"
+                title="sp-16 (16px)"
+              />
+              <span
+                className="w-12 h-full bg-olive rounded-sm"
+                title="sp-24 (24px)"
               />
             </div>
           </Link>
@@ -810,13 +806,13 @@ export function LandingPage() {
       <section className="landing-banner">
         <div className="banner-card">
           <div className="banner-content">
-            <h2>지금 바로 Design Guide를 시작해보세요</h2>
+            <h2>지금 바로 Cabinet Design을 시작해보세요</h2>
             <p>
               토큰 명세와 인터랙티브 컴포넌트를 통해 일관된 프로덕트를 빠르게
               구현할 수 있습니다.
             </p>
           </div>
-          <Link href="/foundations/colors" className="banner-btn">
+          <Link href="/overview/overview" className="banner-btn">
             <span>문서 살펴보기</span>
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
@@ -826,19 +822,16 @@ export function LandingPage() {
       {/* Footer */}
       <footer className="landing-footer">
         <div className="landing-footer-inner">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="flex items-center gap-2">
             <span className="landing-brand-mark" aria-hidden="true">
               <CabinetLogo size={20} strokeWidth={2} />
             </span>
-            <span
-              style={{ fontWeight: 600, color: 'var(--guide-text-primary)' }}
-            >
-              Design Guide
-            </span>
-            <span>© 2026. 작은 원칙, 일관된 경험.</span>
+            <span className="font-semibold text-primary">Cabinet Design</span>
+            <span>© 2026 Cabinet Design. 작은 원칙, 일관된 경험.</span>
           </div>
 
           <div className="landing-footer-links">
+            <Link href="/overview/overview">Overview</Link>
             <Link href="/foundations/colors">Foundations</Link>
             <Link href="/components/button">Components</Link>
           </div>
