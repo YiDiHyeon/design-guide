@@ -17,6 +17,23 @@ export const documents = [
     ],
   },
   {
+    category: 'overview',
+    slug: 'getting-started',
+    title: 'Getting Started',
+    description:
+      '내 프로젝트에 토큰과 컴포넌트를 가져와 5분 만에 적용하는 실전 가이드입니다.',
+    sections: [
+      'Overview',
+      'Adoption Strategy',
+      'Step 1. Copy Tokens',
+      'Step 2. Customize Theme',
+      'Step 3. Add Components',
+      'Step 4. Dark Mode Setup',
+      'Framework Tips',
+      'Next Steps',
+    ],
+  },
+  {
     category: 'foundations',
     slug: 'colors',
     title: 'Colors',
@@ -42,6 +59,21 @@ export const documents = [
     title: 'Spacing',
     description: '4px 기반의 간격 스케일과 레이아웃 역할을 정의합니다.',
     sections: ['Overview', 'Spacing scale', 'Semantic spacing', 'Guidelines'],
+  },
+  {
+    category: 'foundations',
+    slug: 'radius',
+    title: 'Radius',
+    description:
+      '모서리 곡률과 형태(Shape)를 정의하여 일관된 톤앤매너와 시각적 위계를 완성합니다.',
+    sections: [
+      'Overview',
+      'Primitive scale',
+      'Semantic shapes',
+      'Nested radius',
+      'Token hierarchy',
+      'Guidelines',
+    ],
   },
   {
     category: 'components',

@@ -76,147 +76,113 @@ export function RadioDoc() {
 
       <Section title="Sizes">
         <p>
-          화면의 밀도와 배치 공간에 맞춰 3가지 크기를 제공합니다. 기본값은{' '}
+          화면의 정보 밀도와 배치 공간에 맞춰 3가지 크기를 제공합니다. 기본값은{' '}
           <code>md</code>(20px)입니다.
         </p>
-        <div
-          className="token-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          }}
-        >
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>sm (16px)</strong>
-              <span className="token-badge">컴팩트/테이블</span>
-            </div>
-            <Radio
-              size="sm"
-              defaultChecked
-              label="라디오 Small"
-              description="외곽 16px, 내부 도트 8px"
-            />
-          </div>
 
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>md (20px)</strong>
-              <span className="token-badge">기본 표준</span>
-            </div>
-            <Radio
-              size="md"
-              defaultChecked
-              label="라디오 Medium"
-              description="외곽 20px, 내부 도트 10px"
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>lg (24px)</strong>
-              <span className="token-badge">모바일/강조</span>
-            </div>
-            <Radio
-              size="lg"
-              defaultChecked
-              label="라디오 Large"
-              description="외곽 24px, 내부 도트 12px"
-            />
-          </div>
-        </div>
+        <Table
+          headings={['Size', '규격 (외곽 / 도트)', '미리보기 (Preview)', '권장 적용 맥락']}
+          rows={[
+            [
+              <code key="sm" className="font-bold text-primary">
+                sm (16px)
+              </code>,
+              '16px / 8px',
+              <Radio
+                key="r-sm"
+                size="sm"
+                defaultChecked
+                label="Small 옵션"
+              />,
+              '테이블 셀 내부, 데이터 밀도가 높은 압축 목록',
+            ],
+            [
+              <code key="md" className="font-bold text-primary">
+                md (20px)
+              </code>,
+              '20px / 10px (기본)',
+              <Radio
+                key="r-md"
+                size="md"
+                defaultChecked
+                label="Medium 옵션"
+              />,
+              '일반 웹 폼, 설정 다이얼로그, 기본 표준 선택지',
+            ],
+            [
+              <code key="lg" className="font-bold text-primary">
+                lg (24px)
+              </code>,
+              '24px / 12px',
+              <Radio
+                key="r-lg"
+                size="lg"
+                defaultChecked
+                label="Large 옵션"
+              />,
+              '모바일 터치 중심 화면, 결제 수단 등 시각적 강조 영역',
+            ],
+          ]}
+        />
       </Section>
 
       <Section title="States">
         <p>
           사용자의 상호작용 및 폼 유효성 검증 상태를 원형 인디케이터와 색상으로
-          표현합니다.
+          명확히 전달합니다.
         </p>
-        <div
-          className="token-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          }}
-        >
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Unchecked (미선택)
-            </div>
-            <Radio size="md" label="기본 미선택" />
-          </div>
 
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Checked (선택됨)
-            </div>
-            <Radio size="md" checked={true} readOnly label="선택 완료" />
-          </div>
-
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Error (오류)
-            </div>
-            <Radio
-              size="md"
-              error={true}
-              label="필수 선택 누락"
-              description="옵션을 선택해 주세요."
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Disabled (비활성화)
-            </div>
-            <Radio
-              size="md"
-              disabled={true}
-              label="선택 불가 옵션"
-              description="현재 재고가 없습니다."
-            />
-          </div>
-        </div>
+        <Table
+          headings={['상태 (State)', '미리보기 (Preview)', '동작 및 가이드']}
+          rows={[
+            [
+              <span key="s-un" className="font-semibold text-primary">
+                Unchecked
+              </span>,
+              <Radio key="r-un" size="md" label="기본 미선택" />,
+              '사용자의 선택을 기다리는 기본 대기 상태',
+            ],
+            [
+              <span key="s-ch" className="font-semibold text-primary">
+                Checked
+              </span>,
+              <Radio
+                key="r-ch"
+                size="md"
+                checked={true}
+                readOnly
+                label="선택 완료"
+              />,
+              '라디오 그룹 내에서 현재 활성화된 옵션',
+            ],
+            [
+              <span key="s-err" className="font-semibold text-primary">
+                Error
+              </span>,
+              <Radio
+                key="r-err"
+                size="md"
+                error={true}
+                label="필수 선택 누락"
+                description="옵션을 선택해 주세요."
+              />,
+              '필수 선택이 누락되었거나 유효성 검증에 실패한 상태',
+            ],
+            [
+              <span key="s-dis" className="font-semibold text-primary">
+                Disabled
+              </span>,
+              <Radio
+                key="r-dis"
+                size="md"
+                disabled={true}
+                label="선택 불가 옵션"
+                description="현재 재고가 없습니다."
+              />,
+              '조건 미충족 또는 비활성화되어 조작할 수 없는 상태',
+            ],
+          ]}
+        />
       </Section>
 
       <Section title="Variants">
@@ -225,32 +191,13 @@ export function RadioDoc() {
           수직(기본값) 및 수평 배치를 손쉽게 전환할 수 있습니다.
         </p>
 
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '24px',
-            marginTop: '16px',
-          }}
-        >
-          <div className="token-card" style={{ padding: '20px' }}>
-            <h4
-              style={{
-                marginBottom: '12px',
-                fontSize: '14px',
-                color: 'var(--guide-text-primary)',
-              }}
-            >
-              1. Vertical Layout (수직 배치 - 추천)
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="rounded-xl border border-light bg-surface-light p-6">
+            <h4 className="font-bold text-sm text-primary mb-1">
+              1. Vertical Layout (수직 배치 - 권장)
             </h4>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--guide-text-muted)',
-                marginBottom: '16px',
-              }}
-            >
-              항목마다 보조 설명이 있거나 옵션 수가 3개 이상일 때 추천하는 표준
+            <p className="text-xs text-secondary leading-relaxed mb-6">
+              항목마다 보조 설명이 있거나 옵션 수가 3개 이상일 때 사용하는 표준
               레이아웃입니다.
             </p>
             <RadioGroup
@@ -272,24 +219,12 @@ export function RadioDoc() {
             </RadioGroup>
           </div>
 
-          <div className="token-card" style={{ padding: '20px' }}>
-            <h4
-              style={{
-                marginBottom: '12px',
-                fontSize: '14px',
-                color: 'var(--guide-text-primary)',
-              }}
-            >
+          <div className="rounded-xl border border-light bg-surface-light p-6">
+            <h4 className="font-bold text-sm text-primary mb-1">
               2. Horizontal Layout (수평 배치)
             </h4>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--guide-text-muted)',
-                marginBottom: '16px',
-              }}
-            >
-              레이블 길이가 짧고 2~3개의 단순 선택지(예: 성별, 결제 방식)일 때
+            <p className="text-xs text-secondary leading-relaxed mb-6">
+              레이블 길이가 짧고 2~3개의 단순 선택지(예: 공개 여부, 성별)일 때
               공간 효율적으로 배치합니다.
             </p>
             <RadioGroup
@@ -367,7 +302,7 @@ export function RadioDoc() {
       </Section>
 
       <Section title="API">
-        <h4 style={{ margin: '16px 0 8px', fontSize: '15px' }}>
+        <h4 className="font-bold text-sm text-primary mt-6 mb-2">
           RadioGroup Props
         </h4>
         <Table
@@ -409,7 +344,9 @@ export function RadioDoc() {
           ]}
         />
 
-        <h4 style={{ margin: '24px 0 8px', fontSize: '15px' }}>Radio Props</h4>
+        <h4 className="font-bold text-sm text-primary mt-8 mb-2">
+          Radio Props
+        </h4>
         <Table
           headings={['Prop', 'Type', 'Default', 'Description']}
           rows={[

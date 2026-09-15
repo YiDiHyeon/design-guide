@@ -13,6 +13,7 @@
 
   /* accent */
   --guide-badge-accent-solid-bg: var(--guide-color-butter-yellow, #f5ca45);
+  --guide-badge-accent-solid-text: var(--guide-color-deep-ink, #23281d);
   --guide-badge-accent-line: var(--guide-color-olive, #38471d);
 
   /* pink */
@@ -39,6 +40,7 @@
 [data-theme='dark'] {
   --guide-badge-default-solid-bg: var(--guide-neutral-500);
   --guide-badge-default-line: var(--guide-neutral-300);
+  --guide-badge-accent-solid-text: var(--guide-color-deep-ink, #23281d);
   --guide-badge-accent-line: var(--guide-color-butter-yellow);
   --guide-badge-pink-solid-bg: #f472a1;
   --guide-badge-pink-line: #f472a1;
@@ -113,7 +115,10 @@
 /* Compound Variants: accent */
 .ds-badge[data-variant='accent'][data-appearance='solid'] {
   background-color: var(--guide-badge-accent-solid-bg);
-  color: var(--guide-color-deep-ink, #23281d);
+  color: var(
+    --guide-badge-accent-solid-text,
+    var(--guide-badge-solid-text, var(--guide-color-deep-ink, #23281d))
+  );
 }
 .ds-badge[data-variant='accent'][data-appearance='line'] {
   border-color: var(--guide-badge-accent-line);

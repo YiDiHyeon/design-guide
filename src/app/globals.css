@@ -1090,6 +1090,7 @@ tr:last-child th {
 }
 .spacing-scale > div {
   display: grid;
+  gap: 16px;
   grid-template-columns: 130px 65px 1fr;
   align-items: center;
   padding: 12px 0;

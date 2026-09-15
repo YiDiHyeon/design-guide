@@ -27,6 +27,12 @@ const stateOptions = [
   { value: 'disabled', label: 'disabled' },
 ] as const;
 
+const paymentLabels: Record<string, string> = {
+  card: '신용/체크카드',
+  pay: '간편결제',
+  transfer: '실시간 계좌이체',
+};
+
 export function RadioPlayground() {
   const [size, setSize] = useState<RadioSize>('md');
   const [direction, setDirection] = useState<RadioDirection>('vertical');
@@ -110,7 +116,8 @@ export function RadioPlayground() {
               style={{ marginTop: '20px' }}
               role="status"
             >
-              선택된 결제 수단: <strong>{selectedValue}</strong>
+              선택된 결제 수단:{' '}
+              <strong>{paymentLabels[selectedValue] ?? selectedValue}</strong>
             </p>
           </div>
         </div>

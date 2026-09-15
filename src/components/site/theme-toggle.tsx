@@ -1,6 +1,7 @@
 'use client';
 
 import { useSyncExternalStore, useState, useCallback } from 'react';
+import { trackThemeChange } from '@/lib/gtag';
 
 export interface ThemeToggleProps {
   className?: string;
@@ -54,6 +55,7 @@ export function ThemeToggle({ className = '' }: ThemeToggleProps) {
     } catch {
       // ignore storage errors
     }
+    trackThemeChange(nextTheme);
 
     setTimeout(() => {
       setIsSwitching(false);

@@ -16,6 +16,7 @@ import {
   Box,
   ArrowUp,
   Compass,
+  Rocket,
 } from 'lucide-react';
 import { documents, sectionId, type Doc } from '@/lib/docs';
 import { CabinetLogo } from '@/components/ui';
@@ -29,6 +30,8 @@ function getNavIcon(slug: string) {
   switch (slug) {
     case 'overview':
       return <Compass size={16} strokeWidth={1.75} />;
+    case 'getting-started':
+      return <Rocket size={16} strokeWidth={1.75} />;
     case 'colors':
       return <Palette size={16} strokeWidth={1.75} />;
     case 'typography':

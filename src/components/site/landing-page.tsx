@@ -12,6 +12,7 @@ import {
   Palette,
   Type,
   Ruler,
+  Shapes,
   MousePointerClick,
   TextCursorInput,
   Check,
@@ -796,6 +797,42 @@ export function LandingPage() {
               <span
                 className="w-12 h-full bg-olive rounded-sm"
                 title="sp-24 (24px)"
+              />
+            </div>
+          </Link>
+
+          {/* Radius Card */}
+          <Link href="/foundations/radius" className="foundation-card">
+            <div>
+              <div className="flex items-center gap-2 mb-3 text-primary font-bold text-base">
+                <Shapes size={18} className="text-butter-yellow" />
+                Radius
+              </div>
+              <p className="text-xs sm:text-sm text-secondary m-0 mb-5 leading-relaxed">
+                0px 직각부터 999px 풀 라운드까지 8단계 곡률 스케일과 시맨틱
+                쉐이프를 정의합니다.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 h-6">
+              <span
+                className="w-5 h-5 bg-surface-warm border border-strong rounded-none"
+                title="radius-0 (0px)"
+              />
+              <span
+                className="w-5 h-5 bg-surface-warm border border-strong rounded-sm"
+                title="radius-4 (4px)"
+              />
+              <span
+                className="w-5 h-5 bg-surface-warm border border-strong rounded-md"
+                title="radius-8 (8px)"
+              />
+              <span
+                className="w-5 h-5 bg-surface-warm border border-strong rounded-lg"
+                title="radius-10 (10px)"
+              />
+              <span
+                className="w-5 h-5 bg-surface-warm border border-strong rounded-full"
+                title="radius-full (999px)"
               />
             </div>
           </Link>

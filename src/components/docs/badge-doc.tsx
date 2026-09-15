@@ -5,6 +5,60 @@ import { BadgePlayground } from '@/components/playgrounds/badge-playground';
 import { Section, Table, Code } from '@/components/site/doc-parts';
 import { Sparkles, Tag, Check, AlertCircle, ArrowRight, X } from 'lucide-react';
 
+const variantMeta: Record<
+  string,
+  { label: string; role: string; dot: string; sample: string }
+> = {
+  default: {
+    label: 'Default',
+    role: '중립 · 메타데이터',
+    dot: 'var(--guide-text-muted)',
+    sample: 'TAG',
+  },
+  point: {
+    label: 'Point',
+    role: '주목 · 신규 (NEW)',
+    dot: 'var(--guide-color-butter-yellow)',
+    sample: 'NEW',
+  },
+  accent: {
+    label: 'Accent',
+    role: '성공 · 완료 (DONE)',
+    dot: 'var(--guide-color-fresh-olive)',
+    sample: 'HOT',
+  },
+  pink: {
+    label: 'Pink',
+    role: '추천 · 페스티벌',
+    dot: '#EC4899',
+    sample: 'EVENT',
+  },
+  orange: {
+    label: 'Orange',
+    role: '프로모션 · 세일',
+    dot: '#F97316',
+    sample: 'SALE',
+  },
+  blue: {
+    label: 'Blue',
+    role: '정보 · 업데이트',
+    dot: '#3B82F6',
+    sample: 'INFO',
+  },
+  cyan: {
+    label: 'Cyan',
+    role: '실시간 · 라이브',
+    dot: '#06B6D4',
+    sample: 'LIVE',
+  },
+  red: {
+    label: 'Red',
+    role: '오류 · 긴급 경고',
+    dot: 'var(--guide-color-tomato-coral)',
+    sample: 'URGENT',
+  },
+};
+
 export function BadgeDoc() {
   return (
     <>
@@ -69,50 +123,38 @@ export function BadgeDoc() {
           8가지 시맨틱 컬러(<code>default</code>, <code>point</code>,{' '}
           <code>accent</code>, <code>pink</code>, <code>orange</code>,{' '}
           <code>blue</code>, <code>cyan</code>, <code>red</code>)와 2가지
-          스타일(<code>solid</code>, <code>line</code>)의 전체 조합입니다.
+          스타일(<code>solid</code>, <code>line</code>)을 조합하여 제공합니다.
         </p>
 
-        <div
-          className="token-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            marginTop: '16px',
-          }}
-        >
-          {badgeVariantsList.map((variant) => (
-            <div
-              key={variant}
-              className="token-card"
-              style={{ padding: '16px' }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '12px',
-                }}
-              >
-                <strong
-                  style={{ fontSize: '13px', textTransform: 'capitalize' }}
-                >
-                  {variant}
-                </strong>
-                <span className="token-badge">{variant}</span>
-              </div>
-              <div
-                style={{ display: 'flex', gap: '8px', alignItems: 'center' }}
-              >
+        <Table
+          headings={['Variant', 'Solid (면 채움)', 'Line (외곽선)', '용도 및 권장 키워드']}
+          rows={badgeVariantsList.map((variant) => {
+            const meta = variantMeta[variant];
+            return [
+              <div key="name" className="inline-flex items-center gap-2.5 py-1">
+                <span
+                  aria-hidden="true"
+                  className="w-2.5 h-2.5 rounded-full shrink-0 shadow-xs"
+                  style={{ backgroundColor: meta.dot }}
+                />
+                <code className="font-semibold text-primary">{variant}</code>
+              </div>,
+              <div key="solid" className="py-1">
                 <Badge variant={variant} appearance="solid">
-                  {variant.toUpperCase()}
+                  {meta.sample}
                 </Badge>
+              </div>,
+              <div key="line" className="py-1">
                 <Badge variant={variant} appearance="line">
-                  {variant.toUpperCase()}
+                  {meta.sample}
                 </Badge>
-              </div>
-            </div>
-          ))}
-        </div>
+              </div>,
+              <span key="desc" className="text-xs text-secondary leading-relaxed">
+                {meta.role}
+              </span>,
+            ];
+          })}
+        />
       </Section>
 
       <Section title="Appearances">
@@ -120,35 +162,18 @@ export function BadgeDoc() {
           정보의 위계와 주목도에 따라 <code>solid</code>와 <code>line</code>{' '}
           스타일을 구분하여 적용합니다.
         </p>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '16px',
-            marginTop: '16px',
-          }}
-        >
-          <div className="token-card" style={{ padding: '20px' }}>
-            <h4
-              style={{
-                marginBottom: '8px',
-                fontSize: '14px',
-                color: 'var(--guide-text-primary)',
-              }}
-            >
-              1. Solid (면 채움)
-            </h4>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--guide-text-muted)',
-                marginBottom: '16px',
-              }}
-            >
-              배경색을 완전히 채워 사용자의 시선을 즉시 끌어야 하는 프로모션,
-              신규 기능(NEW), 긴급 알림 등에 사용합니다.
-            </p>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="rounded-xl border border-light bg-surface-light p-5 flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-sm text-primary mb-1">
+                1. Solid (면 채움)
+              </h4>
+              <p className="text-xs text-secondary leading-relaxed mb-4">
+                배경색을 완전히 채워 사용자의 시선을 즉시 끌어야 하는 프로모션,
+                신규 기능(NEW), 긴급 알림 등에 사용합니다.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap pt-3 border-t border-light">
               <Badge variant="point" appearance="solid">
                 NEW
               </Badge>
@@ -164,27 +189,17 @@ export function BadgeDoc() {
             </div>
           </div>
 
-          <div className="token-card" style={{ padding: '20px' }}>
-            <h4
-              style={{
-                marginBottom: '8px',
-                fontSize: '14px',
-                color: 'var(--guide-text-primary)',
-              }}
-            >
-              2. Line (외곽선 라인)
-            </h4>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--guide-text-muted)',
-                marginBottom: '16px',
-              }}
-            >
-              배경을 투명하게 유지하고 테두리와 글자색으로 표현하여, 본문 흐름을
-              방해하지 않는 카테고리 태그나 보조 메타데이터에 적합합니다.
-            </p>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <div className="rounded-xl border border-light bg-surface-light p-5 flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-sm text-primary mb-1">
+                2. Line (외곽선 라인)
+              </h4>
+              <p className="text-xs text-secondary leading-relaxed mb-4">
+                배경을 투명하게 유지하고 테두리와 글자색으로 표현하여, 본문 흐름을
+                방해하지 않는 카테고리 태그나 보조 메타데이터에 적합합니다.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap pt-3 border-t border-light">
               <Badge variant="default" appearance="line">
                 카테고리
               </Badge>
@@ -207,18 +222,8 @@ export function BadgeDoc() {
           텍스트 앞(<code>startIcon</code>)이나 뒤(<code>endIcon</code>)에
           아이콘을 함께 배치하여 전달력을 높일 수 있습니다.
         </p>
-        <div
-          className="token-card"
-          style={{ padding: '20px', marginTop: '16px' }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              gap: '12px',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-            }}
-          >
+        <div className="rounded-xl border border-light bg-surface-light p-5 my-4">
+          <div className="flex items-center gap-3 flex-wrap">
             <Badge variant="point" appearance="solid" startIcon={<Sparkles />}>
               AI 추천
             </Badge>

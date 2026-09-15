@@ -183,3 +183,26 @@
     transition: none;
   }
 }
+
+/* Responsive mobile touch sizing (Apple HIG 44pt touch standard) */
+@media (max-width: 767px) {
+  .ds-button {
+    min-height: var(--guide-touch-compact);
+  }
+  .ds-button[data-size='sm'] {
+    --button-height: 36px;
+    --button-padding: var(--guide-space-12);
+  }
+  .ds-button[data-size='md'] {
+    --button-height: var(--guide-touch-min);
+    --button-padding: var(--guide-space-16);
+  }
+  .ds-button[data-size='lg'] {
+    --button-height: var(--guide-touch-comfortable);
+    --button-padding: var(--guide-space-20);
+  }
+  .ds-button[data-size='xl'] {
+    --button-height: var(--guide-height-56);
+    --button-padding: var(--guide-space-24);
+  }
+}
