@@ -6,11 +6,11 @@ import {
   Sparkles,
   Palette,
   Ruler,
+  Shapes,
   MousePointerClick,
   ArrowRight,
   Check,
   Sliders,
-  Copy,
   Zap,
   Globe,
   ShieldCheck,
@@ -19,15 +19,8 @@ import { Section, Code, Table } from '@/components/site/doc-parts';
 import { Button, Input, Field, Badge, CabinetLogo } from '@/components/ui';
 
 export function OverviewDoc() {
-  const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
   const [demoInput, setDemoInput] = useState('contact@example.com');
   const [demoSubmitted, setDemoSubmitted] = useState(false);
-
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedCmd(id);
-    setTimeout(() => setCopiedCmd(null), 2000);
-  };
 
   return (
     <>
@@ -401,22 +394,11 @@ export function OverviewDoc() {
             <p className="text-xs sm:text-sm text-secondary m-0 mb-3">
               Node.js 20.9 이상이 필요합니다. 터미널에서 다음 명령어를 실행합니다.
             </p>
-            <div className="relative">
-              <Code>{`# 저장소 클론 후 의존성 설치
+            <Code label="BASH">{`# 저장소 클론 후 의존성 설치
 npm ci
 
 # 로컬 개발 서버 구동 (http://localhost:3000)
 npm run dev`}</Code>
-              <button
-                type="button"
-                onClick={() => copyToClipboard('npm ci && npm run dev', 'npm-run')}
-                className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-1 rounded-md border border-strong bg-base text-[11px] text-secondary hover:text-primary hover:bg-surface-light transition-colors cursor-pointer"
-                aria-label="명령어 복사"
-              >
-                {copiedCmd === 'npm-run' ? <Check size={12} className="text-fresh-olive" /> : <Copy size={12} />}
-                {copiedCmd === 'npm-run' ? '복사됨' : '복사'}
-              </button>
-            </div>
           </div>
 
           {/* Step 2 */}
@@ -576,17 +558,19 @@ npm run build`}</Code>
           프로젝트에 적용해 보세요.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-5">
           <Link
             href="/foundations/colors"
             className="block rounded-xl border border-light bg-surface-light p-5 transition-all hover:border-strong hover:-translate-y-1"
           >
             <div className="flex items-center gap-2 text-olive mb-2">
               <Palette size={18} />
-              <span className="font-bold text-sm sm:text-base text-primary">Foundations · Colors</span>
+              <span className="font-bold text-sm sm:text-base text-primary">
+                Foundations · Colors
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-secondary m-0 mb-3 leading-relaxed">
-              Cabinet Olive, Fresh Olive 등 고대비 브랜드 팔레트와 Semantic 색상 체계를 확인합니다.
+              Cabinet Olive, Fresh Olive 등 브랜드 팔레트와 Semantic 색상 체계를 확인합니다.
             </p>
             <span className="text-xs font-semibold text-olive inline-flex items-center gap-1">
               보러가기 <ArrowRight size={13} />
@@ -599,12 +583,32 @@ npm run build`}</Code>
           >
             <div className="flex items-center gap-2 text-fresh-olive mb-2">
               <Ruler size={18} />
-              <span className="font-bold text-sm sm:text-base text-primary">Foundations · Spacing</span>
+              <span className="font-bold text-sm sm:text-base text-primary">
+                Foundations · Spacing
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-secondary m-0 mb-3 leading-relaxed">
-              4px 기반의 엄격한 간격 스케일과 모바일/태블릿/데스크톱 반응형 레이아웃 규칙을 확인합니다.
+              4px 기반의 엄격한 간격 스케일과 반응형 레이아웃 규칙을 확인합니다.
             </p>
             <span className="text-xs font-semibold text-fresh-olive inline-flex items-center gap-1">
+              보러가기 <ArrowRight size={13} />
+            </span>
+          </Link>
+
+          <Link
+            href="/foundations/radius"
+            className="block rounded-xl border border-light bg-surface-light p-5 transition-all hover:border-strong hover:-translate-y-1"
+          >
+            <div className="flex items-center gap-2 text-butter-yellow mb-2">
+              <Shapes size={18} />
+              <span className="font-bold text-sm sm:text-base text-primary">
+                Foundations · Radius
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-secondary m-0 mb-3 leading-relaxed">
+              0px부터 999px까지의 곡률 스케일과 컴포넌트 쉐이프 매핑, Nested Radius 규칙을 확인합니다.
+            </p>
+            <span className="text-xs font-semibold text-olive inline-flex items-center gap-1">
               보러가기 <ArrowRight size={13} />
             </span>
           </Link>
@@ -615,10 +619,12 @@ npm run build`}</Code>
           >
             <div className="flex items-center gap-2 text-tomato-coral mb-2">
               <MousePointerClick size={18} />
-              <span className="font-bold text-sm sm:text-base text-primary">Components · Button</span>
+              <span className="font-bold text-sm sm:text-base text-primary">
+                Components · Button
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-secondary m-0 mb-3 leading-relaxed">
-              5단계 크기(xs~xl)와 5가지 역할(primary~danger), 아이콘 전용 버튼의 접근성 가이드를 확인합니다.
+              5단계 크기와 역할별 변형, 모바일 터치 최적화 버튼 가이드를 확인합니다.
             </p>
             <span className="text-xs font-semibold text-tomato-coral inline-flex items-center gap-1">
               보러가기 <ArrowRight size={13} />

@@ -174,3 +174,13 @@
     transition: none;
   }
 }
+
+/* Responsive mobile touch sizing */
+@media (max-width: 767px) {
+  .ds-switch-wrapper {
+    min-height: var(--guide-touch-min);
+    display: inline-flex;
+    align-items: center;
+    padding-block: var(--guide-space-4);
+  }
+}

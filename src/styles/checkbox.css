@@ -1,7 +1,6 @@
-/* Checkbox component styling using site design tokens */
 .ds-checkbox-wrapper {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--guide-space-8);
   position: relative;
   cursor: pointer;
@@ -9,6 +8,10 @@
   line-height: var(--guide-lh-base);
   font-family: var(--guide-font-base);
   vertical-align: middle;
+}
+
+.ds-checkbox-wrapper:has(.ds-checkbox-desc) {
+  align-items: flex-start;
 }
 
 .ds-checkbox-wrapper[data-state='disabled'] {
@@ -37,6 +40,7 @@
   border: var(--guide-border-default) solid var(--guide-line-default);
   border-radius: var(--guide-radius-input);
   color: var(--guide-text-on-solid);
+  margin-top: 0;
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease,
@@ -52,6 +56,8 @@
   width: var(--guide-size-16);
   height: var(--guide-size-16);
   border-radius: var(--guide-radius-2);
+}
+.ds-checkbox-wrapper:has(.ds-checkbox-desc)[data-size='sm'] .ds-checkbox-box {
   margin-top: 2px;
 }
 .ds-checkbox-wrapper[data-size='sm'] .ds-checkbox-icon {
@@ -66,6 +72,8 @@
   width: var(--guide-control-box);
   height: var(--guide-control-box);
   border-radius: var(--guide-radius-input);
+}
+.ds-checkbox-wrapper:has(.ds-checkbox-desc)[data-size='md'] .ds-checkbox-box {
   margin-top: 1px;
 }
 .ds-checkbox-wrapper[data-size='md'] .ds-checkbox-icon {
@@ -80,6 +88,8 @@
   width: var(--guide-size-24);
   height: var(--guide-size-24);
   border-radius: var(--guide-radius-input);
+}
+.ds-checkbox-wrapper:has(.ds-checkbox-desc)[data-size='lg'] .ds-checkbox-box {
   margin-top: 0;
 }
 .ds-checkbox-wrapper[data-size='lg'] .ds-checkbox-icon {
@@ -159,4 +169,29 @@
   display: block;
   flex-shrink: 0;
   stroke-width: 2.5;
+}
+
+/* Responsive mobile touch sizing */
+@media (max-width: 767px) {
+  .ds-checkbox-wrapper {
+    min-height: var(--guide-touch-min);
+    display: inline-flex;
+    align-items: center;
+    padding-block: var(--guide-space-4);
+  }
+  .ds-checkbox-wrapper:has(.ds-checkbox-desc) {
+    align-items: flex-start;
+    padding-block: var(--guide-space-8);
+  }
+  .ds-checkbox-wrapper:has(.ds-checkbox-desc) .ds-checkbox-box {
+    margin-top: 1px;
+  }
+  .ds-checkbox-box {
+    width: var(--guide-size-22);
+    height: var(--guide-size-22);
+  }
+  .ds-checkbox-icon {
+    width: var(--guide-size-14);
+    height: var(--guide-size-14);
+  }
 }

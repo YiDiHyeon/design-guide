@@ -105,167 +105,125 @@ export function CheckboxDoc() {
 
       <Section title="Sizes">
         <p>
-          화면의 밀도와 사용 맥락에 맞춰 3가지 크기를 제공합니다. 기본값은{' '}
+          화면의 정보 밀도와 사용 맥락에 맞춰 3가지 크기를 제공합니다. 기본값은{' '}
           <code>md</code>(20px)입니다.
         </p>
-        <div
-          className="token-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          }}
-        >
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>sm (16px)</strong>
-              <span className="token-badge">테이블/컴팩트 목록</span>
-            </div>
-            <Checkbox
-              size="sm"
-              defaultChecked
-              label="체크박스 Small"
-              description="박스 16px, 폰트 13px"
-            />
-          </div>
 
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>md (20px)</strong>
-              <span className="token-badge">기본 표준</span>
-            </div>
-            <Checkbox
-              size="md"
-              defaultChecked
-              label="체크박스 Medium"
-              description="박스 20px, 폰트 14px"
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '20px' }}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: '16px',
-              }}
-            >
-              <strong>lg (24px)</strong>
-              <span className="token-badge">모바일/강조</span>
-            </div>
-            <Checkbox
-              size="lg"
-              defaultChecked
-              label="체크박스 Large"
-              description="박스 24px, 폰트 16px"
-            />
-          </div>
-        </div>
+        <Table
+          headings={['Size', '규격 (박스 / 아이콘)', '미리보기 (Preview)', '권장 적용 맥락']}
+          rows={[
+            [
+              <code key="sm" className="font-bold text-primary">
+                sm (16px)
+              </code>,
+              '16px / 12px',
+              <Checkbox
+                key="c-sm"
+                size="sm"
+                defaultChecked
+                label="Small 옵션"
+              />,
+              '테이블 행 내부, 데이터 밀도가 높은 컴팩트 목록',
+            ],
+            [
+              <code key="md" className="font-bold text-primary">
+                md (20px)
+              </code>,
+              '20px / 14px (기본)',
+              <Checkbox
+                key="c-md"
+                size="md"
+                defaultChecked
+                label="Medium 옵션"
+              />,
+              '일반 웹 폼, 설정 다이얼로그, 기본 표준 선택지',
+            ],
+            [
+              <code key="lg" className="font-bold text-primary">
+                lg (24px)
+              </code>,
+              '24px / 16px',
+              <Checkbox
+                key="c-lg"
+                size="lg"
+                defaultChecked
+                label="Large 옵션"
+              />,
+              '모바일 터치 중심 화면, 전체 동의 및 주요 강조 약관',
+            ],
+          ]}
+        />
       </Section>
 
       <Section title="States">
-        <p>사용자의 상호작용 및 데이터 유효성 검증 상태를 명확히 전달합니다.</p>
-        <div
-          className="token-grid"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          }}
-        >
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Unchecked (기본)
-            </div>
-            <Checkbox size="md" label="미선택 상태" />
-          </div>
+        <p>
+          사용자의 상호작용 및 데이터 유효성 검증 상태를 명확히 전달합니다.
+        </p>
 
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Checked (선택됨)
-            </div>
-            <Checkbox
-              size="md"
-              checked={true}
-              readOnly
-              label="선택 완료 상태"
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Indeterminate (일부 선택)
-            </div>
-            <Checkbox
-              size="md"
-              indeterminate={true}
-              readOnly
-              label="하위 일부 항목 선택"
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Error (오류)
-            </div>
-            <Checkbox
-              size="md"
-              error={true}
-              label="필수 동의 필요"
-              description="필수 약관에 동의해 주세요."
-            />
-          </div>
-
-          <div className="token-card" style={{ padding: '16px' }}>
-            <div
-              style={{
-                color: 'var(--guide-text-muted)',
-                fontSize: '12px',
-                marginBottom: '8px',
-              }}
-            >
-              Disabled (비활성화)
-            </div>
-            <Checkbox
-              size="md"
-              disabled={true}
-              label="수정 불가 항목"
-              description="관리자 권한이 필요합니다."
-            />
-          </div>
-        </div>
+        <Table
+          headings={['상태 (State)', '미리보기 (Preview)', '동작 및 가이드']}
+          rows={[
+            [
+              <span key="s-un" className="font-semibold text-primary">
+                Unchecked
+              </span>,
+              <Checkbox key="c-un" size="md" label="미선택 상태" />,
+              '사용자가 아직 선택하지 않은 기본 대기 상태',
+            ],
+            [
+              <span key="s-ch" className="font-semibold text-primary">
+                Checked
+              </span>,
+              <Checkbox
+                key="c-ch"
+                size="md"
+                checked={true}
+                readOnly
+                label="선택 완료 상태"
+              />,
+              '사용자가 동의하거나 기능을 활성화한 상태',
+            ],
+            [
+              <span key="s-ind" className="font-semibold text-primary">
+                Indeterminate
+              </span>,
+              <Checkbox
+                key="c-ind"
+                size="md"
+                indeterminate={true}
+                readOnly
+                label="하위 일부 항목 선택"
+              />,
+              '부모-자식 그룹에서 하위 항목 중 일부만 선택된 상태',
+            ],
+            [
+              <span key="s-err" className="font-semibold text-primary">
+                Error
+              </span>,
+              <Checkbox
+                key="c-err"
+                size="md"
+                error={true}
+                label="필수 동의 필요"
+                description="필수 약관에 동의해 주세요."
+              />,
+              '필수 동의가 누락되었거나 유효성 검증에 실패한 상태',
+            ],
+            [
+              <span key="s-dis" className="font-semibold text-primary">
+                Disabled
+              </span>,
+              <Checkbox
+                key="c-dis"
+                size="md"
+                disabled={true}
+                label="수정 불가 항목"
+                description="관리자 권한이 필요합니다."
+              />,
+              '조건 미충족 또는 권한 부족으로 비활성화된 상태',
+            ],
+          ]}
+        />
       </Section>
 
       <Section title="Variants">
@@ -274,64 +232,31 @@ export function CheckboxDoc() {
           <strong>전체 선택 그룹(Select All Group)</strong> 패턴으로 널리
           활용됩니다. 아래 실제 동작하는 예제를 직접 테스트해 보세요.
         </p>
-        <div className="playground" style={{ marginTop: '16px' }}>
-          <div className="preview-label">
-            <span>INTERACTIVE GROUP PATTERN</span>
-            <span>
-              하위 항목을 선택/해제하여 부모의 Indeterminate 상태를 확인해보세요
-            </span>
-          </div>
-          <div className="preview-stage" style={{ padding: '24px' }}>
-            <div
-              style={{
-                width: '100%',
-                maxWidth: '460px',
-                background: 'var(--guide-bg-base)',
-                border: '1px solid var(--guide-line-default)',
-                borderRadius: '8px',
-                padding: '20px',
-              }}
-            >
-              {/* Parent Checkbox */}
-              <div
-                style={{
-                  paddingBottom: '14px',
-                  borderBottom: '1px solid var(--guide-line-light)',
-                }}
-              >
-                <Checkbox
-                  size="md"
-                  id="select-all"
-                  checked={allChecked}
-                  indeterminate={isIndeterminate}
-                  label={<strong>약관 전체 동의</strong>}
-                  description="서비스 이용을 위한 필수 및 선택 약관에 일괄 동의합니다."
-                  onChange={handleParentToggle}
-                />
-              </div>
 
-              {/* Child Checkboxes */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '12px',
-                  marginTop: '14px',
-                  paddingLeft: '8px',
-                }}
-              >
-                {items.map((item) => (
-                  <Checkbox
-                    key={item.id}
-                    id={item.id}
-                    size="sm"
-                    checked={item.checked}
-                    label={item.label}
-                    onChange={() => handleChildToggle(item.id)}
-                  />
-                ))}
-              </div>
-            </div>
+        <div className="my-6 p-6 rounded-xl border border-light bg-surface-light max-w-xl">
+          <div className="pb-3.5 border-b border-light">
+            <Checkbox
+              size="md"
+              id="select-all"
+              checked={allChecked}
+              indeterminate={isIndeterminate}
+              label={<strong>약관 전체 동의</strong>}
+              description="서비스 이용을 위한 필수 및 선택 약관에 일괄 동의합니다."
+              onChange={handleParentToggle}
+            />
+          </div>
+
+          <div className="flex flex-col gap-3 mt-3.5 pl-2">
+            {items.map((item) => (
+              <Checkbox
+                key={item.id}
+                id={item.id}
+                size="sm"
+                checked={item.checked}
+                label={item.label}
+                onChange={() => handleChildToggle(item.id)}
+              />
+            ))}
           </div>
         </div>
       </Section>

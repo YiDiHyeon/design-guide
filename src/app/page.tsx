@@ -1,4 +1,5 @@
 import { LandingPage } from '@/components/site/landing-page';
+import { WebSiteJsonLd } from '@/components/site/json-ld';
 
 export const metadata = {
   title: 'Cabinet Design · 작은 원칙으로 만드는 일관된 경험',
@@ -7,5 +8,10 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <LandingPage />;
+  return (
+    <>
+      <WebSiteJsonLd />
+      <LandingPage />
+    </>
+  );
 }

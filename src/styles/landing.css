@@ -431,6 +431,13 @@
 .bento-card-fields {
   grid-column: 2;
   grid-row: 1;
+  overflow: visible;
+  position: relative;
+  z-index: 20;
+}
+
+.bento-card-fields:has(.ds-select-root[data-open]) {
+  z-index: 100;
 }
 
 .bento-field-demo {
@@ -443,6 +450,8 @@
 .bento-card-tokens {
   grid-column: 2;
   grid-row: 2;
+  position: relative;
+  z-index: 1;
 }
 
 .palette-strip {
@@ -712,7 +721,7 @@
    -------------------------------------------------------------------------- */
 .foundations-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
@@ -874,6 +883,9 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .foundations-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .components-grid {

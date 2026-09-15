@@ -1,6 +1,5 @@
-import { Field, Input, Select } from '@/components/ui';
+import { Field, Input } from '@/components/ui';
 import { FieldPlayground } from '@/components/playgrounds/field-playground';
-import { destinationOptions } from '@/lib/control';
 import { Section, Table, Code } from '@/components/site/doc-parts';
 import { TokenCatalog } from '@/components/site/token-catalog';
 import { TokenValue } from '@/components/site/token-value';
@@ -8,260 +7,203 @@ import { controlSizes } from '@/lib/control';
 import { spec } from '@/lib/tokens';
 import { Search, Check, X } from 'lucide-react';
 
-export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
-  const isInput = kind === 'input';
-  const title = isInput ? 'Input' : 'Select';
+export function FieldDoc({ kind = 'input' }: { kind?: 'input' | 'select' }) {
   return (
     <>
       <Section title="Overview">
         <p>
-          {isInput
-            ? 'Input은 이름, 이메일, 검색어처럼 사용자가 직접 텍스트를 입력할 때 사용합니다. 레이블·도움말·오류 메시지를 함께 제공해 필요한 값과 현재 상태를 알려줍니다.'
-            : 'Select는 미리 정의된 목록에서 한 가지 값을 선택할 때 사용합니다. 현재 선택과 변경 가능 여부를 명확하게 전달합니다.'}
+          Input은 이름, 이메일, 검색어처럼 사용자가 직접 텍스트를 입력할 때
+          사용합니다. 레이블·도움말·오류 메시지를 함께 제공해 필요한 값과 현재
+          상태를 명확하게 안내합니다.
         </p>
         <FieldPlayground kind={kind} />
         <div className="callout">
           <p>
-            {isInput
-              ? 'placeholder는 입력 예시입니다. 값이 입력되어도 남아 있는 별도 label을 반드시 제공합니다.'
-              : 'Select는 네이티브 select를 기반으로 구현했습니다. 트리거는 공통 semantic 토큰을 사용하고, 열린 목록의 외형과 키보드 동작은 브라우저·운영체제를 따릅니다.'}
+            placeholder는 입력 예시일 뿐입니다. 사용자가 값을 입력해도 사라지지
+            않는 독립된 label을 항상 함께 제공해야 합니다.
           </p>
         </div>
       </Section>
+
       <Section title="Anatomy">
         <div className="anatomy-panel">
-          <Field
-            className="field-demo"
-            label={`1. ${isInput ? '이름' : '여행지'}`}
-            description="5. 도움말 또는 오류 메시지"
-          >
-            {isInput ? (
+          <div className="w-full max-w-sm">
+            <Field
+              label="1. 레이블"
+              description="5. 도움말 또는 오류 메시지"
+            >
               <Input
-                id={`${kind}-anatomy`}
+                id="input-anatomy"
                 placeholder="3. 입력 값 / placeholder"
                 startIcon={<Search size={16} />}
               />
-            ) : (
-              <Select
-                id={`${kind}-anatomy`}
-                options={destinationOptions}
-                placeholder="3. 선택 값 / placeholder"
-              />
-            )}
-          </Field>
+            </Field>
+          </div>
         </div>
         <Table
           headings={['번호', '구성 요소', '역할']}
           rows={[
-            [1, 'Label', '필드 이름. htmlFor와 id로 연결'],
-            [2, 'Container', '크기·경계·배경·포커스 영역'],
+            ['1', 'Label', '필드 이름. htmlFor와 id로 자동 연결'],
+            ['2', 'Container', '크기·경계 테두리·배경 및 포커스 링 영역'],
+            ['3', 'Value / Placeholder', '사용자 입력 값 또는 입력 힌트 안내 문구'],
             [
-              3,
-              isInput ? 'Value / Placeholder' : 'Selected value / Placeholder',
-              isInput
-                ? '입력 값 또는 입력 예시'
-                : '현재 선택 값 또는 선택 안내',
+              '4',
+              'Start / End Icon',
+              '입력 목적을 시각적으로 보조하는 장식용 아이콘 (aria-hidden)',
             ],
             [
-              4,
-              isInput ? 'Icon · optional' : 'Indicator / Options',
-              isInput
-                ? '레이블이 아닌 장식용 보조 아이콘'
-                : '열림 가능성을 알리는 표시와 선택 목록',
-            ],
-            [
-              5,
+              '5',
               'Description / Error',
-              'aria-describedby로 연결한 도움말·오류 메시지',
+              'aria-describedby로 연결되는 도움말 또는 유효성 오류 메시지',
             ],
           ]}
         />
         <p className="caption">
-          번호는 구성 요소를 식별하며 배치 순서를 고정하지 않습니다.{' '}
-          {isInput
-            ? 'startIcon과 endIcon으로 아이콘을 입력 영역 앞이나 뒤에 둘 수 있습니다. 동작 버튼은 장식용 아이콘 슬롯에 넣지 않습니다.'
-            : '레이블은 위나 옆에 배치할 수 있습니다. 옵션의 순서는 선택 맥락에 맞게 정합니다.'}
+          번호는 구성 요소를 식별하며 배치 순서를 고정하지 않습니다.
+          startIcon과 endIcon으로 아이콘을 입력 영역 앞이나 뒤에 둘 수
+          있습니다. 조작 버튼은 장식용 아이콘 슬롯 대신 Field의 suffix를
+          사용하세요.
         </p>
       </Section>
+
       <Section title="Variants">
         <p>
-          {isInput
-            ? 'Input은 별도의 시각적 variant 대신 아이콘과 네이티브 type을 조합합니다.'
-            : 'Select는 하나의 기본 스타일을 사용합니다. 필수 선택 여부, 초기 선택과 비활성 옵션을 조합하는 단일 선택 컴포넌트입니다.'}
+          별도의 복잡한 시각적 변형 대신 아이콘 슬롯과 HTML5 네이티브 type을
+          조합하여 다양한 입력 목적을 지원합니다.
         </p>
-        <div className="field-examples">
-          {isInput ? (
-            <>
-              <div className="field-example">
-                <label className="field-label" htmlFor="input-basic">
-                  기본 입력
-                </label>
-                <Input id="input-basic" placeholder="이름" />
-              </div>
-              <div className="field-example">
-                <label className="field-label" htmlFor="input-icon">
-                  아이콘 포함
-                </label>
+        <Table
+          headings={['Variant', '미리보기 (Preview)', '특징 및 사용 예시']}
+          rows={[
+            [
+              <span key="v-basic" className="font-semibold text-primary">
+                기본 텍스트
+              </span>,
+              <div key="p-basic" className="w-full max-w-[240px]">
+                <Input placeholder="이름을 입력하세요" />
+              </div>,
+              '가장 표준적인 일반 텍스트 입력 필드',
+            ],
+            [
+              <span key="v-icon" className="font-semibold text-primary">
+                아이콘 포함
+              </span>,
+              <div key="p-icon" className="w-full max-w-[240px]">
                 <Input
-                  id="input-icon"
                   type="search"
                   startIcon={<Search size={16} />}
-                  placeholder="검색어"
+                  placeholder="검색어 입력"
                 />
-              </div>
-              <div className="field-example">
-                <label className="field-label" htmlFor="input-email">
-                  이메일 입력
-                </label>
+              </div>,
+              'startIcon 또는 endIcon으로 검색이나 필터링 목적을 시각적으로 표현',
+            ],
+            [
+              <span key="v-email" className="font-semibold text-primary">
+                이메일 / 특수 타입
+              </span>,
+              <div key="p-email" className="w-full max-w-[240px]">
                 <Input
-                  id="input-email"
                   type="email"
                   autoComplete="email"
                   placeholder="name@example.com"
                 />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="field-example">
-                <label className="field-label" htmlFor="select-placeholder">
-                  선택 안내
-                </label>
-                <Select
-                  id="select-placeholder"
-                  options={destinationOptions}
-                  placeholder="여행지를 선택하세요"
-                />
-              </div>
-              <div className="field-example">
-                <label className="field-label" htmlFor="select-initial">
-                  초기 선택
-                </label>
-                <Select
-                  id="select-initial"
-                  options={destinationOptions}
-                  defaultValue="seoul"
-                />
-              </div>
-              <div className="field-example">
-                <label className="field-label" htmlFor="select-required">
-                  필수 선택
-                </label>
-                <Select
-                  id="select-required"
-                  options={destinationOptions}
-                  placeholder="선택하세요"
-                  required
-                  aria-describedby="select-required-help"
-                />
-                <p className="field-help" id="select-required-help">
-                  필수 항목입니다. “준비 중” 옵션은 선택할 수 없습니다.
-                </p>
-              </div>
-            </>
-          )}
-        </div>
+              </div>,
+              '모바일 가상 키보드 최적화(@, .com) 및 브라우저 자동완성 지원',
+            ],
+          ]}
+        />
       </Section>
+
       <Section title="Sizes">
         <p>
-          공통 Control size 네 단계를 사용합니다. 기본 md는 40px이며, 모바일의
-          주요 입력에는 lg(48px)를 권장합니다.
+          공통 Control size 네 단계를 사용합니다. 기본 <code>md</code>는
+          40px이며, 모바일의 주요 입력에는 <code>lg</code>(48px)를 권장합니다.
         </p>
-        <div className="field-size-list">
-          {controlSizes.map((size) => (
-            <div key={size}>
-              <label htmlFor={`${kind}-size-${size}`}>{size}</label>
-              {isInput ? (
-                <Input
-                  id={`${kind}-size-${size}`}
-                  size={size}
-                  placeholder="이름을 입력하세요"
-                />
-              ) : (
-                <Select
-                  id={`${kind}-size-${size}`}
-                  size={size}
-                  options={destinationOptions}
-                  defaultValue="seoul"
-                />
-              )}
-              <TokenValue name={`--guide-component-${size}-height`} />
-            </div>
-          ))}
-        </div>
         <Table
-          headings={['Size', 'Height', 'Padding X', 'Font size']}
+          headings={['Size', '높이 (Height)', '미리보기 (Preview)', '패딩 & 폰트 크기']}
           rows={controlSizes.map((size) => [
-            size,
-            ...['height', 'padding-x', 'font-size'].map((part) => (
-              <TokenValue
-                key={part}
-                name={`--guide-component-${size}-${part}`}
+            <code key={size} className="font-bold text-primary">
+              {size}
+            </code>,
+            <TokenValue key={`h-${size}`} name={`--guide-component-${size}-height`} />,
+            <div key={`p-${size}`} className="w-full max-w-[200px]">
+              <Input
+                size={size}
+                placeholder={`${size} 입력 필드`}
               />
-            )),
+            </div>,
+            <span key={`f-${size}`} className="text-secondary">
+              패딩: <TokenValue name={`--guide-component-${size}-padding-x`} /> · 폰트:{' '}
+              <TokenValue name={`--guide-component-${size}-font-size`} />
+            </span>,
           ])}
         />
       </Section>
+
       <Section title="States">
         <p>
-          Default, Focus, Error, Readonly, Disabled 상태를 지원합니다. 위 Live
-          Preview에서 상태를 바꾸고 Tab으로 실제 포커스를 확인하세요.
+          Default, Error, ReadOnly, Disabled 상태를 지원하며, 시각적 테두리와
+          접근성 속성으로 명확히 구분합니다.
         </p>
-        <div className="field-examples">
-          {['default', 'error', 'readonly', 'disabled'].map((state) => (
-            <div className="field-example" key={state}>
-              <label className="field-label" htmlFor={`${kind}-${state}`}>
-                {state}
-              </label>
-              {isInput ? (
+        <Table
+          headings={['상태 (State)', '미리보기 (Preview)', '동작 및 가이드']}
+          rows={[
+            [
+              <span key="st-def" className="font-semibold text-primary">
+                Default
+              </span>,
+              <div key="p-def" className="w-full max-w-[220px]">
+                <Input defaultValue="홍길동" />
+              </div>,
+              '사용자 입력을 대기하는 기본 활성 인터랙션 상태',
+            ],
+            [
+              <span key="st-err" className="font-semibold text-primary">
+                Error
+              </span>,
+              <div key="p-err" className="w-full max-w-[220px]">
                 <Input
-                  id={`${kind}-${state}`}
-                  defaultValue="홍길동"
-                  readOnly={state === 'readonly'}
-                  disabled={state === 'disabled'}
-                  aria-invalid={state === 'error'}
-                  aria-describedby={`${kind}-${state}-help`}
+                  defaultValue="잘못된 입력값"
+                  aria-invalid="true"
                 />
-              ) : (
-                <Select
-                  id={`${kind}-${state}`}
-                  options={destinationOptions}
-                  defaultValue="seoul"
-                  readOnly={state === 'readonly'}
-                  disabled={state === 'disabled'}
-                  aria-invalid={state === 'error'}
-                  aria-describedby={`${kind}-${state}-help`}
+              </div>,
+              '유효성 검증 실패 시 강조 테두리(Red)와 aria-invalid 적용',
+            ],
+            [
+              <span key="st-ro" className="font-semibold text-primary">
+                ReadOnly
+              </span>,
+              <div key="p-ro" className="w-full max-w-[220px]">
+                <Input
+                  defaultValue="읽기 전용 텍스트"
+                  readOnly
                 />
-              )}
-              <p
-                className={`field-help ${state === 'error' ? 'field-error' : ''}`}
-                id={`${kind}-${state}-help`}
-              >
-                {state === 'error'
-                  ? '입력한 값을 확인해 주세요.'
-                  : state === 'readonly'
-                    ? '값을 확인할 수 있지만 변경할 수 없습니다.'
-                    : state === 'disabled'
-                      ? '현재 사용할 수 없습니다.'
-                      : 'Tab으로 포커스를 이동해 보세요.'}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p>
-          {isInput
-            ? 'readonly는 포커스와 텍스트 복사가 가능하며 폼 전송에 포함됩니다. disabled는 탭 순서와 폼 전송에서 제외됩니다.'
-            : '네이티브 select에는 readonly 속성이 없습니다. readOnly에서는 선택된 레이블을 읽기 전용 텍스트 필드로 표시하고, name이 있으면 hidden input으로 실제 값을 전송합니다. 이때 목록은 열리지 않습니다. disabled 상태는 폼 전송에서 제외됩니다.'}
-        </p>
+              </div>,
+              '값 수정은 차단되지만 텍스트 선택 및 클립보드 복사는 허용',
+            ],
+            [
+              <span key="st-dis" className="font-semibold text-primary">
+                Disabled
+              </span>,
+              <div key="p-dis" className="w-full max-w-[220px]">
+                <Input
+                  defaultValue="비활성화 필드"
+                  disabled
+                />
+              </div>,
+              '조작 및 폼 전송에서 완전히 제외되는 비활성화 상태',
+            ],
+          ]}
+        />
         <details className="token-catalog">
-          <summary>{title} 상태 토큰 전체</summary>
+          <summary>Input 상태 토큰 전체</summary>
           <TokenCatalog
             names={Object.keys(spec.component.base).filter((name) =>
-              name.startsWith(`--guide-${kind}-`),
+              name.startsWith('--guide-input-'),
             )}
           />
         </details>
       </Section>
+
       <Section title="Guidelines">
         <div className="guideline-grid">
           <div className="guideline good">
@@ -282,11 +224,7 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
               오류에는 aria-invalid와 수정 방법을 설명하는 메시지를 함께
               제공합니다.
             </p>
-            <p>
-              {isInput
-                ? '입력 목적에 맞는 type, autoComplete, inputMode를 사용합니다.'
-                : '사용자가 이해하는 이름으로 옵션을 표시하고, 실제 값은 고유한 문자열로 관리합니다.'}
-            </p>
+            <p>입력 목적에 맞는 type, autoComplete, inputMode를 사용합니다.</p>
           </div>
           <div className="guideline bad">
             <h3>
@@ -302,80 +240,62 @@ export function FieldDoc({ kind }: { kind: 'input' | 'select' }) {
               피해주세요
             </h3>
             <p>placeholder만으로 레이블을 대신하지 않습니다.</p>
-            <p>값을 읽기만 해야 할 때 disabled로 정보를 숨기지 않습니다.</p>
-            <p>
-              {isInput
-                ? '여러 줄 입력이나 날짜·체크박스처럼 다른 패턴이 필요한 요소를 텍스트 Input에 억지로 넣지 않습니다.'
-                : '검색·다중 선택·비동기 옵션 로딩을 이 단일 Select에 포함하지 않습니다.'}
-            </p>
+            <p>값을 읽기만 해야 할 때 disabled로 정보를 숨기지 않고 readOnly를 고려합니다.</p>
+            <p>여러 줄 입력이 필요한 영역에는 Input 대신 Textarea를 사용합니다.</p>
           </div>
         </div>
-        <p className="caption">
-          오류·placeholder 등의 대비는 사용하는 배경과 글자 크기에 맞게 실제
-          화면에서 확인합니다.
-        </p>
       </Section>
+
       <Section title="API">
-        <p>
-          {isInput
-            ? '네이티브 input 속성을 지원합니다. size는 HTML의 문자 수가 아닌 디자인 크기입니다. className은 실제 input, wrapperClassName은 컨테이너에 적용됩니다.'
-            : 'options 배열과 네이티브 onChange 이벤트를 사용하는 단순한 단일 선택 API입니다. className은 컨테이너에 적용됩니다.'}
-        </p>
         <Table
-          headings={['Prop', 'Type', 'Default / 설명']}
+          headings={['Prop', 'Type', 'Default', 'Description']}
           rows={[
-            ['size', controlSizes.join(' | '), 'md'],
-            ...(isInput
-              ? [
-                  ['type', 'HTML input type', 'text'],
-                  [
-                    'startIcon / endIcon',
-                    'ReactNode',
-                    '장식용 아이콘, aria-hidden 처리',
-                  ],
-                  ['wrapperClassName', 'string', '컨테이너 스타일'],
-                ]
-              : [
-                  [
-                    'options',
-                    'readonly SelectOption[]',
-                    '필수 · value / label / disabled?',
-                  ],
-                  ['placeholder', 'string', '선택 안내 · 값은 빈 문자열'],
-                  [
-                    'value / defaultValue',
-                    'string',
-                    '제어 / 초기 값 · 둘 중 하나 사용',
-                  ],
-                ]),
-            ['disabled', 'boolean', 'false · 조작 및 폼 전송 제외'],
-            ['readOnly', 'boolean', 'false · 값 확인만 허용'],
-            ['aria-invalid', 'boolean | "true" | "false"', '오류 표시'],
-            ['aria-describedby', 'string', '도움말·오류 요소의 id'],
-            ['id / name', 'string', '레이블 연결 / 폼 필드 이름'],
-            [
-              'onChange',
-              isInput
-                ? 'ChangeEventHandler<HTMLInputElement>'
-                : 'ChangeEventHandler<HTMLSelectElement>',
-              '변경 이벤트',
-            ],
+            ['size', "'sm' | 'md' | 'lg' | 'xl'", "'md'", '컨트롤의 높이와 패딩 크기 스케일'],
+            ['type', 'HTMLInputTypeAttribute', "'text'", 'HTML5 입력 유형 (text, email, search 등)'],
+            ['startIcon', 'ReactNode', 'undefined', '텍스트 좌측에 위치하는 장식용 아이콘 (aria-hidden)'],
+            ['endIcon', 'ReactNode', 'undefined', '텍스트 우측에 위치하는 장식용 아이콘'],
+            ['disabled', 'boolean', 'false', '조작 불가 및 폼 전송 제외 여부'],
+            ['readOnly', 'boolean', 'false', '값 수정 불가 및 텍스트 선택/복사 허용 여부'],
+            ['aria-invalid', 'boolean | "true" | "false"', 'undefined', '오류 상태 테두리 강조 표시'],
+            ['aria-describedby', 'string', 'undefined', '도움말 또는 오류 메시지 요소의 id 연결'],
+            ['wrapperClassName', 'string', "''", '외부 컨테이너 커스텀 스타일 클래스'],
+            ['className', 'string', "''", '내부 input 요소 커스텀 스타일 클래스'],
             [
               '…native props',
-              isInput
-                ? 'ComponentProps<"input">'
-                : '네이티브 단일 select 속성 (ref 제외)',
-              'required, autoComplete 등',
+              'ComponentProps<"input">',
+              '—',
+              'value, onChange, placeholder, name, required, maxLength 등',
             ],
           ]}
         />
       </Section>
+
       <Section title="Code Example">
-        <Code>
-          {isInput
-            ? `'use client';\nimport { useState } from 'react';\nimport { Input } from '@/components/ui';\n\nexport default function NameField() {\n  const [name, setName] = useState('');\n  return (\n    <div>\n      <label htmlFor="name">이름</label>\n      <Input id="name" name="name" autoComplete="name"\n        value={name} onChange={e => setName(e.target.value)}\n        aria-describedby="name-help" />\n      <p id="name-help">예약자 이름을 입력해 주세요.</p>\n    </div>\n  );\n}`
-            : `'use client';\nimport { useState } from 'react';\nimport { Select } from '@/components/ui';\n\nexport default function DestinationField() {\n  const [destination, setDestination] = useState('');\n  return (\n    <div>\n      <label htmlFor="destination">여행지</label>\n      <Select id="destination" name="destination"\n        value={destination}\n        onChange={e => setDestination(e.target.value)}\n        placeholder="여행지를 선택하세요"\n        options={[\n          { value: 'seoul', label: '서울' },\n          { value: 'busan', label: '부산' },\n        ]}\n        aria-describedby="destination-help" />\n      <p id="destination-help">여행할 도시 한 곳을 선택하세요.</p>\n    </div>\n  );\n}`}
-        </Code>
+        <Code>{`'use client';
+
+import { useState } from 'react';
+import { Field, Input } from '@/components/ui';
+
+export default function Example() {
+  const [email, setEmail] = useState('');
+
+  return (
+    <Field
+      label="이메일"
+      required
+      description="알림을 수신할 이메일 주소를 입력해 주세요."
+    >
+      <Input
+        type="email"
+        name="email"
+        autoComplete="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="user@example.com"
+      />
+    </Field>
+  );
+}`}</Code>
       </Section>
     </>
   );
